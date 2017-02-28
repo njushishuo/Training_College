@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:mysql://localhost:3306/training_college</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="current_session_context_class">thread</property>
+    <property name="packagesToScan" >entity</property>
+
+    <!-- DB schema will be updated if needed -->
+     <property name="hbm2ddl.auto">update</property>
+      <mapping class="training_college.entity.Card"/>
+      <mapping class="training_college.entity.Course"/>
+      <mapping class="training_college.entity.NewSchedule"/>
+      <mapping class="training_college.entity.Organization"/>
+      <mapping class="training_college.entity.PostModifySchedule"/>
+      <mapping class="training_college.entity.PreModifySchedule"/>
+      <mapping class="training_college.entity.Project"/>
+      <mapping class="training_college.entity.Reservation"/>
+      <mapping class="training_college.entity.Student"/>
+      <mapping class="training_college.entity.Teacher"/>
+      <mapping class="training_college.entity.DropRecord"/>
+      <mapping class="training_college.entity.EnrollmentRecord"/>
+      <mapping class="training_college.entity.GradeRecord"/>
+  </session-factory>
+</hibernate-configuration>
