@@ -1,5 +1,8 @@
 package training_college.entity;
 
+import training_college.util.AddStatus;
+import training_college.util.ModifyStatus;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -12,8 +15,8 @@ public class Project {
     private String className;
     private int maxStdCnt;
     private int curStdCnt;
-    private Serializable addStatus;
-    private Serializable modifyStatus;
+    private AddStatus addStatus;
+    private ModifyStatus modifyStatus;
     private Organization organization;
 
     @Id
@@ -56,23 +59,23 @@ public class Project {
         this.curStdCnt = curStdCnt;
     }
 
-    @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "add_status")
-    public Serializable getAddStatus() {
+    public AddStatus getAddStatus() {
         return addStatus;
     }
 
-    public void setAddStatus(Serializable addStatus) {
+    public void setAddStatus(AddStatus addStatus) {
         this.addStatus = addStatus;
     }
 
-    @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "modify_status")
-    public Serializable getModifyStatus() {
+    public ModifyStatus getModifyStatus() {
         return modifyStatus;
     }
 
-    public void setModifyStatus(Serializable modifyStatus) {
+    public void setModifyStatus(ModifyStatus modifyStatus) {
         this.modifyStatus = modifyStatus;
     }
 

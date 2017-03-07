@@ -1,5 +1,8 @@
 package training_college.entity;
 
+import training_college.util.PayMethod;
+import training_college.util.UserType;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -14,8 +17,8 @@ public class EnrollmentRecord {
     private int orgSystemId;
     private String projectName;
     private String studentName;
-    private Serializable userType;
-    private Serializable payMethod;
+    private UserType userType;
+    private PayMethod payMethod;
     private Timestamp date;
 
     @Id
@@ -58,23 +61,23 @@ public class EnrollmentRecord {
         this.studentName = studentName;
     }
 
-    @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "user_type")
-    public Serializable getUserType() {
+    public UserType getUserType() {
         return userType;
     }
 
-    public void setUserType(Serializable userType) {
+    public void setUserType(UserType userType) {
         this.userType = userType;
     }
 
-    @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "pay_method")
-    public Serializable getPayMethod() {
+    public PayMethod getPayMethod() {
         return payMethod;
     }
 
-    public void setPayMethod(Serializable payMethod) {
+    public void setPayMethod(PayMethod payMethod) {
         this.payMethod = payMethod;
     }
 

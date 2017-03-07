@@ -3,6 +3,7 @@ package training_college.entity;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Created by ss14 on 2017/2/28.
@@ -13,7 +14,7 @@ public class Teacher {
     private String name;
     private String introduction;
 
-    @Basic
+    @Id
     @Column(name = "id")
     public int getId() {
         return id;

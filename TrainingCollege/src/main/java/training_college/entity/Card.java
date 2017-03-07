@@ -1,9 +1,8 @@
 package training_college.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import training_college.util.CardStatus;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -16,7 +15,7 @@ public class Card {
     private Integer balance;
     private Integer score;
     private Integer level;
-    private Serializable status;
+    private CardStatus status;
 
     @Id
     @Column(name = "id")
@@ -68,13 +67,13 @@ public class Card {
         this.level = level;
     }
 
-    @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    public Serializable getStatus() {
+    public CardStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Serializable status) {
+    public void setStatus(CardStatus status) {
         this.status = status;
     }
 
