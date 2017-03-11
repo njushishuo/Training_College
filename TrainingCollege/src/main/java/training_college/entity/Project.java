@@ -1,10 +1,10 @@
 package training_college.entity;
 
-import training_college.util.AddStatus;
-import training_college.util.ModifyStatus;
+import training_college.util.enumeration.AddStatus;
+import training_college.util.enumeration.ModifyStatus;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * Created by ss14 on 2017/2/28.
@@ -12,13 +12,17 @@ import java.io.Serializable;
 @Entity
 public class Project {
     private int id;
+    private Organization organization;
     private String className;
+    private Timestamp fromDate;
+    private Timestamp toDate;
+    private int totalPrice;
     private int maxStdCnt;
     private int curStdCnt;
+
+
     private AddStatus addStatus;
     private ModifyStatus modifyStatus;
-    private Organization organization;
-
     @Id
     @Column(name = "id")
     public int getId() {
@@ -37,6 +41,36 @@ public class Project {
 
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    @Basic
+    @Column(name = "from_date")
+    public Timestamp getFromDate() {
+        return fromDate;
+    }
+
+    public void setFromDate(Timestamp fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    @Basic
+    @Column(name = "to_date")
+    public Timestamp getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(Timestamp toDate) {
+        this.toDate = toDate;
+    }
+
+    @Basic
+    @Column(name = "price")
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     @Basic
@@ -117,4 +151,7 @@ public class Project {
     public void setOrganization(Organization organization) {
         this.organization = organization;
     }
+
+
+
 }

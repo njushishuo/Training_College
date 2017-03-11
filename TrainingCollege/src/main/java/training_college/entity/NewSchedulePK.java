@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by ss14 on 2017/2/28.
+ * Created by ss14 on 2017/3/11.
  */
 public class NewSchedulePK implements Serializable {
     private int projectId;

@@ -1,5 +1,7 @@
 package training_college.entity;
 
+import training_college.util.enumeration.Gender;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -12,7 +14,7 @@ public class Student {
     private String username;
     private String password;
     private String name;
-    private Serializable gender;
+    private Gender gender;
     private Card card;
 
     @Id
@@ -55,13 +57,13 @@ public class Student {
         this.name = name;
     }
 
-    @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "gender")
-    public Serializable getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(Serializable gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

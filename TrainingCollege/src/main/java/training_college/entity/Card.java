@@ -1,9 +1,8 @@
 package training_college.entity;
 
-import training_college.util.CardStatus;
+import training_college.util.enumeration.CardStatus;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * Created by ss14 on 2017/2/28.

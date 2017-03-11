@@ -1,10 +1,9 @@
 package training_college.entity;
 
-import training_college.util.PayMethod;
-import training_college.util.UserType;
+import training_college.util.enumeration.PayMethod;
+import training_college.util.enumeration.UserType;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
