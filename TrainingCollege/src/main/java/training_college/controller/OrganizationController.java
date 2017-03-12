@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class OrganizationController {
     @RequestMapping(value = "/organization" , method = RequestMethod.GET)
     public String getOrganizationHomePage(){
-        return "home_org";
+        return "class_info";
     }
 
 }

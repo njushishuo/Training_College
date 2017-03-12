@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>班级信息</title>
+     <!--Bootstrap core CSS -->
+    <link  th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link  th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+            <nav class="navbar navbar-default ">
+                <ul class="nav navbar-nav">
+
+                    <li >
+                        <a href="#">班级信息</a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            开班申请 <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" >
+                            <li><a href="#">新建申请</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">申请历史</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="#">修改申请</a></li>
+                    <li><a href="#">学员登记</a></li>
+                    <li><a href="#">成绩登记</a></li>
+                    <li><a href="#">机构信息</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-primary">
+            <!-- Default panel contents -->
+            <div class="panel-heading">班级信息</div>
+            <div class="panel-body">
+                所有班级的最新情况
+            </div>
+            <!-- List group -->
+            <ul class="list-group">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+    </div>
+
+
+</div> <!-- /container -->
+
+<script th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
+<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
+</body>
+</html>
