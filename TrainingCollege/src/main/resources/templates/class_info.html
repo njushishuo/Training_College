@@ -71,57 +71,48 @@
                     <th>开学日期</th>
                     <th>结课日期</th>
                     <th>学费</th>
-                    <th></th>
-
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    <td>1</td>
-                    <td>软件工程1班</td>
-                    <td>200</td>
-                    <td>180</td>
-                    <td>2017/09/01</td>
-                    <td>2018/07/10</td>
-                    <td>800</td>
-                </tr>
-                <tr >
-                    <td colspan="7" style="padding: 0;">
-                        <div id="collapseExample" class="collapse" >
-                            <ul >
-                                <li >Cras justo odio</li>
-                                <li >Dapibus ac facilisis in</li>
-                                <li >Morbi leo risus</li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
 
-                <tr>
-                    <td>2</td>
-                    <td>软件工程2班</td>
-                    <td>200</td>
-                    <td>150</td>
-                    <td>2017/09/01</td>
-                    <td>2018/07/10</td>
-                    <td>800</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>软件工程3班</td>
-                    <td>200</td>
-                    <td>180</td>
-                    <td>2017/09/01</td>
-                    <td>2018/07/10</td>
-                    <td>800</td>
-                </tr>
+                    <tr th:each="project:${projects}" data-toggle="modal" th:attr=" data-target='#'+${project.getId() }">
+                        <td th:text="${project.getId()}">1</td>
+                        <td th:text="${project.getClassName()}">软件工程1班</td>
+                        <td th:text="${project.getMaxStdCnt()}">200</td>
+                        <td th:text="${project.getCurStdCnt()}">180</td>
+                        <td th:text="${project.getFromDate()}">2017/09/01</td>
+                        <td th:text="${project.getToDate()}">2018/07/10</td>
+                        <td th:text="${project.getTotalPrice()}">800</td>
+
+                        <!-- Modal -->
+                        <div th:id="${project.getId()}" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="myModalLabel">课程信息</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul class="list-group" >
+                                            <li class="list-group-item" th:each="course: ${ courseMap.get(project.getId()) }">
+                                                <span th:each="teacher: ${course.getTeacherList()}" th:text="${teacher.getName()}" class="badge">刘钦</span>
+                                                <p th:text="${ course.getName()}"></p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tr>
                 </tbody>
             </table>
 
+
+
         </div>
     </div>
-
-
 
 </div> <!-- /container -->
 

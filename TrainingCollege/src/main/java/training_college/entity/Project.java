@@ -4,7 +4,8 @@ import training_college.util.enumeration.AddStatus;
 import training_college.util.enumeration.ModifyStatus;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+
+import java.sql.Date;
 
 /**
  * Created by ss14 on 2017/2/28.
@@ -14,8 +15,8 @@ public class Project {
     private int id;
     private Organization organization;
     private String className;
-    private Timestamp fromDate;
-    private Timestamp toDate;
+    private Date fromDate;
+    private Date toDate;
     private int totalPrice;
     private int maxStdCnt;
     private int curStdCnt;
@@ -45,21 +46,21 @@ public class Project {
 
     @Basic
     @Column(name = "from_date")
-    public Timestamp getFromDate() {
+    public Date getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(Timestamp fromDate) {
+    public void setFromDate(Date fromDate) {
         this.fromDate = fromDate;
     }
 
     @Basic
     @Column(name = "to_date")
-    public Timestamp getToDate() {
+    public Date getToDate() {
         return toDate;
     }
 
-    public void setToDate(Timestamp toDate) {
+    public void setToDate(Date toDate) {
         this.toDate = toDate;
     }
 

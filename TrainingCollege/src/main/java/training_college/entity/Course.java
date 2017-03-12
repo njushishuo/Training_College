@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Created by ss14 on 2017/2/28.
+ * Created by ss14 on 2017/3/12.
  */
 @Entity
 public class Course {
@@ -65,7 +65,11 @@ public class Course {
         return result;
     }
 
-    @OneToMany
+    @OneToMany(fetch=FetchType.EAGER)
+    @JoinTable
+    (   name="course_teacher",
+        joinColumns={ @JoinColumn(name="course_id", referencedColumnName="id") },
+        inverseJoinColumns={ @JoinColumn(name="teacher_id", referencedColumnName="id", unique=true) })
     public List<Teacher> getTeacherList() {
         return teacherList;
     }

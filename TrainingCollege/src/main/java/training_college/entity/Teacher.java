@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by ss14 on 2017/2/28.
+ * Created by ss14 on 2017/3/12.
  */
 @Entity
 public class Teacher {
