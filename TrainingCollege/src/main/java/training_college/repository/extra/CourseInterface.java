@@ -8,7 +8,7 @@ import java.util.List;
 public interface CourseInterface {
 
     /**
-     * 根据班级ID返回，该班级的全部课程
+     * 根据班级ID返回，该班级的全部课程， 从 pre_modify_schedule中读取最新情况
      * @return
      */
     List getCoursesByProjectId(int id);

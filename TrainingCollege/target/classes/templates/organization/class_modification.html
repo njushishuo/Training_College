@@ -45,7 +45,7 @@
     <div class="row">
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">新建班级</div>
+            <div class="panel-heading">编辑班级信息</div>
             <div class="panel-body">
                 <div class="row" >
                     <div class="col-md-offset-2 col-md-8">
@@ -56,35 +56,35 @@
                             <hr/>
                             <div class="form-group">
                                 <label for="className">班级名称</label>
-                                <input  class="form-control" name="className" id="className" placeholder="班级名称" />
+                                <input th:value="${project.getClassName()}" class="form-control" name="className" id="className" placeholder="班级名称" />
                             </div>
                             <div class="form-group">
                                 <label >班级人数</label>
                                 <br/>
                                 <label class="radio-inline">
-                                    <input type="radio" name="maxStdCnt" id="inlineRadio1" value="50"/> 50
+                                    <input th:checked="${project.getMaxStdCnt() == 50}" type="radio" name="maxStdCnt" id="inlineRadio1" value="50"/> 50
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="maxStdCnt" id="inlineRadio2" value="100"/> 100
+                                    <input th:checked="${project.getMaxStdCnt() == 100}" type="radio" name="maxStdCnt" id="inlineRadio2" value="100"/> 100
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="maxStdCnt" id="inlineRadio3" value="200"/> 200
+                                    <input th:checked="${project.getMaxStdCnt() == 200}" type="radio" name="maxStdCnt" id="inlineRadio3" value="200"/> 200
                                 </label>
                             </div>
 
                             <div class="form-group">
                                 <label for="fromDate">开学日期</label>
-                                <input  class="form-control" name="fromDate" id="fromDate" placeholder="开学日期" />
+                                <input th:value="${project.getFromDate()}"  class="form-control" name="fromDate" id="fromDate" placeholder="开学日期" />
                             </div>
 
                             <div class="form-group">
                                 <label for="toDate">结课日期</label>
-                                <input  class="form-control" name="toDate" id="toDate" placeholder="结课日期" />
+                                <input th:value="${project.getToDate()}" class="form-control" name="toDate" id="toDate" placeholder="结课日期" />
                             </div>
 
                             <div class="form-group">
                                 <label for="totalPrice">学费</label>
-                                <input type="number" class="form-control" name="totalPrice" id="totalPrice" placeholder="学费" />
+                                <input th:value="${project.getTotalPrice()}" type="number" class="form-control" name="totalPrice" id="totalPrice" placeholder="学费" />
                             </div>
 
                             <h2>课程信息</h2>
@@ -100,7 +100,7 @@
                                 </li>
                             </ul>
 
-                            <button type="submit" class="center-block btn btn-default btn-primary">申请开班</button>
+                            <button type="submit" class="center-block btn btn-default btn-primary">申请修改</button>
                         </form>
                     </div>
                 </div>

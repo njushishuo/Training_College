@@ -88,7 +88,7 @@
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
-                                        <a th:href="@{/organization/{id}/classModification(id=${session.organization.getId()})}"
+                                        <a th:href="@{/organization/{id}/classModification/{pid}(id=${session.organization.getId()} , pid =${project.getId()} )}"
                                            type="button" class="btn btn-default">修改</a>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
                                     </div>

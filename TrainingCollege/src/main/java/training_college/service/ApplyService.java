@@ -11,6 +11,8 @@ import java.util.List;
 public interface ApplyService {
 
 
+    Project getClassById(int pid);
+
     Project saveAndFlush(Project project);
 
     /**
@@ -26,7 +28,18 @@ public interface ApplyService {
      */
     List<Course> getAllCourses();
 
-
+    /**
+     * 开班申请
+     * @param courseIds
+     * @param projectId
+     */
     void addNewSchedule(String [] courseIds , int projectId );
+
+    /**
+     * 修改申请
+     * @param courseIds
+     * @param projectId
+     */
+    void addPostSchedule(String [] courseIds , int projectId );
 
 }

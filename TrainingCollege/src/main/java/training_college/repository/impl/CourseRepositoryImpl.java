@@ -22,7 +22,7 @@ public class CourseRepositoryImpl implements CourseInterface {
     public List getCoursesByProjectId(int id) {
 
         String hql = "select c from Course c  where c.id  in  " +
-                "(select c1.id  from PostModifySchedule pm ,Course c1  where pm.projectId = ?1 and c1.id = pm.courseId)";
+                "(select c1.id  from PreModifySchedule pm ,Course c1  where pm.projectId = ?1 and c1.id = pm.courseId)";
         Query query = em.createQuery(hql).setParameter(1,id);
         List<Course> courses = query.getResultList();
         return courses;

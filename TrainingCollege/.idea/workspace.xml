@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="265cc45b-2cdd-40a4-9992-c629417ff7a4" name="Default" comment="" />
+    <list default="true" id="265cc45b-2cdd-40a4-9992-c629417ff7a4" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/training_college/service/impl/ApplyServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/training_college/service/impl/ApplyServiceImpl.java" />
+    </list>
     <ignored path="Training_College.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -34,45 +36,55 @@
       <file leaf-file-name="OrganizationController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/training_college/controller/OrganizationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="144" column="5" selection-start-line="144" selection-start-column="5" selection-end-line="144" selection-end-column="5" />
+            <state relative-caret-position="382">
+              <caret line="182" column="0" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
               <folding>
                 <element signature="method#getClassInfoPage#0;class#OrganizationController#0" expanded="true" />
                 <element signature="method#getNewClassPage#0;class#OrganizationController#0" expanded="true" />
                 <element signature="method#newClass#0;class#OrganizationController#0" expanded="true" />
                 <element signature="method#getNewClassHistoryPage#0;class#OrganizationController#0" expanded="true" />
                 <element signature="method#getClassModificationPage#0;class#OrganizationController#0" expanded="true" />
+                <element signature="method#modifyClass#0;class#OrganizationController#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class_info.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/organization/class_info.html">
+      <file leaf-file-name="ApplyServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/training_college/service/impl/ApplyServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2408">
-              <caret line="88" column="42" selection-start-line="88" selection-start-column="42" selection-end-line="88" selection-end-column="42" />
-              <folding />
+            <state relative-caret-position="536">
+              <caret line="68" column="75" selection-start-line="68" selection-start-column="75" selection-end-line="68" selection-end-column="75" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1023#1024#0" expanded="true" />
+                <element signature="e#1076#1077#0" expanded="true" />
+                <element signature="method#addNewSchedule#0;class#ApplyServiceImpl#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class_creation_history.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/organization/class_creation_history.html">
+      <file leaf-file-name="NewScheduleRepository.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/NewScheduleRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="32" column="62" selection-start-line="32" selection-start-column="62" selection-end-line="32" selection-end-column="62" />
-              <folding />
+            <state relative-caret-position="280">
+              <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class_modifiation_history.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/organization/class_modifiation_history.html">
+      <file leaf-file-name="ClassInfoServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/training_college/service/impl/ClassInfoServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="32" column="62" selection-start-line="32" selection-start-column="62" selection-end-line="32" selection-end-column="62" />
-              <folding />
+            <state relative-caret-position="340">
+              <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,8 +98,8 @@
         <option value="JUnit4 Test Class" />
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -102,17 +114,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/class_info.css" />
-        <option value="$PROJECT_DIR$/src/main/java/training_college/entity/PreModifySchedule.java" />
         <option value="$PROJECT_DIR$/src/main/java/training_college/entity/PostModifySchedule.java" />
         <option value="$PROJECT_DIR$/src/main/java/training_college/repository/extra/impl/ProjectDapImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/training_college/TrainingCollegeApplicationTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/training_college/repository/extra/ProjectDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/training_college/repository/ProjectInterface.java" />
-        <option value="$PROJECT_DIR$/src/main/java/training_college/repository/ProjectRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/training_college/repository/extra/CourseInterface.java" />
         <option value="$PROJECT_DIR$/src/test/java/training_college/repository/ProjectRepositoryTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/training_college/repository/impl/CourseRepositoryImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/test/java/training_college/repository/CourseRepositoryTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/training_college/repository/CourseRepository.java" />
@@ -137,21 +144,26 @@
         <option value="$PROJECT_DIR$/src/main/java/training_college/entity/Reservation.java" />
         <option value="$PROJECT_DIR$/src/main/java/training_college/entity/Student.java" />
         <option value="$PROJECT_DIR$/src/main/java/training_college/entity/Teacher.java" />
-        <option value="$PROJECT_DIR$/src/main/java/training_college/repository/impl/ProjectRepositoryImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/new_class_history.html" />
-        <option value="$PROJECT_DIR$/src/main/java/training_college/repository/extra/ProjectInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/training_college/service/impl/ProjectServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/training_college/service/ClassInfoService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/training_college/service/ApplyService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/training_college/service/impl/ApplyServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/training_college/service/impl/ClassInfoServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/class_modification.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/class_info.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/organization/new_class.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/organization/class_modification.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/organization/class_creation_history.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/organization/class_modifiation_history.html" />
+        <option value="$PROJECT_DIR$/src/main/java/training_college/repository/impl/ProjectRepositoryImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/training_college/repository/extra/ProjectInterface.java" />
+        <option value="$PROJECT_DIR$/src/main/java/training_college/repository/ProjectRepository.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/organization/class_info.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/organization/class_modification.html" />
+        <option value="$PROJECT_DIR$/src/main/java/training_college/service/ApplyService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/training_college/repository/impl/CourseRepositoryImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/training_college/repository/extra/CourseInterface.java" />
+        <option value="$PROJECT_DIR$/src/main/java/training_college/repository/PostScheduleRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/training_college/repository/PreScheduleRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/training_college/service/impl/ApplyServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/training_college/controller/OrganizationController.java" />
       </list>
     </option>
@@ -1346,7 +1358,7 @@
       <workItem from="1489201062104" duration="11894000" />
       <workItem from="1489213551099" duration="8958000" />
       <workItem from="1489288965288" duration="22369000" />
-      <workItem from="1489393335119" duration="18924000" />
+      <workItem from="1489393335119" duration="21827000" />
     </task>
     <servers />
   </component>
@@ -1383,7 +1395,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71011000" />
+    <option name="totallyTimeSpent" value="73914000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -1397,14 +1409,14 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22444445" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29777777" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22382478" sideWeight="0.09169055" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22382478" sideWeight="0.091772154" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22382478" sideWeight="0.90830946" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22382478" sideWeight="0.90822786" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1441,24 +1453,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/CourseRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/training_college/util/enumeration/PayMethod.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -1513,22 +1507,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/impl/CourseRepositoryImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/extra/CourseInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1604,16 +1582,6 @@
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
             <element signature="e#322#323#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/NewScheduleRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1766,30 +1734,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/impl/ProjectRepositoryImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/extra/ProjectInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/ProjectRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/training_college/service/impl/ApplyService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -1798,59 +1742,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/service/ApplyService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/service/impl/ApplyServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#855#856#0" expanded="true" />
-            <element signature="e#917#918#0" expanded="true" />
-            <element signature="e#991#992#0" expanded="true" />
-            <element signature="e#1059#1060#0" expanded="true" />
-            <element signature="e#1116#1117#0" expanded="true" />
-            <element signature="e#1165#1166#0" expanded="true" />
-            <element signature="method#addNewSchedule#0;class#ApplyServiceImpl#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/service/impl/ClassInfoServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#843#844#0" expanded="true" />
-            <element signature="e#908#909#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/organization/class_creation.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="42" column="10" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/organization/class_modification.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
           <folding>
             <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
@@ -1885,22 +1780,139 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/organization/class_info.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2408">
-          <caret line="88" column="42" selection-start-line="88" selection-start-column="42" selection-end-line="88" selection-end-column="42" />
+        <state relative-caret-position="326">
+          <caret line="87" column="45" selection-start-line="87" selection-start-column="45" selection-end-line="87" selection-end-column="45" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/organization/class_modification.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/impl/ProjectRepositoryImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+          <folding>
+            <element signature="method#getOpenClassesByOrgId#0;class#ProjectRepositoryImpl#0" expanded="true" />
+            <element signature="method#getAllNewClassesByOrgId#0;class#ProjectRepositoryImpl#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/ProjectRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/extra/ProjectInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/impl/CourseRepositoryImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/service/ApplyService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="38" column="11" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/extra/CourseInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="10" column="54" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/service/impl/ClassInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/NewScheduleRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/PreScheduleRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="9" column="99" selection-start-line="9" selection-start-column="99" selection-end-line="9" selection-end-column="99" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/repository/PostScheduleRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="9" column="63" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/training_college/service/impl/ApplyServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="68" column="75" selection-start-line="68" selection-start-column="75" selection-end-line="68" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1023#1024#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+            <element signature="method#addNewSchedule#0;class#ApplyServiceImpl#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/training_college/controller/OrganizationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="144" column="5" selection-start-line="144" selection-start-column="5" selection-end-line="144" selection-end-column="5" />
+        <state relative-caret-position="382">
+          <caret line="182" column="0" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
           <folding>
             <element signature="method#getClassInfoPage#0;class#OrganizationController#0" expanded="true" />
             <element signature="method#getNewClassPage#0;class#OrganizationController#0" expanded="true" />
             <element signature="method#newClass#0;class#OrganizationController#0" expanded="true" />
             <element signature="method#getNewClassHistoryPage#0;class#OrganizationController#0" expanded="true" />
             <element signature="method#getClassModificationPage#0;class#OrganizationController#0" expanded="true" />
+            <element signature="method#modifyClass#0;class#OrganizationController#0" expanded="true" />
           </folding>
         </state>
       </provider>

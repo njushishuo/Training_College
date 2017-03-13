@@ -38,7 +38,7 @@ public class OrganizationController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/organization/{id}/classInfo" , method = RequestMethod.GET)
+    @RequestMapping(value ="/organization/{id}/classInfo" , method = RequestMethod.GET)
     public String getClassInfoPage(@PathVariable  int id , Model model){
 
         List<Project> projectList = classInfoService.getOpenClassesByOrgId(id);
@@ -52,7 +52,7 @@ public class OrganizationController {
         model.addAttribute("projects",projectList);
         model.addAttribute("courseMap", courseMap);
 
-        return "class_info";
+        return "/organization/class_info";
     }
 
     /**
@@ -60,16 +60,16 @@ public class OrganizationController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/organization/{id}/classCreation" , method = RequestMethod.GET)
+    @RequestMapping(value ="/organization/{id}/classCreation" , method = RequestMethod.GET)
     public String getNewClassPage(Model model){
 
         List<Course> courseList = applyService.getAllCourses();
         model.addAttribute("courses",courseList);
 
-        return "class_creation";
+        return "/organization/class_creation";
     }
 
-    @RequestMapping(value = "/organization/{id}/classCreation" , method = RequestMethod.POST)
+    @RequestMapping(value ="/organization/{id}/classCreation" , method = RequestMethod.POST)
     public String newClass(@PathVariable  int id , HttpServletRequest request, HttpSession session, Model model){
 
         String className = request.getParameter("className");
@@ -89,17 +89,10 @@ public class OrganizationController {
 
         project=applyService.saveAndFlush(project);
 
-//        if(project.getId()!=0){
-//            System.err.println(project.getId());
-//        }else{
-//            System.err.println("project id is 0");
-//        }
-
         String courseIds[]=request.getParameterValues("checkbox_course");
-
         applyService.addNewSchedule(courseIds,project.getId());
 
-        return "redirect:/organization/"+id+"/newClassHistory";
+        return "redirect:/organization/"+id+"/classCreationHistory";
     }
 
 
@@ -109,7 +102,7 @@ public class OrganizationController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/organization/{id}/classCreationHistory" , method = RequestMethod.GET)
+    @RequestMapping(value ="/organization/{id}/classCreationHistory" , method = RequestMethod.GET)
     public String getNewClassHistoryPage(@PathVariable  int id , Model model){
 
         List<Project> projectList = applyService.getAllNewClassesByOrgId(id);
@@ -124,7 +117,7 @@ public class OrganizationController {
         model.addAttribute("projects",projectList);
         model.addAttribute("courseMap" , courseMap);
 
-        return "class_creation_history";
+        return "/organization/class_creation_history";
     }
 
 
@@ -134,16 +127,56 @@ public class OrganizationController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/organization/{id}/classModification" , method = RequestMethod.GET)
+    @RequestMapping(value ="/organization/{id}/classModification/{pid}" , method = RequestMethod.GET)
     public String getClassModificationPage
-        (HttpSession session ,Model model){
+        (@PathVariable int id, @PathVariable int pid,Model model){
 
+        Project project = applyService.getClassById(pid);
         List<Course> courseList = applyService.getAllCourses();
+        model.addAttribute("project",project );
         model.addAttribute("courses",courseList);
 
-        return "class_modification";
+        return "/organization/class_modification";
     }
 
 
+    /**
+     * 获取申请修改班级信息界面
+     * @param model
+     * @return
+     */
+    @RequestMapping(value ="/organization/{id}/classModification/{pid}" , method = RequestMethod.POST)
+    public String modifyClass(@PathVariable int id,@PathVariable int pid, HttpServletRequest request, HttpSession session ,Model model){
+
+        String className = request.getParameter("className");
+        int maxStdCnt = Integer.parseInt(request.getParameter("maxStdCnt"));
+        Date fromDate = Date.valueOf(request.getParameter("fromDate"));
+        Date toDate = Date.valueOf(request.getParameter("toDate"));
+        int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
+
+        /**
+         * 获取原有的课程
+         */
+        Project project = applyService.getClassById(pid);
+        project.setClassName(className);
+        project.setMaxStdCnt(maxStdCnt);
+        project.setFromDate(fromDate);
+        project.setToDate(toDate);
+        project.setTotalPrice(totalPrice);
+        project.setAddStatus(AddStatus.pending);
+        project.setOrganization((Organization) session.getAttribute("organization"));
+        /**
+         * 为了立即见效这里强制保存
+         */
+        project=applyService.saveAndFlush(project);
+
+        /**
+         * 将修改的情况添加到post_schedule中
+         */
+        String courseIds[]=request.getParameterValues("checkbox_course");
+        applyService.addPostSchedule(courseIds,project.getId());
+
+        return "redirect:/organization/"+id+"classModificationHistory";
+    }
 
 }
