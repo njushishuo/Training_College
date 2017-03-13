@@ -14,6 +14,7 @@ public class Course {
     private List<Teacher> teacherList;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;

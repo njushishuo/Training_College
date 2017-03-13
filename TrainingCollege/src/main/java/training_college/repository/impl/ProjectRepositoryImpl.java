@@ -25,4 +25,12 @@ public class ProjectRepositoryImpl implements ProjectInterface {
         List<Project> projectList = query.getResultList();
         return projectList;
     }
+
+    @Override
+    public List<Project> getAllNewClassesByOrgId(int id) {
+        String hql = "from Project p  where p.organization.id = ?1 ";
+        Query query   = em.createQuery(hql).setParameter(1,id);
+        List<Project> projectList = query.getResultList();
+        return projectList;
+    }
 }

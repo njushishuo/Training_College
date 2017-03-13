@@ -18,6 +18,7 @@ public class Student {
     private Card card;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;

@@ -1,9 +1,6 @@
 package training_college.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by ss14 on 2017/3/12.
@@ -15,6 +12,7 @@ public class Teacher {
     private String introduction;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;

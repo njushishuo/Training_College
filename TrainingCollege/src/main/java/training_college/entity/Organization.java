@@ -1,9 +1,6 @@
 package training_college.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by ss14 on 2017/2/28.
@@ -17,6 +14,7 @@ public class Organization {
     private int balance;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;

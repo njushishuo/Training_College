@@ -1,14 +1,15 @@
-package training_college.repository.extra;
+package training_college.service;
 
+import training_college.entity.Course;
 import training_college.entity.Project;
 
 import java.util.List;
 
-
 /**
- * Created by ss14 on 2017/3/12.
+ * Created by ss14 on 2017/3/13.
+ * 班级信息相关的逻辑
  */
-public interface ProjectInterface {
+public interface ClassInfoService {
 
     /**
      * 返回某个机构的班级
@@ -18,11 +19,6 @@ public interface ProjectInterface {
      */
     List<Project> getOpenClassesByOrgId(int id);
 
-    /**
-     * 返回某个机构申请开班的记录
-     * @param id
-     * @return
-     */
-    List<Project> getAllNewClassesByOrgId(int id);
 
+    List<Course> getCoursesByProjectId(int id);
 }

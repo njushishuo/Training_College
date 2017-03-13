@@ -14,6 +14,7 @@ import java.sql.Date;
 public class Project {
     private int id;
     private Organization organization;
+    private int organizationId;
     private String className;
     private Date fromDate;
     private Date toDate;
@@ -24,7 +25,9 @@ public class Project {
 
     private AddStatus addStatus;
     private ModifyStatus modifyStatus;
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;

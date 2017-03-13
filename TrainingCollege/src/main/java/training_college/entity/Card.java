@@ -17,6 +17,7 @@ public class Card {
     private CardStatus status;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;

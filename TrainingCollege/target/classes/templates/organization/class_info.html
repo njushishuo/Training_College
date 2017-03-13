@@ -19,36 +19,27 @@
             <nav class="navbar navbar-default ">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="#">班级信息</a>
+                        <a th:href="@{/organization/{id}/classInfo(id=${session.organization.getId()})}">
+                            班级信息
+                        </a>
                     </li>
-
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            开班申请 <span class="caret"></span>
+                            申请历史 <span class="caret"></span>
                         </a>
-
                         <ul class="dropdown-menu" >
-                            <li><a href="#">新建申请</a></li>
+                            <li><a th:href="@{/organization/{id}/classCreationHistory(id=${session.organization.getId()})}">
+                                开班申请
+                            </a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">申请历史</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            修改申请 <span class="caret"></span>
-                        </a>
-
-                        <ul class="dropdown-menu" >
-                            <li><a href="#">新建申请</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">申请历史</a></li>
+                            <li><a th:href="@{/organization/{id}/classModificationHistory(id=${session.organization.getId()})}">
+                                修改申请
+                            </a></li>
                         </ul>
                     </li>
                     <li><a href="#">学员登记</a></li>
                     <li><a href="#">成绩登记</a></li>
                     <li><a href="#">机构信息</a></li>
-
                 </ul>
             </nav>
     </div>
@@ -58,23 +49,21 @@
             <!-- Default panel contents -->
             <div class="panel-heading">班级信息</div>
             <div class="panel-body">
-                所有班级的最新情况
-            </div>
-            <!-- List group -->
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>班级ID</th>
-                    <th>班级名称</th>
-                    <th>预计人数</th>
-                    <th>当前人数</th>
-                    <th>开学日期</th>
-                    <th>结课日期</th>
-                    <th>学费</th>
-                </tr>
-                </thead>
-                <tbody>
-
+                <p>所有班级的最新情况</p>
+                <!-- List group -->
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>班级ID</th>
+                        <th>班级名称</th>
+                        <th>预计人数</th>
+                        <th>当前人数</th>
+                        <th>开学日期</th>
+                        <th>结课日期</th>
+                        <th>学费</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <tr th:each="project:${projects}" data-toggle="modal" th:attr=" data-target='#'+${project.getId() }">
                         <td th:text="${project.getId()}">1</td>
                         <td th:text="${project.getClassName()}">软件工程1班</td>
@@ -83,7 +72,6 @@
                         <td th:text="${project.getFromDate()}">2017/09/01</td>
                         <td th:text="${project.getToDate()}">2018/07/10</td>
                         <td th:text="${project.getTotalPrice()}">800</td>
-
                         <!-- Modal -->
                         <div th:id="${project.getId()}" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
@@ -100,17 +88,26 @@
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
+                                        <a th:href="@{/organization/{id}/classModification(id=${session.organization.getId()})}"
+                                           type="button" class="btn btn-default">修改</a>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
 
 
-
+                <div class=" text-right">
+                    <a  th:href="@{/organization/{id}/classCreation(id=${session.organization.getId()})}"
+                        class="btn-default btn">
+                        <span class="glyphicon glyphicon-plus " aria-hidden="true"> </span> 添加班级
+                    </a>
+                </div>
+            </div>
+            <div class="panel-footer"></div>
         </div>
     </div>
 
