@@ -26,17 +26,60 @@
                         申请历史 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" >
-                        <li><a th:href="@{/organization/{id}/newClassHistory(id=${session.organization.getId()})}">
+                        <li><a th:href="@{/organization/{id}/classCreationHistory(id=${session.organization.getId()})}">
                             开班申请
                         </a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a th:href="@{/organization/{id}/ClassModificationHistory(id=${session.organization.getId()})}">
+                        <li><a th:href="@{/organization/{id}/classModificationHistory(id=${session.organization.getId()})}">
                             修改申请
                         </a></li>
                     </ul>
                 </li>
-                <li><a href="#">学员登记</a></li>
-                <li><a href="#">成绩登记</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        入学登记 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" >
+                        <li><a th:href="@{/organization/{id}/enrollRecordCreation(id=${session.organization.getId()})}">
+                            新建记录
+                        </a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/organization/{id}/enrollRecordInfo(id=${session.organization.getId()})}">
+                            历史记录
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        退课登记 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" >
+
+                        <li><a th:href="@{/organization/{id}/dropRecordCreation(id=${session.organization.getId()})}">
+                            新建记录
+                        </a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/organization/{id}/dropRecordInfo(id=${session.organization.getId()})}">
+                            历史记录
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        成绩登记 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" >
+                        <li>
+                            <a th:href="@{/organization/{id}/gradeRecordCreation(id=${session.organization.getId()})}">
+                                新建记录
+                            </a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/organization/{id}/gradeRecordInfo(id=${session.organization.getId()})}">
+                            历史记录
+                        </a></li>
+                    </ul>
+                </li>
                 <li><a href="#">机构信息</a></li>
             </ul>
         </nav>
@@ -49,8 +92,8 @@
             <div class="panel-body">
                 <div class="row" >
                     <div class="col-md-offset-2 col-md-8">
-                        <!--跳转到申请历史去-->
-                        <form  th:action="@{/organization/{id}/newClass(id=${session.organization.getId()})}" method="post">
+
+                        <form  th:action="@{/organization/{id}/classModification/{pid}(id=${session.organization.getId()} , pid= ${project.getId()})}" method="post">
 
                             <h2>基本信息</h2>
                             <hr/>
@@ -58,19 +101,22 @@
                                 <label for="className">班级名称</label>
                                 <input th:value="${project.getClassName()}" class="form-control" name="className" id="className" placeholder="班级名称" />
                             </div>
-                            <div class="form-group">
-                                <label >班级人数</label>
-                                <br/>
-                                <label class="radio-inline">
-                                    <input th:checked="${project.getMaxStdCnt() == 50}" type="radio" name="maxStdCnt" id="inlineRadio1" value="50"/> 50
-                                </label>
-                                <label class="radio-inline">
-                                    <input th:checked="${project.getMaxStdCnt() == 100}" type="radio" name="maxStdCnt" id="inlineRadio2" value="100"/> 100
-                                </label>
-                                <label class="radio-inline">
-                                    <input th:checked="${project.getMaxStdCnt() == 200}" type="radio" name="maxStdCnt" id="inlineRadio3" value="200"/> 200
-                                </label>
-                            </div>
+
+                            <!--<fieldset disabled="disabled">-->
+                                <!--<div class="form-group">-->
+                                    <!--<label >班级人数</label>-->
+                                    <!--<br/>-->
+                                    <!--<label class="radio-inline">-->
+                                        <!--<input th:checked="${project.getMaxStdCnt() == 50}" type="radio" name="maxStdCnt" id="inlineRadio1" value="50"/> 50-->
+                                    <!--</label>-->
+                                    <!--<label class="radio-inline">-->
+                                        <!--<input th:checked="${project.getMaxStdCnt() == 100}" type="radio" name="maxStdCnt" id="inlineRadio2" value="100"/> 100-->
+                                    <!--</label>-->
+                                    <!--<label class="radio-inline">-->
+                                        <!--<input th:checked="${project.getMaxStdCnt() == 200}" type="radio" name="maxStdCnt" id="inlineRadio3" value="200"/> 200-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                            <!--</fieldset>-->
 
                             <div class="form-group">
                                 <label for="fromDate">开学日期</label>

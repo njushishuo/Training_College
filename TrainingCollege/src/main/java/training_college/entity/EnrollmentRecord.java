@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @Table(name = "enrollment_record", schema = "training_college", catalog = "")
 public class EnrollmentRecord {
     private int id;
-    private int orgSystemId;
+    private String orgSystemId;
     private String projectName;
     private String studentName;
     private UserType userType;
@@ -33,11 +33,11 @@ public class EnrollmentRecord {
 
     @Basic
     @Column(name = "org_system_id")
-    public int getOrgSystemId() {
+    public String getOrgSystemId() {
         return orgSystemId;
     }
 
-    public void setOrgSystemId(int orgSystemId) {
+    public void setOrgSystemId(String orgSystemId) {
         this.orgSystemId = orgSystemId;
     }
 
@@ -112,7 +112,6 @@ public class EnrollmentRecord {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + orgSystemId;
         result = 31 * result + (projectName != null ? projectName.hashCode() : 0);
         result = 31 * result + (studentName != null ? studentName.hashCode() : 0);
         result = 31 * result + (userType != null ? userType.hashCode() : 0);

@@ -23,7 +23,7 @@ public class ClassInfoServiceImpl implements ClassInfoService {
 
     @Override
     public List<Project> getOpenClassesByOrgId(int id) {
-        return projectRepository.getOpenClassesByOrgId(id);
+        return projectRepository.getApprovedProjectsByOrgId(id);
     }
 
     @Override

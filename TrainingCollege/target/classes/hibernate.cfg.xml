@@ -24,5 +24,6 @@
       <mapping class="training_college.entity.DropRecord"/>
       <mapping class="training_college.entity.EnrollmentRecord"/>
       <mapping class="training_college.entity.GradeRecord"/>
+      <mapping class="training_college.entity.PostProject"/>
   </session-factory>
 </hibernate-configuration>

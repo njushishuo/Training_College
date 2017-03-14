@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Entity
 public class Organization {
     private int id;
-    private int systemId;
     private String username;
     private String password;
     private int balance;
@@ -22,16 +21,6 @@ public class Organization {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "system_id")
-    public int getSystemId() {
-        return systemId;
-    }
-
-    public void setSystemId(int systemId) {
-        this.systemId = systemId;
     }
 
     @Basic
@@ -72,7 +61,6 @@ public class Organization {
         Organization that = (Organization) o;
 
         if (id != that.id) return false;
-        if (systemId != that.systemId) return false;
         if (balance != that.balance) return false;
         if (username != null ? !username.equals(that.username) : that.username != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
@@ -83,7 +71,6 @@ public class Organization {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + systemId;
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + balance;

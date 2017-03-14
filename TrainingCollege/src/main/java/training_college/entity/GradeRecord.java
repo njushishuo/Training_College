@@ -1,22 +1,23 @@
 package training_college.entity;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
- * Created by ss14 on 2017/2/28.
+ * Created by ss14 on 2017/3/15.
  */
 @Entity
 @Table(name = "grade_record", schema = "training_college", catalog = "")
 public class GradeRecord {
     private int id;
-    private int orgSystemId;
+    private String orgSystemId;
     private String projectName;
     private String studentName;
-    private int courseName;
+    private String courseName;
     private int score;
+    private Timestamp date;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;
@@ -28,11 +29,11 @@ public class GradeRecord {
 
     @Basic
     @Column(name = "org_system_id")
-    public int getOrgSystemId() {
+    public String getOrgSystemId() {
         return orgSystemId;
     }
 
-    public void setOrgSystemId(int orgSystemId) {
+    public void setOrgSystemId(String orgSystemId) {
         this.orgSystemId = orgSystemId;
     }
 
@@ -58,11 +59,11 @@ public class GradeRecord {
 
     @Basic
     @Column(name = "course_name")
-    public int getCourseName() {
+    public String getCourseName() {
         return courseName;
     }
 
-    public void setCourseName(int courseName) {
+    public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
 
@@ -76,6 +77,16 @@ public class GradeRecord {
         this.score = score;
     }
 
+    @Basic
+    @Column(name = "date")
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,11 +95,12 @@ public class GradeRecord {
         GradeRecord that = (GradeRecord) o;
 
         if (id != that.id) return false;
-        if (orgSystemId != that.orgSystemId) return false;
-        if (courseName != that.courseName) return false;
         if (score != that.score) return false;
+        if (orgSystemId != null ? !orgSystemId.equals(that.orgSystemId) : that.orgSystemId != null) return false;
         if (projectName != null ? !projectName.equals(that.projectName) : that.projectName != null) return false;
         if (studentName != null ? !studentName.equals(that.studentName) : that.studentName != null) return false;
+        if (courseName != null ? !courseName.equals(that.courseName) : that.courseName != null) return false;
+        if (date != null ? !date.equals(that.date) : that.date != null) return false;
 
         return true;
     }
@@ -96,11 +108,12 @@ public class GradeRecord {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + orgSystemId;
+        result = 31 * result + (orgSystemId != null ? orgSystemId.hashCode() : 0);
         result = 31 * result + (projectName != null ? projectName.hashCode() : 0);
         result = 31 * result + (studentName != null ? studentName.hashCode() : 0);
-        result = 31 * result + courseName;
+        result = 31 * result + (courseName != null ? courseName.hashCode() : 0);
         result = 31 * result + score;
+        result = 31 * result + (date != null ? date.hashCode() : 0);
         return result;
     }
 }

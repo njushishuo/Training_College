@@ -23,7 +23,7 @@ public class ProjectRepositoryTest {
     @Test
     public void getOpenClasses() {
 
-        List<Project> list = repository.getOpenClassesByOrgId(1);
+        List<Project> list = repository.getApprovedProjectsByOrgId(1);
         for(Project project : list){
             System.out.println(project.getId()+" "+project.getClassName()+" "+project.getFromDate()
             );

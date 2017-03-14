@@ -10,5 +10,5 @@ import training_college.repository.extra.ProjectInterface;
  */
 @Repository
 public interface ProjectRepository extends JpaRepository<Project,Integer>, ProjectInterface {
-
+        Project getByClassName(String className);
 }

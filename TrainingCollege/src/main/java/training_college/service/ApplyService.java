@@ -1,6 +1,7 @@
 package training_college.service;
 
 import training_college.entity.Course;
+import training_college.entity.PostProject;
 import training_college.entity.Project;
 
 import java.util.List;
@@ -11,16 +12,21 @@ import java.util.List;
 public interface ApplyService {
 
 
-    Project getClassById(int pid);
-
-    Project saveAndFlush(Project project);
+    Project getProjectById(int pid);
 
     /**
      * 返回某个机构申请开班的记录
      * @param id
      * @return
      */
-    List<Project> getAllNewClassesByOrgId(int id);
+    List<Project> getAllProjectsByOrgId(int id);
+
+    /**
+     * 返回某个机构申请修改的记录
+     * @param id
+     * @return
+     */
+    List<Project> getAllModifiedProjectsByOrgId(int id);
 
     /**
      * 返回全部课程
@@ -34,6 +40,12 @@ public interface ApplyService {
      * @param projectId
      */
     void addNewSchedule(String [] courseIds , int projectId );
+
+
+    void addPostProject(PostProject postProject);
+
+
+    Project addProject(Project project);
 
     /**
      * 修改申请

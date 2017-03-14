@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Entity
 public class Card {
     private int id;
-    private int systemId;
     private Integer balance;
     private Integer score;
     private Integer level;
@@ -27,15 +26,6 @@ public class Card {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "system_id")
-    public int getSystemId() {
-        return systemId;
-    }
-
-    public void setSystemId(int systemId) {
-        this.systemId = systemId;
-    }
 
     @Basic
     @Column(name = "balance")
@@ -85,7 +75,6 @@ public class Card {
         Card card = (Card) o;
 
         if (id != card.id) return false;
-        if (systemId != card.systemId) return false;
         if (balance != null ? !balance.equals(card.balance) : card.balance != null) return false;
         if (score != null ? !score.equals(card.score) : card.score != null) return false;
         if (level != null ? !level.equals(card.level) : card.level != null) return false;
@@ -97,7 +86,6 @@ public class Card {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + systemId;
         result = 31 * result + (balance != null ? balance.hashCode() : 0);
         result = 31 * result + (score != null ? score.hashCode() : 0);
         result = 31 * result + (level != null ? level.hashCode() : 0);

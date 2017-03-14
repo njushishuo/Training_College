@@ -16,7 +16,7 @@
     <div class="row">
         <nav class="navbar navbar-default ">
             <ul class="nav navbar-nav">
-                <li>
+                <li >
                     <a th:href="@{/organization/{id}/classInfo(id=${session.organization.getId()})}">
                         班级信息
                     </a>
@@ -35,8 +35,51 @@
                         </a></li>
                     </ul>
                 </li>
-                <li><a href="#">学员登记</a></li>
-                <li><a href="#">成绩登记</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        入学登记 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" >
+                        <li><a th:href="@{/organization/{id}/enrollRecordCreation(id=${session.organization.getId()})}">
+                            新建记录
+                        </a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/organization/{id}/enrollRecordInfo(id=${session.organization.getId()})}">
+                            历史记录
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        退课登记 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" >
+
+                        <li><a th:href="@{/organization/{id}/dropRecordCreation(id=${session.organization.getId()})}">
+                            新建记录
+                        </a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/organization/{id}/dropRecordInfo(id=${session.organization.getId()})}">
+                            历史记录
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        成绩登记 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" >
+                        <li>
+                            <a th:href="@{/organization/{id}/gradeRecordCreation(id=${session.organization.getId()})}">
+                                新建记录
+                            </a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/organization/{id}/gradeRecordInfo(id=${session.organization.getId()})}">
+                            历史记录
+                        </a></li>
+                    </ul>
+                </li>
                 <li><a href="#">机构信息</a></li>
             </ul>
         </nav>
@@ -76,9 +119,9 @@
                     <td th:text="${project.getTotalPrice()}">800</td>
 
                     <div th:switch="${project.getAddStatus().toString()}">
-                        <td th:case="approved" th:text="${project.getAddStatus()}" class="text-success">通过</td>
-                        <td th:case="pending"  th:text="${project.getAddStatus()}" class="text-warning">等待</td>
-                        <td th:case="rejected" th:text="${project.getAddStatus()}" class="text-danger">拒绝</td>
+                        <td th:case="approved"  class="text-success">通过</td>
+                        <td th:case="pending"   class="text-warning">等待</td>
+                        <td th:case="rejected"  class="text-danger">拒绝</td>
                     </div>
 
 

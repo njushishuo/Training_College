@@ -2,14 +2,8 @@ package training_college.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import training_college.entity.Course;
-import training_college.entity.NewSchedule;
-import training_college.entity.PostModifySchedule;
-import training_college.entity.Project;
-import training_college.repository.CourseRepository;
-import training_college.repository.NewScheduleRepository;
-import training_college.repository.PostScheduleRepository;
-import training_college.repository.ProjectRepository;
+import training_college.entity.*;
+import training_college.repository.*;
 import training_college.service.ApplyService;
 
 import java.util.List;
@@ -29,20 +23,23 @@ public class ApplyServiceImpl implements ApplyService {
     NewScheduleRepository newScheduleRepository;
     @Autowired
     PostScheduleRepository postScheduleRepository;
+    @Autowired
+    PostProjectRepository postProjectRepository;
 
     @Override
-    public Project getClassById(int pid) {
+    public Project getProjectById(int pid) {
         return projectRepository.findOne(pid);
     }
 
     @Override
-    public Project saveAndFlush(Project project) {
-        return projectRepository.saveAndFlush(project);
+    public List<Project> getAllProjectsByOrgId(int id) {
+        return projectRepository.getAllProjectsByOrgId(id);
     }
 
     @Override
-    public List<Project> getAllNewClassesByOrgId(int id) {
-        return projectRepository.getAllNewClassesByOrgId(id);
+    public List<Project> getAllModifiedProjectsByOrgId(int id) {
+
+       return  projectRepository.getAllModifiedProjectsByOrgId(id);
     }
 
     @Override
@@ -59,6 +56,16 @@ public class ApplyServiceImpl implements ApplyService {
             newSchedule.setCourseId(Integer.parseInt(courseIds[i]));
             newScheduleRepository.save(newSchedule);
         }
+    }
+
+    @Override
+    public Project addProject(Project project) {
+        return projectRepository.saveAndFlush(project);
+    }
+
+    @Override
+    public void addPostProject(PostProject postProject) {
+        postProjectRepository.saveAndFlush(postProject);
     }
 
     @Override
