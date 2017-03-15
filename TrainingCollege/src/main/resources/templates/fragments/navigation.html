@@ -1,0 +1,125 @@
+<div class="row" id = "orgNav">
+    <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    TrainingCollege
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li th:classappend="${ ( #httpServletRequest.getRequestURI().endsWith('classInfo') or
+                        #httpServletRequest.getRequestURI().endsWith('classCreation') or
+                        #httpServletRequest.getRequestURI().startsWith('/organization'+session.organization.getId()+'/classModification') ) ? 'active':''}">
+                        <a th:href="@{/organization/{id}/classInfo(id=${session.organization.getId()})}">
+                            班级信息
+                        </a>
+                    </li>
+                    <li class="dropdown"
+                        th:classappend="${ ( #httpServletRequest.getRequestURI().endsWith('classCreationHistory') or
+                        #httpServletRequest.getRequestURI().endsWith('classModificationHistory') ) ? 'active':''}" >
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            申请历史 <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" >
+                            <li><a th:href="@{/organization/{id}/classCreationHistory(id=${session.organization.getId()})}">
+                                开班申请
+                            </a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a th:href="@{/organization/{id}/classModificationHistory(id=${session.organization.getId()})}">
+                                修改申请
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"
+                        th:classappend="${ ( #httpServletRequest.getRequestURI().endsWith('enrollRecordCreation') or
+                        #httpServletRequest.getRequestURI().endsWith('enrollRecordInfo') ) ? 'active':''}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            入学登记 <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" >
+                            <li><a th:href="@{/organization/{id}/enrollRecordCreation(id=${session.organization.getId()})}">
+                                新建记录
+                            </a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a th:href="@{/organization/{id}/enrollRecordInfo(id=${session.organization.getId()})}">
+                                历史记录
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"
+                        th:classappend="${ ( #httpServletRequest.getRequestURI().endsWith('dropRecordCreation') or
+                        #httpServletRequest.getRequestURI().endsWith('dropRecordInfo') ) ? 'active':''}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            退课登记 <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" >
+
+                            <li><a th:href="@{/organization/{id}/dropRecordCreation(id=${session.organization.getId()})}">
+                                新建记录
+                            </a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a th:href="@{/organization/{id}/dropRecordInfo(id=${session.organization.getId()})}">
+                                历史记录
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"
+                        th:classappend="${ ( #httpServletRequest.getRequestURI().endsWith('gradeRecordCreation') or
+                        #httpServletRequest.getRequestURI().endsWith('gradeRecordInfo') ) ? 'active':''}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            成绩登记 <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" >
+                            <li>
+                                <a th:href="@{/organization/{id}/gradeRecordCreation(id=${session.organization.getId()})}">
+                                    新建记录
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a th:href="@{/organization/{id}/gradeRecordInfo(id=${session.organization.getId()})}">
+                                历史记录
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">机构信息</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+<div class="row" id = "stdNav">
+    <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    TrainingCollege
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a th:href="@{/student/classInfo}">
+                        预订/选课
+                    </a></li>
+                    <li><a th:href="@{/student/{id}/cardInfo(id=${session.student.getId()})}" >
+                        我的会员卡
+                    </a></li>
+                    <li><a th:href="@{/student/{id}/orderInfo(id=${session.student.getId()})}">
+                        我的订单
+                    </a></li>
+                    <li><a th:href="@{/student/{id}/classInfo(id=${session.student.getId()})}">
+                        我的班级
+                    </a></li>
+                    <li><a th:href="@{/student/{id}/gradeInfo(id=${session.student.getId()})}">
+                        我的成绩
+                    </a></li>
+                    <li><a th:href="@{/student/{id}/consumingInfo(id=${session.student.getId()})}">
+                        我的消费
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

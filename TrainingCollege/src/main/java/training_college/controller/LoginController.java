@@ -42,7 +42,7 @@ public class LoginController {
             Student student = loginService.getStudentByUsername(username);
             session.setAttribute("student",student);
 
-            return  "redirect:/student/"+student.getId()+"/home";
+            return  "redirect:/student/classInfo";
 
         }else {
 
@@ -50,7 +50,9 @@ public class LoginController {
             if(result== LoginResult.pass){
                 Organization organization = loginService.getOrganizationByUsername(username);
                 session.setAttribute("organization",organization);
+
                 return "redirect:/organization/"+organization.getId()+"/classInfo";
+
             }
         }
 
