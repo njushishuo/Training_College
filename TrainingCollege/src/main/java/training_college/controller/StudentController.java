@@ -16,6 +16,9 @@ import training_college.service.ClassInfoService;
 import training_college.service.ReserveService;
 import training_college.service.SelectService;
 import training_college.util.DateHelper;
+import training_college.util.DisCntHelper;
+import training_college.util.IDHelper;
+import training_college.vo.CardVO;
 import training_college.vo.ProjectVO;
 
 import java.util.HashMap;
@@ -38,9 +41,12 @@ public class StudentController {
     @Autowired
     CardService cardService;
 
-
+    @Autowired
+    IDHelper idHelper;
     @Autowired
     DateHelper dateHelper;
+    @Autowired
+    DisCntHelper disCntHelper;
 
 
     @RequestMapping(value = "/{id}/classInfo" , method = RequestMethod.GET)
@@ -88,8 +94,13 @@ public class StudentController {
 
         Student student = cardService.getStudentById(id);
         Card card = student.getCard();
+        CardVO cardVO = new CardVO();
+        cardVO.id = idHelper.validateId(id);
+        cardVO.card = card;
+        cardVO.disCnt = disCntHelper.getDisCntByLevel(card.getLevel());
+
         model.addAttribute("student", student);
-        model.addAttribute("card",card);
+        model.addAttribute("cardVO",cardVO);
 
         return "student/card";
 
