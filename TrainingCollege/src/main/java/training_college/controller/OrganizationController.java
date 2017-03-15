@@ -11,6 +11,7 @@ import training_college.entity.*;
 import training_college.service.ApplyService;
 import training_college.service.ClassInfoService;
 import training_college.service.RecordService;
+import training_college.service.SelectService;
 import training_college.util.enumeration.AddStatus;
 import training_college.util.enumeration.ModifyStatus;
 import training_college.util.enumeration.PayMethod;

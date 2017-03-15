@@ -26,5 +26,12 @@ public interface ClassInfoService {
      */
     List<Project> getAllOpenProjects();
 
+    /**
+     * 获取所有该用户未选过的仍未满员的开放课程
+     * @param id
+     * @return
+     */
+    List<Project> getAvaliableProjectsNotSelectedByStdId(int id);
+
     List<Course> getCoursesByProjectId(int id);
 }

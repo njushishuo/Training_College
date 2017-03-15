@@ -42,7 +42,7 @@ public class LoginController {
             Student student = loginService.getStudentByUsername(username);
             session.setAttribute("student",student);
 
-            return  "redirect:/student/classInfo";
+            return  "redirect:/student/"+student.getId()+"/classInfo";
 
         }else {
 

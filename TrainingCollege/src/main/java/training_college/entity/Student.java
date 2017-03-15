@@ -14,6 +14,8 @@ public class Student {
     private String username;
     private String password;
     private String name;
+    private String email;
+    private String phone;
     private Gender gender;
     private Card card;
 
@@ -57,6 +59,27 @@ public class Student {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Basic
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Basic
+    @Column(name = "phone")
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
@@ -103,4 +126,6 @@ public class Student {
     public void setCard(Card card) {
         this.card = card;
     }
+
+
 }

@@ -32,6 +32,11 @@ public class ClassInfoServiceImpl implements ClassInfoService {
     }
 
     @Override
+    public List<Project> getAvaliableProjectsNotSelectedByStdId(int id) {
+        return projectRepository.getAvaliableProjectsNotSelectedByStdId(id);
+    }
+
+    @Override
     public List<Course> getCoursesByProjectId(int id) {
         return courseRepository.getCoursesByProjectId(id);
     }
