@@ -19,9 +19,17 @@ public class ProjectRepositoryImpl implements ProjectInterface {
     EntityManager em;
 
     @Override
-    public List getApprovedProjectsByOrgId(int id) {
+    public List getOpenProjectsByOrgId(int id) {
         String hql = "from Project where addStatus = 'approved' and organization.id = ?1 ";
         Query query   = em.createQuery(hql).setParameter(1,id);
+        List<Project> projectList = query.getResultList();
+        return projectList;
+    }
+
+    @Override
+    public List<Project> getAllOpenProjects() {
+        String hql = "from Project where addStatus = 'approved' ";
+        Query query   = em.createQuery(hql);
         List<Project> projectList = query.getResultList();
         return projectList;
     }

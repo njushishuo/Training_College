@@ -21,6 +21,8 @@ public interface ApplyService {
      */
     List<Project> getAllProjectsByOrgId(int id);
 
+
+
     /**
      * 返回某个机构申请修改的记录
      * @param id

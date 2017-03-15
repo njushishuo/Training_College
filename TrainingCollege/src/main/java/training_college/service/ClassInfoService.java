@@ -20,5 +20,11 @@ public interface ClassInfoService {
     List<Project> getOpenClassesByOrgId(int id);
 
 
+    /**
+     * 返回所有开放的班级
+     * @return
+     */
+    List<Project> getAllOpenProjects();
+
     List<Course> getCoursesByProjectId(int id);
 }

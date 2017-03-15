@@ -18,7 +18,13 @@ public interface ProjectInterface {
      * 如果正在审批修改，显示修改前的信息
      * @return
      */
-    List<Project> getApprovedProjectsByOrgId(int id);
+    List<Project> getOpenProjectsByOrgId(int id);
+
+    /**
+     * 获取所有开放的班级
+     * @return
+     */
+    List<Project> getAllOpenProjects();
 
     /**
      * 返回某个机构申请开班的记录
