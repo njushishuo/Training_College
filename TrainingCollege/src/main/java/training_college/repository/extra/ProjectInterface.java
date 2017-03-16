@@ -56,6 +56,14 @@ public interface ProjectInterface {
      */
     List<Project> getAvaliableProjectsNotSelectedByStdId(int id);
 
+
+    /**
+     * 获取一个会员选的课并且该课程已经开始
+     * @param id
+     * @return
+     */
+    List<Project> getStartedProjectsByStdId(int id);
+
     /**
      * 获取某个机构所有已选人数>0的开放班级
      * @param id

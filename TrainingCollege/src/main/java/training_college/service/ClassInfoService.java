@@ -2,6 +2,8 @@ package training_college.service;
 
 import training_college.entity.Course;
 import training_college.entity.Project;
+import training_college.vo.ClassInfoVO;
+import training_college.vo.ProjectVO;
 
 import java.util.List;
 
@@ -32,6 +34,22 @@ public interface ClassInfoService {
      * @return
      */
     List<Project> getAvaliableProjectsNotSelectedByStdId(int id);
+
+
+    /**
+     * 获取一个会员选过的已经开学的课程
+     * @param id
+     * @return
+     */
+    List<Project> getStartedProjectsByStdId(int id);
+
+
+
+    ClassInfoVO getClassInfoVOByProjects(List<Project> projects);
+
+
+
+
 
     List<Course> getCoursesByProjectId(int id);
 }

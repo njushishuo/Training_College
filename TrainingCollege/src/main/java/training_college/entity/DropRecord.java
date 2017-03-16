@@ -1,6 +1,7 @@
 package training_college.entity;
 
 import training_college.util.enumeration.PayMethod;
+import training_college.util.enumeration.SelectMethod;
 import training_college.util.enumeration.UserType;
 
 import javax.persistence.*;
@@ -17,6 +18,9 @@ public class DropRecord {
     private String orgSystemId;
     private String projectName;
     private String studentName;
+    private int price;
+    private int payment;
+    private SelectMethod selectMethod;
     private UserType userType;
     private PayMethod payMethod;
     private Timestamp date;
@@ -60,6 +64,38 @@ public class DropRecord {
     public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
+
+    @Basic
+    @Column(name = "price")
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    @Basic
+    @Column(name = "payment")
+    public int getPayment() {
+        return payment;
+    }
+
+    public void setPayment(int payment) {
+        this.payment = payment;
+    }
+
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "select_method")
+    public SelectMethod getSelectMethod() {
+        return selectMethod;
+    }
+
+    public void setSelectMethod(SelectMethod selectMethod) {
+        this.selectMethod = selectMethod;
+    }
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "user_type")

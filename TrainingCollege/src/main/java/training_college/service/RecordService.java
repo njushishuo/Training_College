@@ -35,6 +35,14 @@ public interface RecordService {
 
 
     /**
+     * 获取一个会员的入学记录（通过非预订的方式）
+     * @param name
+     * @return
+     */
+    List<EnrollmentRecord> getEnrollRecordsWithSelectionByStdName(String name);
+
+
+    /**
      * 添加入学记录，并增加相应project的当前人数
      * @return
      */
@@ -46,6 +54,13 @@ public interface RecordService {
      * @return
      */
     List<DropRecord> getAllDropRecordsByOrgId(int id);
+
+    /**
+     * 获取一个会员的全部退课记录
+     * @param name
+     * @return
+     */
+    List<DropRecord> getAllDropRecordByStdName(String name);
 
     /**
      * 添加退课（退学）记录，并增加相应project的当前人数
@@ -68,5 +83,13 @@ public interface RecordService {
      * @return
      */
     String validateId(int id);
+
+
+    List<GradeRecord> getGradeRecordsByStdName(String name);
+
+
+
+
+
 
 }

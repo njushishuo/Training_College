@@ -7,4 +7,7 @@ public interface SelectService {
 
     boolean select(int sid, int pid);
 
+
+    boolean unselect(int sid , int pid);
+
 }

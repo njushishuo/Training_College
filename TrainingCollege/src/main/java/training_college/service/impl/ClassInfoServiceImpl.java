@@ -7,7 +7,12 @@ import training_college.entity.Project;
 import training_college.repository.CourseRepository;
 import training_college.repository.ProjectRepository;
 import training_college.service.ClassInfoService;
+import training_college.util.DateHelper;
+import training_college.vo.ClassInfoVO;
+import training_college.vo.ProjectVO;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -20,6 +25,8 @@ public class ClassInfoServiceImpl implements ClassInfoService {
     ProjectRepository projectRepository;
     @Autowired
     CourseRepository courseRepository;
+    @Autowired
+    DateHelper dateHelper;
 
     @Override
     public List<Project> getOpenClassesByOrgId(int id) {
@@ -34,6 +41,34 @@ public class ClassInfoServiceImpl implements ClassInfoService {
     @Override
     public List<Project> getAvaliableProjectsNotSelectedByStdId(int id) {
         return projectRepository.getAvaliableProjectsNotSelectedByStdId(id);
+    }
+
+    @Override
+    public List<Project> getStartedProjectsByStdId(int id) {
+        return projectRepository.getStartedProjectsByStdId(id);
+    }
+
+    @Override
+    public ClassInfoVO getClassInfoVOByProjects(List<Project> projects) {
+
+        HashMap courseMap = new HashMap();
+        List<ProjectVO> projectVOs = new LinkedList<>();
+
+        for (Project project : projects){
+            List<Course> courseList = this.getCoursesByProjectId(project.getId());
+            courseMap.put(project.getId(),courseList);
+
+            ProjectVO projectVO = new ProjectVO();
+            projectVO.project = project;
+            projectVO.hasStarted =dateHelper.HasStarted(project.getFromDate());
+            projectVOs.add(projectVO);
+        }
+
+        ClassInfoVO classInfoVO = new ClassInfoVO();
+        classInfoVO.projectVOList = projectVOs;
+        classInfoVO.courseMap = courseMap;
+        return classInfoVO;
+
     }
 
     @Override

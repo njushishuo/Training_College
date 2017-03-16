@@ -7,6 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 public class Organization {
+
     private int id;
     private String username;
     private String password;
@@ -53,6 +54,7 @@ public class Organization {
         this.balance = balance;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -76,4 +78,5 @@ public class Organization {
         result = 31 * result + balance;
         return result;
     }
+
 }

@@ -9,8 +9,9 @@ import java.sql.Timestamp;
 @Entity
 public class Reservation {
     private int id;
+    private int payment;
     private Timestamp date;
-    private boolean isCancled;
+    private boolean isCanceled;
     private Project project;
     private Student student;
 
@@ -26,6 +27,17 @@ public class Reservation {
     }
 
     @Basic
+    @Column(name = "payment")
+    public int getPayment() {
+        return payment;
+    }
+
+    public void setPayment(int payment) {
+        this.payment = payment;
+    }
+
+
+    @Basic
     @Column(name = "date")
     public Timestamp getDate() {
         return date;
@@ -36,13 +48,13 @@ public class Reservation {
     }
 
     @Basic
-    @Column(name = "is_cancled")
-    public boolean isCancled() {
-        return isCancled;
+    @Column(name = "is_canceled")
+    public boolean isCanceled() {
+        return isCanceled;
     }
 
-    public void setCancled(boolean cancled) {
-        isCancled = cancled;
+    public void setCanceled(boolean cancled) {
+        isCanceled = cancled;
     }
 
     @Override
@@ -53,7 +65,7 @@ public class Reservation {
         Reservation that = (Reservation) o;
 
         if (id != that.id) return false;
-        if (isCancled != that.isCancled) return false;
+        if (isCanceled != that.isCanceled) return false;
         if (date != null ? !date.equals(that.date) : that.date != null) return false;
 
         return true;
@@ -63,7 +75,7 @@ public class Reservation {
     public int hashCode() {
         int result = id;
         result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (isCancled ? 1 : 0);
+        result = 31 * result + (isCanceled ? 1 : 0);
         return result;
     }
 
@@ -86,4 +98,6 @@ public class Reservation {
     public void setStudent(Student student) {
         this.student = student;
     }
+
+
 }

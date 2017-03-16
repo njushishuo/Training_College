@@ -68,6 +68,14 @@ public class ProjectRepositoryImpl implements ProjectInterface {
     }
 
     @Override
+    public List<Project> getStartedProjectsByStdId(int id) {
+        String hql = "select p from ProjectStudent ps , Project p  where ps.sid = ?1 and ps.pid = p.id and p.fromDate < CURRENT_DATE ";
+        Query query   = em.createQuery(hql).setParameter(1,id);
+        List<Project> projectList = query.getResultList();
+        return projectList;
+    }
+
+    @Override
     public List<Project> getSelectedProjectsByOrgId(int id) {
         String hql = "from Project p  where p.organization.id = ?1 and p.curStdCnt >0 and p.addStatus = 'approved' ";
         Query query   = em.createQuery(hql).setParameter(1,id);

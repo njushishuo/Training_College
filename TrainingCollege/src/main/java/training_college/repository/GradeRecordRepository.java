@@ -13,4 +13,7 @@ import java.util.List;
 public interface GradeRecordRepository extends JpaRepository<GradeRecord,Integer> {
 
     List<GradeRecord> getByOrgSystemId (String id);
+
+
+    List<GradeRecord> getByStudentName(String stdName);
 }

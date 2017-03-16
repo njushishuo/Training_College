@@ -40,6 +40,11 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
+    public List<GradeRecord> getGradeRecordsByStdName(String name) {
+        return gradeRecordRepository.getByStudentName(name);
+    }
+
+    @Override
     public List<Project> getAvaliableProjectsByOrgId(int id) {
 
         return projectRepository.getAvaliableProjectsByOrgId(id);
@@ -57,6 +62,11 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
+    public List<EnrollmentRecord> getEnrollRecordsWithSelectionByStdName(String name) {
+        return enrollRecordRepository.getEnrollRecordsWithSelectionByStdName(name);
+    }
+
+    @Override
     @Transactional
     public void addEnrollRecordAndIncCurStdCnt(EnrollmentRecord enrollmentRecord) {
 
@@ -70,7 +80,12 @@ public class RecordServiceImpl implements RecordService {
 
     @Override
     public List<DropRecord> getAllDropRecordsByOrgId(int id) {
-        return dropRecordRepository.getByOrgSystemId(validateId(id));
+        return dropRecordRepository.getByOrgSystemIdOrderByDDesc(validateId(id));
+    }
+
+    @Override
+    public List<DropRecord> getAllDropRecordByStdName(String name) {
+        return dropRecordRepository.getByStudentNameOrderByDDesc(name);
     }
 
     @Override

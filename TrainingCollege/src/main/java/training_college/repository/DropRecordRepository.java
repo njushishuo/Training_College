@@ -12,6 +12,9 @@ import java.util.List;
 @Repository
 public interface DropRecordRepository extends JpaRepository<DropRecord,Integer> {
 
-    List<DropRecord> getByOrgSystemId (String id);
+    List<DropRecord> getByOrgSystemIdOrderByDDesc (String id);
+
+
+    List<DropRecord> getByStudentNameOrderByDDesc (String id);
 
 }

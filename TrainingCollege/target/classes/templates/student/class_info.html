@@ -99,7 +99,7 @@
                                             <div class="col-md-6">
                                                 <label >付款后余额：</label>
                                                 <span th:text="${session.student.getCard().getBalance()} - ${projectVO.project.getTotalPrice()}"
-                                                      th:class=" ${session.student.getCard().getBalance()} le ${projectVO.project.getTotalPrice()}
+                                                      th:class=" ${session.student.getCard().getBalance()} lt ${projectVO.project.getTotalPrice()}
                                                                    ? 'text-warning':'text-success' ">0</span>
                                             </div>
                                         </div>
@@ -107,12 +107,12 @@
                                 <div class="modal-footer">
                                     <!--预订-->
                                     <a  th:if="${!projectVO.hasStarted}"
-                                        th:disabled="${session.student.getCard().getBalance()} le ${projectVO.project.getTotalPrice()}"
+                                        th:disabled="${session.student.getCard().getBalance()} lt ${projectVO.project.getTotalPrice()}"
                                         th:onclick="|reserve(${session.student.getId()},${projectVO.project.getId()})|"
                                        class="btn btn-default" data-dismiss="modal">确认</a>
                                     <!--预订-->
                                     <a  th:if="${projectVO.hasStarted}"
-                                        th:disabled="${session.student.getCard().getBalance()} le ${projectVO.project.getTotalPrice()}"
+                                        th:disabled="${session.student.getCard().getBalance()} lt ${projectVO.project.getTotalPrice()}"
                                         th:onclick="|select(${session.student.getId()},${projectVO.project.getId()})|"
                                        class="btn btn-default" data-dismiss="modal">确认</a>
                                 </div>
