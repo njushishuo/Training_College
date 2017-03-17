@@ -35,4 +35,5 @@ public class ReservationRepositoryImpl implements ReservationInterface {
         List<Reservation> reservations = query.getResultList();
         return reservations;
     }
+
 }

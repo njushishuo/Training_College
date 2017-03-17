@@ -12,6 +12,9 @@ public class Reservation {
     private int payment;
     private Timestamp date;
     private boolean isCanceled;
+    private boolean isReserveChecked;
+    private boolean isCancelChecked;
+
     private Project project;
     private Student student;
 
@@ -57,6 +60,28 @@ public class Reservation {
         isCanceled = cancled;
     }
 
+    @Basic
+    @Column(name = "is_reserve_checked")
+    public boolean isReserveChecked() {
+        return isReserveChecked;
+    }
+
+    public void setReserveChecked(boolean reserveChecked) {
+        isReserveChecked = reserveChecked;
+    }
+
+    @Basic
+    @Column(name = "is_cancel_checked")
+    public boolean isCancelChecked() {
+        return isCancelChecked;
+    }
+
+    public void setCancelChecked(boolean cancelChecked) {
+        isCancelChecked = cancelChecked;
+    }
+
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -98,6 +123,9 @@ public class Reservation {
     public void setStudent(Student student) {
         this.student = student;
     }
+
+
+
 
 
 }

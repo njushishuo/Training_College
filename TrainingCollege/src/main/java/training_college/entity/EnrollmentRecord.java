@@ -23,6 +23,7 @@ public class EnrollmentRecord {
     private UserType userType;
     private PayMethod payMethod;
     private Timestamp date;
+    private boolean isChecked;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -125,6 +126,16 @@ public class EnrollmentRecord {
 
     public void setDate(Timestamp date) {
         this.date = date;
+    }
+
+    @Basic
+    @Column(name = "is_checked")
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 
     @Override

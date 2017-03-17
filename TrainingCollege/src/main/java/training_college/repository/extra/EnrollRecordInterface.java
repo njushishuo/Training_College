@@ -10,4 +10,15 @@ import java.util.List;
 public interface EnrollRecordInterface {
 
    List<EnrollmentRecord> getEnrollRecordsWithSelectionByStdName(String name);
+
+   int getPaymentSumByOrgSystemId(String  systemid);
+
+
+   int getRepaymentSumByOrgSystemId(String  systemid);
+
+
+
+    List<String> getOrgSystemIds();
+
 }
+

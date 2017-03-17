@@ -24,6 +24,7 @@ public class DropRecord {
     private UserType userType;
     private PayMethod payMethod;
     private Timestamp date;
+    private boolean isChecked;
 
     @Id
     @Column(name = "id")
@@ -126,6 +127,17 @@ public class DropRecord {
     public void setDate(Timestamp date) {
         this.date = date;
     }
+
+    @Basic
+    @Column(name = "is_checked")
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
 
     @Override
     public boolean equals(Object o) {

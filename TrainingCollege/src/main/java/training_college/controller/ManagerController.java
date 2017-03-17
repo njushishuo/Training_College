@@ -4,12 +4,14 @@ import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import training_college.entity.Project;
 import training_college.service.ClassInfoService;
 import training_college.service.ExamService;
+import training_college.service.SettleService;
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +25,8 @@ public class ManagerController {
 
     @Autowired
     ExamService examService;
+    @Autowired
+    SettleService settleService;
     @Autowired
     ClassInfoService classInfoService;
 
@@ -108,9 +112,26 @@ public class ManagerController {
 /****************************************结账***************************************************/
 
     @RequestMapping(value = "/accountSettlement/payment" , method = RequestMethod.GET)
-    public String getAccountSettlementPaymentPage(){
+    public String getAccountSettlementPaymentPage(Model model){
+
+
+        List<String> orgSysIds  = settleService.getOrgSystemIds();
+        model.addAttribute("orgSysIds",orgSysIds);
         return "/manager/account_payment";
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/accountSettlement/payment/sum" , method = RequestMethod.GET)
+    public int getPaymentOfOrg(HttpServletRequest request){
+
+        String sysId = request.getParameter("OrgSysId");
+        int paySum = settleService.getPaymentSumByOrgSysId(sysId);
+
+        return  paySum;
+
+    }
+
+
 
     @RequestMapping(value = "/accountSettlement/repayment" , method = RequestMethod.GET)
     public String getAccountSettlementRepaymentPage(){

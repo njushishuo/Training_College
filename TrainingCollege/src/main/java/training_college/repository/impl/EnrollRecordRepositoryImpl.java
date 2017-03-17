@@ -26,4 +26,35 @@ public class EnrollRecordRepositoryImpl implements EnrollRecordInterface {
         List<EnrollmentRecord> records = query.getResultList();
         return  records;
     }
+
+    @Override
+    public int getPaymentSumByOrgSystemId(String sysId) {
+        String hql = "select sum(e.payment) " +
+                "from EnrollmentRecord e " +
+                "where e.payMethod='card' and e.orgSystemId =?1 ";
+        Query query = em.createQuery(hql).setParameter(1,sysId);
+        int sum = (int)(long) query.getSingleResult();
+        return  sum;
+    }
+
+    @Override
+    public int getRepaymentSumByOrgSystemId(String sysId) {
+
+        String hql = "select sum(dr.payment) " +
+                "from DropRecord dr " +
+                "where dr.payMethod='card' and dr.orgSystemId =?1 ";
+        Query query = em.createQuery(hql).setParameter(1,sysId);
+        int sum = (int)(long) query.getSingleResult();
+
+        return  sum;
+
+    }
+
+    @Override
+    public List<String> getOrgSystemIds() {
+        String hql = "select distinct e.orgSystemId from EnrollmentRecord e" ;
+        Query query = em.createQuery(hql);
+        return query.getResultList();
+    }
+
 }
