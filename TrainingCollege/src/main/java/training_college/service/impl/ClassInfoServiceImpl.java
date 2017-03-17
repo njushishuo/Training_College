@@ -49,13 +49,35 @@ public class ClassInfoServiceImpl implements ClassInfoService {
     }
 
     @Override
+    public HashMap getPreModifyCourseMapByProejcts(List<Project> projects) {
+        HashMap courseMap = new HashMap();
+
+        for (Project project : projects){
+            List<Course> courseList = this.getPreModifyCoursesByProjectId(project.getId());
+            courseMap.put(project.getId(),courseList);
+        }
+        return courseMap;
+    }
+
+    @Override
+    public HashMap getNewCourseMapByProejcts(List<Project> projects) {
+        HashMap courseMap = new HashMap();
+
+        for (Project project : projects){
+            List<Course> courseList = this.getNewCoursesByProjectId(project.getId());
+            courseMap.put(project.getId(),courseList);
+        }
+        return courseMap;
+    }
+
+    @Override
     public ClassInfoVO getClassInfoVOByProjects(List<Project> projects) {
 
         HashMap courseMap = new HashMap();
         List<ProjectVO> projectVOs = new LinkedList<>();
 
         for (Project project : projects){
-            List<Course> courseList = this.getCoursesByProjectId(project.getId());
+            List<Course> courseList = this.getPreModifyCoursesByProjectId(project.getId());
             courseMap.put(project.getId(),courseList);
 
             ProjectVO projectVO = new ProjectVO();
@@ -71,8 +93,14 @@ public class ClassInfoServiceImpl implements ClassInfoService {
 
     }
 
+
     @Override
-    public List<Course> getCoursesByProjectId(int id) {
-        return courseRepository.getCoursesByProjectId(id);
+    public List<Course> getPreModifyCoursesByProjectId(int id) {
+        return courseRepository.getPreModifyCoursesByProjectId(id);
+    }
+
+    @Override
+    public List<Course> getNewCoursesByProjectId(int id) {
+        return courseRepository.getNewCoursesByProjectId(id);
     }
 }

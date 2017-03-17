@@ -11,7 +11,6 @@ import training_college.entity.*;
 import training_college.service.ApplyService;
 import training_college.service.ClassInfoService;
 import training_college.service.RecordService;
-import training_college.service.SelectService;
 import training_college.util.enumeration.AddStatus;
 import training_college.util.enumeration.ModifyStatus;
 import training_college.util.enumeration.PayMethod;
@@ -21,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ss14 on 2017/3/11.
@@ -47,12 +47,7 @@ public class OrganizationController {
     public String getClassInfoPage(@PathVariable  int id , Model model){
 
         List<Project> projectList = classInfoService.getOpenClassesByOrgId(id);
-        HashMap courseMap = new HashMap();
-
-        for (Project project : projectList){
-            List<Course> courseList = classInfoService.getCoursesByProjectId(project.getId());
-            courseMap.put(project.getId(),courseList);
-        }
+        Map courseMap = classInfoService.getPreModifyCourseMapByProejcts(projectList);
 
         model.addAttribute("projects",projectList);
         model.addAttribute("courseMap", courseMap);
@@ -117,7 +112,7 @@ public class OrganizationController {
         HashMap courseMap = new HashMap();
         for (Project project : projectList){
 
-            List<Course> courseList = classInfoService.getCoursesByProjectId(project.getId());
+            List<Course> courseList = classInfoService.getPreModifyCoursesByProjectId(project.getId());
             courseMap.put(project.getId(),courseList);
 
         }
@@ -209,7 +204,7 @@ public class OrganizationController {
         HashMap courseMap = new HashMap();
 
         for (Project modifiedProject : modifiedProjectList){
-            List<Course> courseList = classInfoService.getCoursesByProjectId(modifiedProject.getId());
+            List<Course> courseList = classInfoService.getPreModifyCoursesByProjectId(modifiedProject.getId());
             courseMap.put(modifiedProject.getId(),courseList);
         }
 

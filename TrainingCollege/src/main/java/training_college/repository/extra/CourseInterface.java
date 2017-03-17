@@ -11,5 +11,13 @@ public interface CourseInterface {
      * 根据班级ID返回，该班级的全部课程， 从 pre_modify_schedule中读取最新情况
      * @return
      */
-    List getCoursesByProjectId(int id);
+    List getPreModifyCoursesByProjectId(int id);
+
+
+
+    /**
+     * 根据班级ID返回，该班级的全部课程， 从 new_schedule中读取最新情况
+     * @return
+     */
+    List getNewCoursesByProjectId(int id);
 }

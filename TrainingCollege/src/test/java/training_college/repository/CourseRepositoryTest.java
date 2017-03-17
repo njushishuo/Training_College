@@ -25,7 +25,7 @@ public class CourseRepositoryTest {
     public void getCoursesByProjectId(){
 
 
-        List<Course> list = repository.getCoursesByProjectId(1);
+        List<Course> list = repository.getPreModifyCoursesByProjectId(1);
         for(Course course : list){
             System.out.print(course.getName()+" "+course.getDescription()+" ");
             for(Teacher teacher : course.getTeacherList() ){

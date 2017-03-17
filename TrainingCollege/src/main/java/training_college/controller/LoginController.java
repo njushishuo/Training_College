@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import training_college.entity.Company;
 import training_college.entity.Organization;
 import training_college.entity.Student;
 import training_college.service.LoginService;
@@ -26,7 +27,7 @@ public class LoginController {
     @RequestMapping(value={"/login"} , method = RequestMethod.GET)
     public String  getLoginPage(){
 
-        return "login";
+        return "/auth/login";
 
     }
 
@@ -35,25 +36,37 @@ public class LoginController {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        LoginResult result = loginService.isStudent(username,password);
+        String role = request.getParameter("role");
 
-        if(result==LoginResult.pass){
 
-            Student student = loginService.getStudentByUsername(username);
-            session.setAttribute("student",student);
+        LoginResult result;
+        if (role.equals("student")){
 
-            return  "redirect:/student/"+student.getId()+"/classInfo";
+            result = loginService.studentLogin(username,password);
+            if(result==LoginResult.pass){
+                Student student = loginService.getStudentByUsername(username);
+                session.setAttribute("student",student);
+                return  "redirect:/student/"+student.getId()+"/classInfo";
+            }
+        }
+        else if(role.equals("organization")){
 
-        }else {
-
-            result = loginService.isOrganization(username,password);
+            result = loginService.organizationLogin(username,password);
             if(result== LoginResult.pass){
                 Organization organization = loginService.getOrganizationByUsername(username);
                 session.setAttribute("organization",organization);
-
                 return "redirect:/organization/"+organization.getId()+"/classInfo";
-
             }
+
+        }else{
+
+            result = loginService.managerLogin(username,password);
+            if(result== LoginResult.pass){
+                Company company = loginService.getCompanyByUsername(username);
+                session.setAttribute("company",company);
+                return "redirect:/manager/examination/creation";
+            }
+
         }
 
         return "redirect:/login";

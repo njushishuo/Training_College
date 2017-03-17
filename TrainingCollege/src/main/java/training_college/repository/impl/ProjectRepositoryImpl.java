@@ -76,6 +76,22 @@ public class ProjectRepositoryImpl implements ProjectInterface {
     }
 
     @Override
+    public List<Project> getPendingNewProjects() {
+        String hql = " from Project  p where p.addStatus = 'pending' ";
+        Query query   = em.createQuery(hql);
+        List<Project> projectList = query.getResultList();
+        return projectList;
+    }
+
+    @Override
+    public List<Project> getAllProcessedNewProjects() {
+        String hql = " from Project  p where p.addStatus != 'pending' ";
+        Query query   = em.createQuery(hql);
+        List<Project> projectList = query.getResultList();
+        return projectList;
+    }
+
+    @Override
     public List<Project> getSelectedProjectsByOrgId(int id) {
         String hql = "from Project p  where p.organization.id = ?1 and p.curStdCnt >0 and p.addStatus = 'approved' ";
         Query query   = em.createQuery(hql).setParameter(1,id);

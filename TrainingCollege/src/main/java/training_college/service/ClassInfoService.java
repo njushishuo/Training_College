@@ -5,6 +5,7 @@ import training_college.entity.Project;
 import training_college.vo.ClassInfoVO;
 import training_college.vo.ProjectVO;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -35,7 +36,6 @@ public interface ClassInfoService {
      */
     List<Project> getAvaliableProjectsNotSelectedByStdId(int id);
 
-
     /**
      * 获取一个会员选过的已经开学的课程
      * @param id
@@ -44,12 +44,17 @@ public interface ClassInfoService {
     List<Project> getStartedProjectsByStdId(int id);
 
 
+    HashMap getPreModifyCourseMapByProejcts(List<Project> projects);
+
+
+    HashMap getNewCourseMapByProejcts(List<Project> projects);
 
     ClassInfoVO getClassInfoVOByProjects(List<Project> projects);
 
 
 
+    List<Course> getPreModifyCoursesByProjectId(int id);
 
 
-    List<Course> getCoursesByProjectId(int id);
+    List<Course> getNewCoursesByProjectId(int id);
 }

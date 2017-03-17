@@ -1,5 +1,6 @@
 package training_college.service;
 
+import training_college.entity.Company;
 import training_college.entity.Organization;
 import training_college.entity.Student;
 import training_college.util.enumeration.LoginResult;
@@ -13,8 +14,12 @@ public interface LoginService {
 
     Organization getOrganizationByUsername(String username);
 
-    LoginResult isStudent(String username , String password);
+    Company getCompanyByUsername(String username);
 
-    LoginResult isOrganization(String username , String password);
+    LoginResult studentLogin(String username , String password);
+
+    LoginResult organizationLogin(String username , String password);
+
+    LoginResult managerLogin(String username , String password);
 
 }

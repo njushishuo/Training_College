@@ -43,10 +43,6 @@ public interface ApplyService {
      */
     void addNewSchedule(String [] courseIds , int projectId );
 
-
-    void addPostProject(PostProject postProject);
-
-
     Project addProject(Project project);
 
     /**
@@ -55,5 +51,7 @@ public interface ApplyService {
      * @param projectId
      */
     void addPostSchedule(String [] courseIds , int projectId );
+
+    void addPostProject(PostProject postProject);
 
 }

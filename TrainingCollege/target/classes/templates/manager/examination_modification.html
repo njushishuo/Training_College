@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>修改审批</title>
+    <!--Bootstrap core CSS -->
+    <link href="/static/css/common.css" th:href="@{/css/common.css}" rel="stylesheet" type="text/css" />
+    <link href="/static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link href="/static/css/bootstrap-theme.min.css" th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div class="container">
+    <div th:include="/fragments/navigation :: #manNav"></div>
+</div> <!-- /container -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+
+            <div class="jumbotron">
+                <h1>开学季!</h1>
+                <p>一大堆课程来袭，赶快去看看吧！</p>
+            </div>
+
+            <!--ProjectList Here-->
+            <div th:each="projectVO:${projectVOs}" class="panel panel-default ">
+                <!-- Default panel contents -->
+                <div th:text="${projectVO.project.getClassName()}" class="panel-heading">软件工程1班 </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>开学时间：</label> <span th:text="${projectVO.project.getFromDate()}">2017-09-01</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label>结课时间：</label> <span th:text="${projectVO.project.getToDate()}">2018-07-01</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label >当前人数：</label> <span th:text="${projectVO.project.getCurStdCnt()}" class="text-success">158</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label >预招人数：</label> <span th:text="${projectVO.project.getMaxStdCnt()}">200</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label >当前状态：</label>
+                            <span th:if="${projectVO.hasStarted}" class="text-success">已经开课</span>
+                            <span th:if="${!projectVO.hasStarted}" class="text-primary">即将开课</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label >学费：</label>
+                            <span th:text="${projectVO.project.getTotalPrice()}" >已经开课</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- List group -->
+                <ul class="list-group" >
+                    <li class="list-group-item" th:each="course: ${ courseMap.get(projectVO.project.getId()) }">
+                        <span th:each="teacher: ${course.getTeacherList()}" th:text="${teacher.getName()}" class="badge">刘钦</span>
+                        <p th:text="${ course.getName()}"></p>
+                    </li>
+                </ul>
+
+                <a  data-toggle="modal" th:attr=" data-target='#'+${projectVO.project.getId() }" class="btn btn-block" role="button">
+                    <span th:text="${projectVO.hasStarted}? '加入班级': '预订班级'">预订班级</span>
+                </a>
+
+                <!-- Modal -->
+                <div th:id="${projectVO.project.getId()}" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"> 会员卡支付 </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label >班级名称：</label>
+                                            <span th:text="${projectVO.project.getClassName()}" class="text-primary" >软件工程</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label >应缴费用：</label>
+                                            <span th:text="${projectVO.project.getTotalPrice()}" class="text-primary" >500</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label >会员卡余额：</label>
+                                            <span th:text="${session.student.getCard().getBalance()}"
+                                                  class="text-primary">158</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label >付款后余额：</label>
+                                            <span th:text="${session.student.getCard().getBalance()} - ${projectVO.project.getTotalPrice()}"
+                                                  th:class=" ${session.student.getCard().getBalance()} lt ${projectVO.project.getTotalPrice()}
+                                                                   ? 'text-warning':'text-success' ">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <!--预订-->
+                                    <a  th:if="${!projectVO.hasStarted}"
+                                        th:disabled="${session.student.getCard().getBalance()} lt ${projectVO.project.getTotalPrice()}"
+                                        th:onclick="|reserve(${session.student.getId()},${projectVO.project.getId()})|"
+                                        class="btn btn-default" data-dismiss="modal">确认</a>
+                                    <!--预订-->
+                                    <a  th:if="${projectVO.hasStarted}"
+                                        th:disabled="${session.student.getCard().getBalance()} lt ${projectVO.project.getTotalPrice()}"
+                                        th:onclick="|select(${session.student.getId()},${projectVO.project.getId()})|"
+                                        class="btn btn-default" data-dismiss="modal">确认</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/js/student/class_info.js}"></script>
+<script th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

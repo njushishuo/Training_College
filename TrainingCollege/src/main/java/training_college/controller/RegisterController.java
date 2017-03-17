@@ -14,12 +14,12 @@ public class RegisterController {
 
     @RequestMapping(value= "/student"  , method = RequestMethod.GET)
     public String getRegisterPageForStudent(){
-        return "register_std";
+        return "/auth/register_std";
     }
 
     @RequestMapping(value="/organization" , method = RequestMethod.GET)
     public String getRegisterPageForOrganization(){
-        return "register_org";
+        return "/auth/register_org";
     }
 
     @RequestMapping(value="/student" , method = RequestMethod.POST)

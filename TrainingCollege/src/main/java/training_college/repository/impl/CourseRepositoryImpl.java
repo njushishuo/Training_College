@@ -19,12 +19,21 @@ public class CourseRepositoryImpl implements CourseInterface {
     EntityManager em;
 
     @Override
-    public List getCoursesByProjectId(int id) {
+    public List getPreModifyCoursesByProjectId(int id) {
 
-        String hql = "select c from Course c  where c.id  in  " +
-                "(select c1.id  from PreModifySchedule pm ,Course c1  where pm.projectId = ?1 and c1.id = pm.courseId)";
+        String hql = "select c from Course c  ,PreModifySchedule pm  where pm.projectId = ?1 and c.id = pm.courseId";
         Query query = em.createQuery(hql).setParameter(1,id);
         List<Course> courses = query.getResultList();
         return courses;
+    }
+
+    @Override
+    public List getNewCoursesByProjectId(int id) {
+
+        String hql = "select c  from NewSchedule ns , Course c  where ns.projectId = ?1 and c.id = ns.courseId";
+        Query query = em.createQuery(hql).setParameter(1,id);
+        List<Course> courses = query.getResultList();
+        return courses;
+
     }
 }

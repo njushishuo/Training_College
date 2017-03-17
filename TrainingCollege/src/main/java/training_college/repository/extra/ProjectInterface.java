@@ -49,6 +49,15 @@ public interface ProjectInterface {
     List<Project> getAvaliableProjectsByOrgId(int id);
 
 
+
+    /**
+     * 获取某个机构所有已选人数>0的开放班级
+     * @param id
+     * @return
+     */
+    List<Project> getSelectedProjectsByOrgId(int id);
+
+
     /**
      * 获取某个用户没有选过的所有仍未满员的开放班级
      * @param id
@@ -64,12 +73,20 @@ public interface ProjectInterface {
      */
     List<Project> getStartedProjectsByStdId(int id);
 
+
     /**
-     * 获取某个机构所有已选人数>0的开放班级
-     * @param id
+     * 获取所有待审核的新建班级
      * @return
      */
-    List<Project> getSelectedProjectsByOrgId(int id);
+    List<Project> getPendingNewProjects();
+
+    /**
+     * 获取所有审核过的新建班级
+     * @return
+     */
+    List<Project> getAllProcessedNewProjects();
+
+
 
 
 }

@@ -28,5 +28,6 @@
       <mapping class="training_college.entity.ProjectStudent"/>
       <mapping class="training_college.entity.BankCard"/>
       <mapping class="training_college.entity.StudentBankCard"/>
+      <mapping class="training_college.entity.Company"/>
   </session-factory>
 </hibernate-configuration>

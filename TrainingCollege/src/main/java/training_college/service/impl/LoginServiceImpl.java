@@ -2,8 +2,10 @@ package training_college.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import training_college.entity.Company;
 import training_college.entity.Organization;
 import training_college.entity.Student;
+import training_college.repository.CompanyRepository;
 import training_college.repository.OrganizationRepository;
 import training_college.repository.StudentRepository;
 import training_college.service.LoginService;
@@ -21,6 +23,8 @@ public class LoginServiceImpl implements LoginService {
     StudentRepository studentRepository;
     @Autowired
     OrganizationRepository organizationRepository;
+    @Autowired
+    CompanyRepository companyRepository;
 
 
     @Override
@@ -36,7 +40,12 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public LoginResult isStudent(String username , String password) {
+    public Company getCompanyByUsername(String username) {
+        return companyRepository.findByUsername(username);
+    }
+
+    @Override
+    public LoginResult studentLogin(String username , String password) {
 
         Student student = studentRepository.findByUsername(username);
         if(student == null){
@@ -50,7 +59,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public LoginResult isOrganization(String username , String password) {
+    public LoginResult organizationLogin(String username , String password) {
 
         Organization organization = organizationRepository.findByUsername(username);
         if(organization == null){
@@ -61,5 +70,17 @@ public class LoginServiceImpl implements LoginService {
             return LoginResult.failed;
         }
 
+    }
+
+    @Override
+    public LoginResult managerLogin(String username, String password) {
+        Company company = companyRepository.findByUsername(username);
+        if(company == null){
+            return LoginResult.not_exist;
+        }else if(password.equals(company.getPassword())){
+            return LoginResult.pass;
+        }else{
+            return LoginResult.failed;
+        }
     }
 }
