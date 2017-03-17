@@ -1,5 +1,6 @@
 package training_college.service.impl;
 
+import org.springframework.stereotype.Service;
 import training_college.entity.DropRecord;
 import training_college.entity.EnrollmentRecord;
 import training_college.entity.Reservation;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * Created by ss14 on 2017/3/16.
  */
+@Service
 public class ConsumptionServiceImpl implements ConsumptionService {
     @Override
     public int getSumByReservations(List<Reservation> reservations) {

@@ -12,9 +12,9 @@ import java.util.List;
 @Repository
 public interface DropRecordRepository extends JpaRepository<DropRecord,Integer> {
 
-    List<DropRecord> getByOrgSystemIdOrderByDDesc (String id);
+    List<DropRecord> getByOrgSystemIdOrderByDateDesc(String id);
 
 
-    List<DropRecord> getByStudentNameOrderByDDesc (String id);
+    List<DropRecord> getByStudentNameOrderByDateDesc(String id);
 
 }

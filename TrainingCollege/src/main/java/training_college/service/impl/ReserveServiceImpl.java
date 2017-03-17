@@ -56,18 +56,20 @@ public class ReserveServiceImpl implements ReserveService {
         //S1: 扣款
         int balance = student.getCard().getBalance();
         int price = project.getTotalPrice();
+        double disCnt = disCntHelper.getDisCntByLevel(student.getCard().getLevel());
+        int payment = (int) (price* disCnt);
 
-        if( balance<price ){
+        if( balance<payment ){
             return false;
         }
-        student.getCard().setBalance(balance - price);
+        student.getCard().setBalance(balance - payment);
+        cardRepository.saveAndFlush(student.getCard());
+
         //S2: 添加reservation记录
 
         Reservation reservation = new Reservation();
         reservation.setProject(project);
         reservation.setStudent(student);
-        double disCnt = disCntHelper.getDisCntByLevel(student.getCard().getLevel());
-        int payment = (int) (project.getTotalPrice()* disCnt);
         reservation.setPayment(payment);
         reservationRepository.save(reservation);
 
@@ -86,7 +88,6 @@ public class ReserveServiceImpl implements ReserveService {
         String orgSysId = idHelper.validateId(project.getOrganization().getId());
         String proName = project.getClassName();
         String stdName = student.getName();
-        int totalPrice = project.getTotalPrice();
 
         SelectMethod selectMethod = SelectMethod.reserve;
         UserType userType = UserType.member;
@@ -95,7 +96,7 @@ public class ReserveServiceImpl implements ReserveService {
         enrollRecord.setOrgSystemId(orgSysId);
         enrollRecord.setProjectName(proName);
         enrollRecord.setStudentName(stdName);
-        enrollRecord.setPrice(totalPrice);
+        enrollRecord.setPrice(price);
         enrollRecord.setPayment(payment);
         enrollRecord.setUserType(userType);
         enrollRecord.setPayMethod(payMethod);
@@ -115,10 +116,11 @@ public class ReserveServiceImpl implements ReserveService {
         Student student = reservation.getStudent();
         Project project = reservation.getProject();
 
-        //S1: 还全款
+        //S1: 还款
+
+        int payment = reservation.getPayment();
         int balance = student.getCard().getBalance();
-        int price = project.getTotalPrice();
-        student.getCard().setBalance(balance + price);
+        student.getCard().setBalance(balance+payment);
         cardRepository.saveAndFlush(student.getCard());
 
 

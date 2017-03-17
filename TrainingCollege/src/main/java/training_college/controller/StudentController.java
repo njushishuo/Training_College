@@ -33,9 +33,10 @@ public class StudentController {
     SelectService selectService;
     @Autowired
     RecordService recordService;
-
     @Autowired
     CardService cardService;
+    @Autowired
+    ConsumptionService consumptionService;
 
     @Autowired
     IDHelper idHelper;
@@ -181,9 +182,7 @@ public class StudentController {
         return "/student/grades";
     }
 
-
-    /************************************************我的消费****************************************************/
-
+/************************************************我的消费****************************************************/
 
 
     @RequestMapping(value = "/{id}/consumption" , method = RequestMethod.GET )
@@ -200,12 +199,23 @@ public class StudentController {
                 recordService.getEnrollRecordsWithSelectionByStdName(student.getName());
         //获取所有退课记录用于计算退课收入
         List<DropRecord> dropRecords = recordService.getAllDropRecordByStdName(student.getName());
-        
+
+        int reserveSum = consumptionService.getSumByReservations(reservations);
+        int unReserveSum = consumptionService.getSumByUnReservations(reservations);
+        int enrollSum = consumptionService.getSumByEnrollments(enrollmentRecords);
+        int dropSum = consumptionService.getSumByDropRecords(dropRecords);
+
+        model.addAttribute("reservations" , reservations);
+        model.addAttribute("unReservations" , unReservations);
+        model.addAttribute("enrollRecords" , enrollmentRecords);
+        model.addAttribute("dropRecords" , dropRecords);
+        model.addAttribute("reserveSum" , reserveSum);
+        model.addAttribute("unReserveSum" , unReserveSum);
+        model.addAttribute("enrollSum" , enrollSum);
+        model.addAttribute("dropSum" , dropSum);
 
 
-
-        model.addAttribute("gradeRecords" , gradeRecords);
-        return "/student/grades";
+        return "/student/consumption";
     }
 
 

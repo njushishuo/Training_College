@@ -46,6 +46,9 @@ public class SelectServiceImpl implements SelectService {
     EntityManager em;
 
 
+    private final double repayRate = 0.5;
+
+
     @Override
     public boolean select(int sid, int pid) {
         Student student = studentRepository.getOne(sid);
@@ -54,11 +57,13 @@ public class SelectServiceImpl implements SelectService {
         //S1: 扣款
         int balance = student.getCard().getBalance();
         int price = project.getTotalPrice();
+        double disCnt = disCntHelper.getDisCntByLevel(student.getCard().getLevel());
+        int payment = (int) (price* disCnt);
 
-        if( balance<price ){
+        if( balance<payment ){
             return false;
         }
-        student.getCard().setBalance(balance - price);
+        student.getCard().setBalance(balance - payment);
         cardRepository.saveAndFlush(student.getCard());
 
         //S2: 添加project_student记录
@@ -77,15 +82,20 @@ public class SelectServiceImpl implements SelectService {
         String orgSysId = idHelper.validateId(project.getOrganization().getId());
         String proName = project.getClassName();
         String stdName = student.getName();
+
+
         UserType userType = UserType.member;
         PayMethod payMethod = PayMethod.card;
+        SelectMethod selectMethod = SelectMethod.select;
 
         enrollRecord.setOrgSystemId(orgSysId);
         enrollRecord.setProjectName(proName);
         enrollRecord.setStudentName(stdName);
+        enrollRecord.setPrice(price);
+        enrollRecord.setPayment(payment);
         enrollRecord.setUserType(userType);
         enrollRecord.setPayMethod(payMethod);
-
+        enrollRecord.setSelectMethod(selectMethod);
         em.persist(enrollRecord);
         em.flush();
         em.clear();
@@ -101,9 +111,9 @@ public class SelectServiceImpl implements SelectService {
         //S1: 还款
         int balance = student.getCard().getBalance();
         int price = project.getTotalPrice();
+        int payment = (int)(price*repayRate);
 
-        //TODO计算还款
-        student.getCard().setBalance(balance + price);
+        student.getCard().setBalance(balance+payment);
         cardRepository.saveAndFlush(student.getCard());
 
 
@@ -124,10 +134,6 @@ public class SelectServiceImpl implements SelectService {
         String proName = project.getClassName();
         String stdName = student.getName();
 
-
-        int totalPrice = project.getTotalPrice();
-        int payment = (int)(totalPrice*0.5);
-
         SelectMethod selectMethod = SelectMethod.reserve;
         UserType userType = UserType.member;
         PayMethod payMethod = PayMethod.card;
@@ -135,7 +141,7 @@ public class SelectServiceImpl implements SelectService {
         dropRecord.setOrgSystemId(orgSysId);
         dropRecord.setProjectName(proName);
         dropRecord.setStudentName(stdName);
-        dropRecord.setPrice(totalPrice);
+        dropRecord.setPrice(price);
         dropRecord.setPayment(payment);
         dropRecord.setPayMethod(payMethod);
         dropRecord.setUserType(userType);

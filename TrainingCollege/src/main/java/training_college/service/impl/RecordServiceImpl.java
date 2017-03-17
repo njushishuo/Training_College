@@ -80,12 +80,12 @@ public class RecordServiceImpl implements RecordService {
 
     @Override
     public List<DropRecord> getAllDropRecordsByOrgId(int id) {
-        return dropRecordRepository.getByOrgSystemIdOrderByDDesc(validateId(id));
+        return dropRecordRepository.getByOrgSystemIdOrderByDateDesc(validateId(id));
     }
 
     @Override
     public List<DropRecord> getAllDropRecordByStdName(String name) {
-        return dropRecordRepository.getByStudentNameOrderByDDesc(name);
+        return dropRecordRepository.getByStudentNameOrderByDateDesc(name);
     }
 
     @Override
