@@ -44,6 +44,8 @@ public interface ClassInfoService {
     List<Project> getStartedProjectsByStdId(int id);
 
 
+    HashMap getPostModifyCourseMapByProejcts(List<Project> projects);
+
     HashMap getPreModifyCourseMapByProejcts(List<Project> projects);
 
 
@@ -52,9 +54,9 @@ public interface ClassInfoService {
     ClassInfoVO getClassInfoVOByProjects(List<Project> projects);
 
 
+    List<Course> getPostModifyCoursesByProjectId(int id);
 
     List<Course> getPreModifyCoursesByProjectId(int id);
-
 
     List<Course> getNewCoursesByProjectId(int id);
 }

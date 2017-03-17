@@ -7,7 +7,6 @@ import java.sql.Date;
  * Created by ss14 on 2017/3/14.
  */
 @Entity
-@Table(name = "post_project", schema = "training_college", catalog = "")
 public class PostProject {
     private int pid;
     private String className;

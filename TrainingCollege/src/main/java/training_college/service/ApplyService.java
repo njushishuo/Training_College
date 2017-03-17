@@ -50,8 +50,8 @@ public interface ApplyService {
      * @param courseIds
      * @param projectId
      */
-    void addPostSchedule(String [] courseIds , int projectId );
+    void overWritePostSchedule(String [] courseIds , int projectId );
 
-    void addPostProject(PostProject postProject);
+    void overWritePostProject(PostProject postProject);
 
 }

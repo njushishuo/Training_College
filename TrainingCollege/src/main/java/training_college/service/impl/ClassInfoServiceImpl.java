@@ -49,6 +49,17 @@ public class ClassInfoServiceImpl implements ClassInfoService {
     }
 
     @Override
+    public HashMap getPostModifyCourseMapByProejcts(List<Project> projects) {
+        HashMap courseMap = new HashMap();
+
+        for (Project project : projects){
+            List<Course> courseList = this.getPostModifyCoursesByProjectId(project.getId());
+            courseMap.put(project.getId(),courseList);
+        }
+        return courseMap;
+    }
+
+    @Override
     public HashMap getPreModifyCourseMapByProejcts(List<Project> projects) {
         HashMap courseMap = new HashMap();
 
@@ -91,6 +102,11 @@ public class ClassInfoServiceImpl implements ClassInfoService {
         classInfoVO.courseMap = courseMap;
         return classInfoVO;
 
+    }
+
+    @Override
+    public List<Course> getPostModifyCoursesByProjectId(int id) {
+        return courseRepository.getPostModifyCoursesByProjectId(id);
     }
 
 

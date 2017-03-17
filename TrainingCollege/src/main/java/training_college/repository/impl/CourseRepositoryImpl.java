@@ -19,6 +19,14 @@ public class CourseRepositoryImpl implements CourseInterface {
     EntityManager em;
 
     @Override
+    public List getPostModifyCoursesByProjectId(int id) {
+        String hql = "select c from Course c  ,PostModifySchedule pm  where pm.projectId = ?1 and c.id = pm.courseId";
+        Query query = em.createQuery(hql).setParameter(1,id);
+        List<Course> courses = query.getResultList();
+        return courses;
+    }
+
+    @Override
     public List getPreModifyCoursesByProjectId(int id) {
 
         String hql = "select c from Course c  ,PreModifySchedule pm  where pm.projectId = ?1 and c.id = pm.courseId";

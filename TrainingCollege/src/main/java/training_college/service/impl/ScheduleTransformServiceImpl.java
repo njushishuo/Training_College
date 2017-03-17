@@ -2,6 +2,7 @@ package training_college.service.impl;
 
 import org.springframework.stereotype.Service;
 import training_college.entity.NewSchedule;
+import training_college.entity.PostModifySchedule;
 import training_college.entity.PreModifySchedule;
 import training_college.service.ScheduleTransformService;
 
@@ -26,6 +27,22 @@ public class ScheduleTransformServiceImpl implements ScheduleTransformService {
             PreModifySchedule preModifySchedule = new PreModifySchedule();
             preModifySchedule.setCourseId(newSchedule.getCourseId() );
             preModifySchedule.setProjectId(newSchedule.getProjectId());
+
+            preModifySchedules.add(preModifySchedule);
+        }
+
+        return preModifySchedules;
+    }
+
+    @Override
+    public List<PreModifySchedule> postToPreModify(List<PostModifySchedule> postSchedules) {
+        List<PreModifySchedule> preModifySchedules = new LinkedList<>();
+
+        for(PostModifySchedule postModifySchedule : postSchedules){
+            PreModifySchedule preModifySchedule = new PreModifySchedule();
+
+            preModifySchedule.setCourseId(postModifySchedule.getCourseId() );
+            preModifySchedule.setProjectId(postModifySchedule.getProjectId());
 
             preModifySchedules.add(preModifySchedule);
         }

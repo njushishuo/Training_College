@@ -64,12 +64,21 @@ public class ApplyServiceImpl implements ApplyService {
     }
 
     @Override
-    public void addPostProject(PostProject postProject) {
+    public void overWritePostProject(PostProject postProject) {
+
+        //先删除上次的修改记录
+        postProjectRepository.deleteRelatedByPid(postProject.getPid());
+        //再添加新的记录
         postProjectRepository.saveAndFlush(postProject);
+
     }
 
     @Override
-    public void addPostSchedule(String[] courseIds, int projectId) {
+    public void overWritePostSchedule(String[] courseIds, int projectId) {
+
+        //先删除上次的修改记录
+        postScheduleRepository.deleteRelatedByPid(projectId);
+        //再添加新的记录
         for (int i = 0; i < courseIds.length; i++) {
             PostModifySchedule postModifySchedule = new PostModifySchedule();
             postModifySchedule.setProjectId(projectId);

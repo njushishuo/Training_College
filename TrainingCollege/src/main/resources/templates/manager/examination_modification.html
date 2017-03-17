@@ -48,7 +48,7 @@
                             <td th:text="${project.getFromDate()}">2017/09/01</td>
                             <td th:text="${project.getToDate()}">2018/07/10</td>
                             <td th:text="${project.getTotalPrice()}">800</td>
-                            <td th:text="${project.getAddStatus().toString()} == ${'pending'} ? '待审核' :''  ">待审核</td>
+                            <td th:text="${project.getModifyStatus().toString()} == ${'pending'} ? '待审核' :''  ">待审核</td>
                             <!-- Modal -->
                             <div th:id="${project.getId()}" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                 <div class="modal-dialog" role="document">
@@ -103,7 +103,7 @@
                             <td th:text="${project.getFromDate()}">2017/09/01</td>
                             <td th:text="${project.getToDate()}">2018/07/10</td>
                             <td th:text="${project.getTotalPrice()}">800</td>
-                            <td th:switch="${project.getAddStatus().toString()}">
+                            <td th:switch="${project.getModifyStatus().toString()}">
                                 <span th:case="approved" class="text-success">通过</span>
                                 <span th:case="rejected" class="text-warning">拒绝</span>
                             </td>
@@ -141,7 +141,7 @@
 </div>
 
 
-<script th:src="@{/js/manager/exam_create.js}"></script>
+<script th:src="@{/js/manager/exam_modify.js}"></script>
 <script th:src="@{/js/jquery-3.1.1.min.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
 

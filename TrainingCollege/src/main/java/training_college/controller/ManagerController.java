@@ -35,7 +35,9 @@ public class ManagerController {
         List<Project> pendingProjects = examService.getPendingNewProjects();
         List<Project> processedProjects = examService.getAllProcessedNewProjects();
 
+        //从newschedule中读取待审核的班级的课程信息
         Map pendingMap  =  classInfoService.getNewCourseMapByProejcts(pendingProjects);
+        //从newschedule中读取处理过的班级的课程信息
         Map processedMap  =  classInfoService.getNewCourseMapByProejcts(processedProjects);
 
         model.addAttribute("pendingProjects",pendingProjects);
@@ -69,11 +71,13 @@ public class ManagerController {
     @RequestMapping(value = "/examination/modification" , method = RequestMethod.GET)
     public String getExaminationModificationPage(Model model){
 
-        List<Project> pendingProjects = examService.getPendingNewProjects();
-        List<Project> processedProjects = examService.getAllProcessedNewProjects();
+        List<Project> pendingProjects = examService.getPendingModifyProjects();
+        List<Project> processedProjects = examService.getAllProcessedModifyProjects();
 
-        Map pendingMap  =  classInfoService.getNewCourseMapByProejcts(pendingProjects);
-        Map processedMap  =  classInfoService.getNewCourseMapByProejcts(processedProjects);
+        //从postchedule中读取待审核的班级的课程信息
+        Map pendingMap  =  classInfoService.getPostModifyCourseMapByProejcts(pendingProjects);
+        //从postchedule中读取处理过的班级的课程信息
+        Map processedMap  =  classInfoService.getPostModifyCourseMapByProejcts(processedProjects);
 
         model.addAttribute("pendingProjects",pendingProjects);
         model.addAttribute("pendingMap", pendingMap);
@@ -83,9 +87,21 @@ public class ManagerController {
         return "/manager/examination_modification";
     }
 
-    @RequestMapping(value = "/examination/modification/{pid}" , method = RequestMethod.POST)
-    public String examineModification(){
-        return "/manager/examination_modification";
+    @ResponseBody
+    @RequestMapping(value = "/examination/modification/approval" , method = RequestMethod.POST)
+    public boolean approveModification(HttpServletRequest request){
+
+        int pid = Integer.parseInt(request.getParameter("projectId"));
+        return examService.approveModifyProject(pid);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/examination/modification/rejection" , method = RequestMethod.POST)
+    public boolean rejectModification(HttpServletRequest request){
+
+        int pid = Integer.parseInt(request.getParameter("projectId"));
+        return examService.rejectModifyProject(pid);
+
     }
 
 

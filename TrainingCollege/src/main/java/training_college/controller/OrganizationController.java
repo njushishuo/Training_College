@@ -174,13 +174,13 @@ public class OrganizationController {
         postProject.setToDate(toDate);
         postProject.setTotalPrice(totalPrice);
 
-        applyService.addPostProject(postProject);
+        applyService.overWritePostProject(postProject);
 
         /**
          * 将修改的情况添加到post_schedule中
          */
         String courseIds[]=request.getParameterValues("checkbox_course");
-        applyService.addPostSchedule(courseIds,pid);
+        applyService.overWritePostSchedule(courseIds,pid);
 
         return "redirect:/organization/"+id+"/classModificationHistory";
     }

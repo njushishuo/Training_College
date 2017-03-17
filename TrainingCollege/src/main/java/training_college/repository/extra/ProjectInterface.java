@@ -86,7 +86,17 @@ public interface ProjectInterface {
      */
     List<Project> getAllProcessedNewProjects();
 
+    /**
+     * 获取所有待审核的修改班级
+     * @return
+     */
+    List<Project> getPendingModifyProjects();
 
+    /**
+     * 获取所有审核过的修改班级
+     * @return
+     */
+    List<Project> getAllProcessedModifyProjects();
 
 
 }
