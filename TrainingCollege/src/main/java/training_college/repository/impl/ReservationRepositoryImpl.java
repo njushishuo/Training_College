@@ -61,6 +61,25 @@ public class ReservationRepositoryImpl implements ReservationInterface {
         return sum;
     }
 
+    @Override
+    public int getReserveCntByOid(int oid) {
+
+        String hql = "select count(r)  from Reservation r  where r.project.organization.id = ?1 and r.canceled is false ";
+        Query query   = em.createQuery(hql).setParameter(1,oid);
+        int cnt  = (int)(long)query.getSingleResult();
+        return cnt;
+
+    }
+
+    @Override
+    public int getUnreserveCntByOid(int oid) {
+
+        String hql = "select count(r)  from Reservation r  where r.project.organization.id = ?1 and r.canceled is true ";
+        Query query   = em.createQuery(hql).setParameter(1,oid);
+        int cnt  = (int)(long)query.getSingleResult();
+        return cnt;
+    }
+
 
     @Override
     public List<Reservation> getUnReservationsBySid(int sid) {

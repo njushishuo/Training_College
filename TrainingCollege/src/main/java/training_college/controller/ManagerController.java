@@ -11,6 +11,9 @@ import training_college.entity.Project;
 import training_college.service.ClassInfoService;
 import training_college.service.ExamService;
 import training_college.service.SettleService;
+import training_college.service.StatsService;
+import training_college.vo.OrgRecruitVO;
+import training_college.vo.OrgStudyVO;
 
 import java.util.List;
 import java.util.Map;
@@ -28,6 +31,8 @@ public class ManagerController {
     SettleService settleService;
     @Autowired
     ClassInfoService classInfoService;
+    @Autowired
+    StatsService statsService;
 
 
 
@@ -195,13 +200,22 @@ public class ManagerController {
 
 
     @RequestMapping(value = "/statistics/recruit" , method = RequestMethod.GET)
-    public String getStatsRecruitPage(){
+    public String getStatsRecruitPage(Model model){
+
+        //获取所有机构的招生情况，即每个机构的预订数、退订数、入学人数、退学人数、当前人数统计
+        List<OrgRecruitVO> orgRecruitVOs =statsService.getAllOrgRecruitVO();
+        model.addAttribute("orgRecruitVOs",orgRecruitVOs);
+
         return "/manager/stats_recruit";
     }
 
     @RequestMapping(value = "/statistics/study" , method = RequestMethod.GET)
-    public String getStasStudyPage(){
+    public String getStasStudyPage(Model model){
+
+        List<OrgStudyVO> orgStudyVOs = statsService.getAllOrgStudyVO();
+        model.addAttribute("orgStudyVOs",orgStudyVOs);
         return "/manager/stats_study";
+
     }
 
     @RequestMapping(value = "/statistics/finance" , method = RequestMethod.GET)

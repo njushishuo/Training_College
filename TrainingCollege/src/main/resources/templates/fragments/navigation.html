@@ -10,7 +10,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li th:classappend="${ ( #httpServletRequest.getRequestURI().endsWith('classInfo') or
                         #httpServletRequest.getRequestURI().endsWith('classCreation') or
-                        #httpServletRequest.getRequestURI().startsWith('/organization'+session.organization.getId()+'/classModification') ) ? 'active':''}">
+                        #httpServletRequest.getRequestURI().endsWith('classModification') ) ? 'active':''}">
                         <a th:href="@{/organization/{id}/classInfo(id=${session.organization.getId()})}">
                             班级信息
                         </a>
@@ -83,7 +83,7 @@
                         </ul>
                     </li>
                     <li class="dropdown"
-                        th:classappend="${#httpServletRequest.getRequestURI().startsWith('/organization/statistics/') ? 'active':''}">
+                        th:classappend="${#httpServletRequest.getRequestURI().startsWith('/organization/'+session.organization.getId()+'/statistics') ? 'active':''}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             机构信息 <span class="caret"></span>
                         </a>

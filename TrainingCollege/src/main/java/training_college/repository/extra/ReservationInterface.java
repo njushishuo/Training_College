@@ -25,4 +25,8 @@ public interface ReservationInterface {
 
     int getUnreserveSumByOid(int oid);
 
+    int getReserveCntByOid(int oid);
+
+    int getUnreserveCntByOid(int oid);
+
 }

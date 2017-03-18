@@ -19,5 +19,7 @@ public interface EnrollRecordInterface {
 
     int getEnrollSumByOid(String oid);
 
+    int getEnrollCntByOid(String oid);
+
 }
 

@@ -3,6 +3,8 @@ package training_college.service;
 import training_college.entity.DropRecord;
 import training_college.entity.EnrollmentRecord;
 import training_college.entity.Reservation;
+import training_college.vo.OrgRecruitVO;
+import training_college.vo.OrgStudyVO;
 
 import java.util.List;
 
@@ -34,6 +36,13 @@ public interface StatsService {
 
     List<Object [] > getCourseStatsByOid(int oid);
 
+    OrgRecruitVO getOrgRecruitVOByOid(int oid);
+
+    OrgStudyVO getOrgStudyVOBuyOid(int oid);
+
+    List<OrgRecruitVO> getAllOrgRecruitVO();
+
+    List<OrgStudyVO> getAllOrgStudyVO();
 
 
 

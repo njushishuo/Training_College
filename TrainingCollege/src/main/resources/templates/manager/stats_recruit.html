@@ -20,58 +20,34 @@
 <div class="container">
     <div class="row">
         <div class="col-md-offset-1 col-md-10">
-
-            <div class="jumbotron">
-                <h1>开学季!</h1>
-                <p>一大堆课程来袭，赶快去看看吧！</p>
-            </div>
-
-            <!--ProjectList Here-->
-            <div th:each="projectVO:${projectVOs}" class="panel panel-default ">
+            <div class="panel panel-default">
                 <!-- Default panel contents -->
-                <div th:text="${projectVO.project.getClassName()}" class="panel-heading">软件工程1班 </div>
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>开学时间：</label> <span th:text="${projectVO.project.getFromDate()}">2017-09-01</span>
-                        </div>
-                        <div class="col-md-6">
-                            <label>结课时间：</label> <span th:text="${projectVO.project.getToDate()}">2018-07-01</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label >当前人数：</label> <span th:text="${projectVO.project.getCurStdCnt()}" class="text-success">158</span>
-                        </div>
-                        <div class="col-md-6">
-                            <label >预招人数：</label> <span th:text="${projectVO.project.getMaxStdCnt()}">200</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label >当前状态：</label>
-                            <span th:if="${projectVO.hasStarted}" class="text-success">已经开课</span>
-                            <span th:if="${!projectVO.hasStarted}" class="text-primary">即将开课</span>
-                        </div>
-                        <div class="col-md-6">
-                            <label >学费：</label>
-                            <span th:text="${projectVO.project.getTotalPrice()}" >已经开课</span>
-                        </div>
-                    </div>
+                    <h3>招生情况</h3>
+                    <br/>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>机构ID</th>
+                            <th>预订人数</th>
+                            <th>退订人数</th>
+                            <th>入学人数</th>
+                            <th>退学人数</th>
+                            <th>当前人数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="vo:${orgRecruitVOs}">
+                            <td th:text="${vo.orgId}" th:class="text-primary">0000001</td>
+                            <td th:text="${vo.reserveCnt}" th:class="text-success">100</td>
+                            <td th:text="${vo.unReserveCnt}" th:class="text-danger">10</td>
+                            <td th:text="${vo.enrollCnt}" th:class="text-success">10</td>
+                            <td th:text="${vo.dropCnt}" th:class="text-danger">10</td>
+                            <td th:text="${vo.curStdCnt}" th:class="text-primary">10</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <!-- List group -->
-                <ul class="list-group" >
-                    <li class="list-group-item" th:each="course: ${ courseMap.get(projectVO.project.getId()) }">
-                        <span th:each="teacher: ${course.getTeacherList()}" th:text="${teacher.getName()}" class="badge">刘钦</span>
-                        <p th:text="${ course.getName()}"></p>
-                    </li>
-                </ul>
-
-                <a  data-toggle="modal" th:attr=" data-target='#'+${projectVO.project.getId() }" class="btn btn-block" role="button">
-                    <span th:text="${projectVO.hasStarted}? '加入班级': '预订班级'">预订班级</span>
-                </a>
-
-
             </div>
         </div>
     </div>

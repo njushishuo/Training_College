@@ -17,4 +17,6 @@ public interface DropRecordInterface {
 
     int getDropSumByOid(String oid);
 
+    int getDropCntByOid(String oid);
+
 }

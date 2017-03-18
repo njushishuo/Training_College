@@ -59,4 +59,12 @@ public class DropRecordRepositoryImpl implements DropRecordInterface {
         int sum  = (int)(long)query.getSingleResult();
         return sum;
     }
+
+    @Override
+    public int getDropCntByOid(String oid) {
+        String hql = "select count(d) from DropRecord  d where d.orgSystemId = ?1";
+        Query query   = em.createQuery(hql).setParameter(1,oid);
+        int cnt  = (int)(long)query.getSingleResult();
+        return cnt;
+    }
 }

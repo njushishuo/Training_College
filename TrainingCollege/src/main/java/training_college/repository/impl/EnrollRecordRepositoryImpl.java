@@ -71,4 +71,13 @@ public class EnrollRecordRepositoryImpl implements EnrollRecordInterface {
         return sum;
     }
 
+    @Override
+    public int getEnrollCntByOid(String oid) {
+        String hql = "select count (e) " +
+                "from EnrollmentRecord e where e.orgSystemId = ?1 " ;
+        Query query = em.createQuery(hql).setParameter(1,oid);
+        int cnt = (int )(long )query.getSingleResult();
+        return cnt;
+    }
+
 }
