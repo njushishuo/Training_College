@@ -34,12 +34,5 @@ public class EnrollRecordRepositoryImplTest {
         assert target == enrollRecordRepository.getPaymentSumByOrgSystemId(id) ;
     }
 
-    @Test
-    public void getRepaymentSumByOrgSystemId() throws Exception {
-        int target = 250;
-        String id = "0000001";
-
-        assert target == enrollRecordRepository.getRepaymentSumByOrgSystemId(id) ;
-    }
 
 }

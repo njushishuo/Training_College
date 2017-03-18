@@ -9,16 +9,15 @@ import java.util.List;
  */
 public interface EnrollRecordInterface {
 
-   List<EnrollmentRecord> getEnrollRecordsWithSelectionByStdName(String name);
+    List<EnrollmentRecord> getEnrollRecordsWithSelectionByStdName(String name);
 
-   int getPaymentSumByOrgSystemId(String  systemid);
+    int getPaymentSumByOrgSystemId(String  systemid);
 
+    boolean settlePaymentByOrgSysId(String sysId);
 
-   int getRepaymentSumByOrgSystemId(String  systemid);
+    List<String> getPaymentUncheckedOrgSystemIds();
 
-
-
-    List<String> getOrgSystemIds();
+    int getEnrollSumByOid(String oid);
 
 }
 

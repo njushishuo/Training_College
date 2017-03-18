@@ -58,7 +58,7 @@ public class RecordServiceImpl implements RecordService {
     @Override
     public List<EnrollmentRecord> getAllEnrollRecordsByOrgId(int id) {
 
-        return enrollRecordRepository.getByOrgSystemId( validateId(id));
+        return enrollRecordRepository.getByOrgSystemIdOrderByDateDesc( validateId(id));
     }
 
     @Override

@@ -1,5 +1,5 @@
 <div class="row" id = "orgNav">
-    <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">
@@ -82,7 +82,31 @@
                             </a></li>
                         </ul>
                     </li>
-                    <li><a href="#">机构信息</a></li>
+                    <li class="dropdown"
+                        th:classappend="${#httpServletRequest.getRequestURI().startsWith('/organization/statistics/') ? 'active':''}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            机构信息 <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" >
+                            <li>
+                                <a th:href="@{/organization/{id}/statistics/recruit(id=${session.organization.getId()})}">
+                                    招生信息
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a th:href="@{/organization/{id}/statistics/study(id=${session.organization.getId()})}">
+                                    学习信息
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a th:href="@{/organization/{id}/statistics/finance(id=${session.organization.getId()})}">
+                                    财务信息
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

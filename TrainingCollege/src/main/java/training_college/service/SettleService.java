@@ -9,10 +9,17 @@ public interface SettleService {
 
 
     /**
-     * 只获取那些用过入学记录的机构SysID
+     * 只获取那些入学收入仍未结算的机构SysID
      * @return
      */
-    List<String> getOrgSystemIds();
+    List<String> getPaymentUncheckedOrgSystemIds();
+
+    /**
+     * 只获取那些退课支出仍未结算的机构SysID
+     * @return
+     */
+    List<String> getRepaymentUncheckedOrgSystemIds();
+
 
     /**
      * 获取机构入学收费的总额
@@ -21,9 +28,22 @@ public interface SettleService {
     int  getPaymentSumByOrgSysId(String sysId);
 
 
+    boolean settlePaymentByOrgSysId(String sysId,int payment);
+
+
     /**
      * 获取机构的退课还款的总额
      * @return
      */
-    int  getRepaymentSumByOrgId(int id);
+    int  getRepaymentSumBySysOrgId(String id);
+
+    boolean settleRepaymentByOrgSysId(String sysId,int payment);
+
+
+
+    /**
+     * 获取公司账户余额
+     * @return
+     */
+    int getCompanyBalance();
 }

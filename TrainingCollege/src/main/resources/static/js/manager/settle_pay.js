@@ -14,8 +14,11 @@ function updateSum () {
         url:"/manager/accountSettlement/payment/sum",
         data: data,
         success: function(data){
-            $( "#payment" ).text(data);
             $( "#payment" ).val(data);
+            var companyBalance = $("#balance").val();
+            var postBalance = parseInt(companyBalance) +parseInt(data) ;
+            $("#post_balance").val(postBalance);
+
         },
         traditional:true
     });
@@ -30,6 +33,29 @@ $(document).ready(
 $( "#orgSysId" ).change(
     updateSum
 );
+
+function settlePayment() {
+    var payment = $( "#payment" ).val();
+    var orgSysId = $( "#orgSysId option:selected" ).val();
+    var data = {
+        payment:payment ,
+        orgSysId : orgSysId
+    };
+
+    $.ajax({
+        type: "POST",
+        url:"/manager/accountSettlement/paymentRequest",
+        data: data,
+        success: function(data){
+            if(data){
+                alert("结算成功");
+                location.href = "/manager/accountSettlement/payment";
+            }
+
+        },
+        traditional:true
+    });
+}
 
 
 

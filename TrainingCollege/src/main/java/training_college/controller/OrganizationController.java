@@ -1,5 +1,6 @@
 package training_college.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,9 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import training_college.entity.*;
-import training_college.service.ApplyService;
-import training_college.service.ClassInfoService;
-import training_college.service.RecordService;
+import training_college.service.*;
 import training_college.util.enumeration.AddStatus;
 import training_college.util.enumeration.ModifyStatus;
 import training_college.util.enumeration.PayMethod;
@@ -34,6 +33,12 @@ public class OrganizationController {
     ApplyService applyService;
     @Autowired
     RecordService recordService;
+    @Autowired
+    ReserveService reserveService;
+    @Autowired
+    SelectService selectService;
+    @Autowired
+    StatsService statsService;
 
 /*****************************************班级信息*******************************************************/
 
@@ -395,4 +400,79 @@ public class OrganizationController {
         return "/organization/grade_record_info";
 
     }
+
+
+/*****************************************机构信息*******************************************************/
+
+    @RequestMapping(value = "/organization/{id}/statistics/recruit" , method = RequestMethod.GET)
+    public String getStatsRecruitPage(@PathVariable int id, Model model){
+
+
+        //获取所有预订记录
+        List<Reservation> reservations = statsService.getReservationByOid(id);
+        //获取所有退订记录
+        List<Reservation> unReservations = statsService.getUnreservationByOid(id);
+
+        //获取所有选课记录
+        List<EnrollmentRecord> enrollmentRecords = statsService.getEnrollRecordByOid(id);
+        //获取所有退课记录
+        List<DropRecord> dropRecords = statsService.getDropRecordByOid(id);
+
+
+        model.addAttribute("reservations",reservations);
+        model.addAttribute("unReservations",unReservations);
+        model.addAttribute("enrollments",enrollmentRecords);
+        model.addAttribute("dropRecords",dropRecords);
+
+        return "/organization/stats_recruit";
+
+    }
+
+    @RequestMapping(value = "/organization/{id}/statistics/study" , method = RequestMethod.GET)
+    public String getStasStudyPage(@PathVariable int id, Model model){
+
+        //获取该机构每门课的选课人数，最高分，最低分，平均分
+        List<Object[]> courseStatsList = statsService.getCourseStatsByOid(id);
+        model.addAttribute("courseStatsList",courseStatsList);
+
+        return "/organization/stats_study";
+    }
+
+    @RequestMapping(value = "/organization/{id}/statistics/finance" , method = RequestMethod.GET)
+    public String getStasFinancePage(@PathVariable int id , Model model){
+
+
+        //获取所有预订记录
+        List<Reservation> reservations = statsService.getReservationByOid(id);
+        int reserveSum = statsService.getReserveSumByOid(id);
+
+        //获取所有退订记录
+        List<Reservation> unReservations = statsService.getUnreservationByOid(id);
+        int unReserveSum = statsService.getUnreserveSumByOid(id);
+
+        //获取所有选课记录
+        List<EnrollmentRecord> enrollmentRecords = statsService.getEnrollRecordByOid(id);
+        int enrollSum = statsService.getEnrollSumByOid(id);
+
+        //获取所有退课记录
+        List<DropRecord> dropRecords = statsService.getDropRecordByOid(id);
+        int dropSum = statsService.getDropSumByOid(id);
+
+        model.addAttribute("reservations",reservations);
+        model.addAttribute("unReservations",unReservations);
+        model.addAttribute("enrollments",enrollmentRecords);
+        model.addAttribute("dropRecords",dropRecords);
+
+        model.addAttribute("reserveSum",reserveSum);
+        model.addAttribute("unReserveSum",unReserveSum);
+        model.addAttribute("enrollSum",enrollSum);
+        model.addAttribute("dropSum",dropSum);
+
+        return "/organization/stats_finance";
+
+
+    }
+
+
+
 }

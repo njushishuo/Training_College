@@ -15,53 +15,50 @@
 
 <div class="container">
     <div th:include="/fragments/navigation :: #orgNav"></div>
-
-    <div class="row">
-        <div class="panel panel-primary">
-            <!-- Default panel contents -->
-            <div class="panel-heading">退课记录</div>
-            <div class="panel-body">
-                <!-- List group -->
-                <table class="table table-hover ">
-                    <thead>
-                    <tr>
-                        <th>机构ID</th>
-                        <th>班级名称</th>
-                        <th>学生姓名</th>
-                        <th>用户类型</th>
-                        <th>退款方式</th>
-                        <th>记录日期</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="record:${dropRecords}">
-
-                        <td th:text="${record.getOrgSystemId()}">0000001</td>
-                        <td th:text="${record.getProjectName()}">软件工程1班</td>
-                        <td th:text="${record.getStudentName()}">小明</td>
-
-                        <div th:switch="${record.getUserType().toString()}">
-                            <td th:case="member"  class="text-info">会员</td>
-                            <td th:case="non_member"  >非会员</td>
-                        </div>
-
-                        <div th:switch="${record.getPayMethod().toString()}">
-                            <td th:case="card"  class="text-info">会员卡</td>
-                            <td th:case="cash"  >现金</td>
-                        </div>
-
-                        <td th:text="${record.getDate()}">2018/07/10</td>
-                    </tr>
-                    </tbody>
-                </table>
-
-            </div>
-            <div class="panel-footer"></div>
-        </div>
-    </div>
-
 </div> <!-- /container -->
 
+<div class="container">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-body">
+            <h3>退课记录</h3>
+            <br/>
+            <!-- List group -->
+            <table class="table table-hover ">
+                <thead>
+                <tr>
+                    <th>机构ID</th>
+                    <th>班级名称</th>
+                    <th>学生姓名</th>
+                    <th>用户类型</th>
+                    <th>退款方式</th>
+                    <th>记录日期</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="record:${dropRecords}">
+
+                    <td th:text="${record.getOrgSystemId()}">0000001</td>
+                    <td th:text="${record.getProjectName()}">软件工程1班</td>
+                    <td th:text="${record.getStudentName()}">小明</td>
+
+                    <div th:switch="${record.getUserType().toString()}">
+                        <td th:case="member"  class="text-info">会员</td>
+                        <td th:case="non_member"  >非会员</td>
+                    </div>
+
+                    <div th:switch="${record.getPayMethod().toString()}">
+                        <td th:case="card"  class="text-info">会员卡</td>
+                        <td th:case="cash"  >现金</td>
+                    </div>
+
+                    <td th:text="${record.getDate()}">2018/07/10</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <script th:src="@{/js/jquery-3.1.1.min.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>

@@ -15,13 +15,13 @@
 
 <div class="container">
     <div th:include="/fragments/navigation :: #orgNav"></div>
-    <div class="row">
-        <div class="panel panel-primary">
-            <!-- Default panel contents -->
-            <div class="panel-heading">班级信息</div>
-            <div class="panel-body">
-                修改申请记录
-            </div>
+</div> <!-- /container -->
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h3>修改申请记录</h3>
+            <br/>
             <!-- List group -->
             <table class="table table-hover">
                 <thead>
@@ -79,15 +79,9 @@
                 </tr>
                 </tbody>
             </table>
-
-
-
         </div>
     </div>
-
-
-</div> <!-- /container -->
-
+</div>
 
 <script th:src="@{/js/jquery-3.1.1.min.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>

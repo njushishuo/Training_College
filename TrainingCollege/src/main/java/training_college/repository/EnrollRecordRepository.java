@@ -14,10 +14,9 @@ import java.util.List;
 @Repository
 public interface EnrollRecordRepository extends JpaRepository<EnrollmentRecord,Integer>,EnrollRecordInterface {
 
-    List<EnrollmentRecord> getByOrgSystemId (String id);
+    List<EnrollmentRecord> getByOrgSystemIdOrderByDateDesc (String id);
 
     EnrollmentRecord getByProjectNameAndStudentName(String projectName , String StudentName);
-
 
 
 }

@@ -13,6 +13,16 @@ public interface ReservationInterface {
     List<Reservation> getNotStartedReservationBySid(int sid);
 
 
+    List<Reservation> getReservationByOid(int sid);
+
+
+    List<Reservation> getUnreservationByOid(int sid);
+
+
     List<Reservation> getUnReservationsBySid(int sid);
+
+    int getReserveSumByOid(int oid);
+
+    int getUnreserveSumByOid(int oid);
 
 }

@@ -1,7 +1,6 @@
 package training_college.repository.impl;
 
 import org.springframework.transaction.annotation.Transactional;
-import training_college.entity.Course;
 import training_college.entity.EnrollmentRecord;
 import training_college.repository.extra.EnrollRecordInterface;
 
@@ -33,28 +32,43 @@ public class EnrollRecordRepositoryImpl implements EnrollRecordInterface {
                 "from EnrollmentRecord e " +
                 "where e.payMethod='card' and e.orgSystemId =?1 ";
         Query query = em.createQuery(hql).setParameter(1,sysId);
-        int sum = (int)(long) query.getSingleResult();
-        return  sum;
+        List result = query.getResultList();
+        if(result!=null){
+            if(result.get(0)!=null){
+                return (int)(long)result.get(0);
+            }
+        }
+        return  0;
     }
 
     @Override
-    public int getRepaymentSumByOrgSystemId(String sysId) {
-
-        String hql = "select sum(dr.payment) " +
-                "from DropRecord dr " +
-                "where dr.payMethod='card' and dr.orgSystemId =?1 ";
+    public boolean settlePaymentByOrgSysId(String sysId) {
+        String hql = "update EnrollmentRecord e " +
+                "set e.checked = true " +
+                "where e.payMethod='card' and e.orgSystemId =?1 ";
         Query query = em.createQuery(hql).setParameter(1,sysId);
-        int sum = (int)(long) query.getSingleResult();
 
-        return  sum;
-
+        return  query.executeUpdate()==0 ? false:true ;
     }
 
     @Override
-    public List<String> getOrgSystemIds() {
-        String hql = "select distinct e.orgSystemId from EnrollmentRecord e" ;
+    public List<String> getPaymentUncheckedOrgSystemIds() {
+
+        String hql = "select distinct e.orgSystemId " +
+                "from EnrollmentRecord e where e.payMethod = 'card' and e.checked is false " ;
+
         Query query = em.createQuery(hql);
         return query.getResultList();
+    }
+
+    @Override
+    public int getEnrollSumByOid(String oid) {
+
+        String hql = "select sum(e.payment) " +
+                "from EnrollmentRecord e where e.orgSystemId = ?1 " ;
+        Query query = em.createQuery(hql).setParameter(1,oid);
+        int sum = (int )(long )query.getSingleResult();
+        return sum;
     }
 
 }

@@ -15,61 +15,64 @@
 
 <div class="container">
     <div th:include="/fragments/navigation :: #orgNav"></div>
+</div> <!-- /container -->
+
+<div class="container">
     <div class="row">
-        <div class="panel panel-primary">
-            <!-- Default panel contents -->
-            <div class="panel-heading">退课记录</div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-offset-3 col-md-6">
-                        <!--form-->
-                        <form  th:action="@{/organization/{id}/dropRecordCreation(id=${session.organization.getId()})}"
-                               method="post">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">退课记录</div>
+                <!-- Default panel contents -->
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-8">
+                    <!--form-->
+                            <form  th:action="@{/organization/{id}/dropRecordCreation(id=${session.organization.getId()})}"
+                                   method="post">
+                        <div class="form-group">
+                            <label >班级名称</label>
+                            <select name="className" class="form-control">
+                                <option th:each="project:${projects}"  th:value="${project.getClassName()}">
+                                    <span th:text="${project.getClassName()}"></span>
+                                </option>
+                            </select>
+                        </div>
 
-                            <div class="form-group">
-                                <label >班级名称</label>
-                                <select name="className" class="form-control">
-                                    <option th:each="project:${projects}"  th:value="${project.getClassName()}">
-                                        <span th:text="${project.getClassName()}"></span>
-                                    </option>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label for="studentName">学生姓名</label>
+                            <input  class="form-control" name="studentName" id="studentName" placeholder="学生姓名" />
+                        </div>
 
-                            <div class="form-group">
-                                <label for="studentName">学生姓名</label>
-                                <input  class="form-control" name="studentName" id="studentName" placeholder="学生姓名" />
-                            </div>
+                        <label for="studentName">用户类型</label>
+                        <div class="form-group">
+                            <label class="radio-inline">
+                                <input type="radio" name="userType" id="member" value="member" />会员
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="userType" id="non_member" value="non_member" />非会员
+                            </label>
+                        </div>
+                        <label for="studentName">退款方式</label>
+                        <div class="form-group">
+                            <label class="radio-inline">
+                                <input type="radio" name="payMethod" id="card" value="card" />会员卡
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="payMethod" id="cash" value="cash" />现金
+                            </label>
+                        </div>
 
-                            <label for="studentName">用户类型</label>
-                            <div class="form-group">
-                                <label class="radio-inline">
-                                    <input type="radio" name="userType" id="member" value="member" />会员
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="userType" id="non_member" value="non_member" />非会员
-                                </label>
-                            </div>
-                            <label for="studentName">退款方式</label>
-                            <div class="form-group">
-                                <label class="radio-inline">
-                                    <input type="radio" name="payMethod" id="card" value="card" />会员卡
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="payMethod" id="cash" value="cash" />现金
-                                </label>
-                            </div>
-
-                            <button type="submit" class="center-block btn  btn-default">退课登记</button>
-                        </form>
+                        <button type="submit" class="center-block btn  btn-default">退课登记</button>
+                    </form>
+                        </div>
                     </div>
 
                 </div>
-
+                <div class="panel-footer"></div>
             </div>
-            <div class="panel-footer"></div>
         </div>
     </div>
-</div> <!-- /container -->
+</div>
 
 
 <script th:src="@{/js/jquery-3.1.1.min.js}"></script>

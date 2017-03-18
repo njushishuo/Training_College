@@ -71,55 +71,7 @@
                     <span th:text="${projectVO.hasStarted}? '加入班级': '预订班级'">预订班级</span>
                 </a>
 
-                <!-- Modal -->
-                <div th:id="${projectVO.project.getId()}" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title"> 会员卡支付 </h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label >班级名称：</label>
-                                            <span th:text="${projectVO.project.getClassName()}" class="text-primary" >软件工程</span>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label >应缴费用：</label>
-                                            <span th:text="${projectVO.project.getTotalPrice()}" class="text-primary" >500</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label >会员卡余额：</label>
-                                            <span th:text="${session.student.getCard().getBalance()}"
-                                                  class="text-primary">158</span>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label >付款后余额：</label>
-                                            <span th:text="${session.student.getCard().getBalance()} - ${projectVO.project.getTotalPrice()}"
-                                                  th:class=" ${session.student.getCard().getBalance()} lt ${projectVO.project.getTotalPrice()}
-                                                                   ? 'text-warning':'text-success' ">0</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <!--预订-->
-                                    <a  th:if="${!projectVO.hasStarted}"
-                                        th:disabled="${session.student.getCard().getBalance()} lt ${projectVO.project.getTotalPrice()}"
-                                        th:onclick="|reserve(${session.student.getId()},${projectVO.project.getId()})|"
-                                        class="btn btn-default" data-dismiss="modal">确认</a>
-                                    <!--预订-->
-                                    <a  th:if="${projectVO.hasStarted}"
-                                        th:disabled="${session.student.getCard().getBalance()} lt ${projectVO.project.getTotalPrice()}"
-                                        th:onclick="|select(${session.student.getId()},${projectVO.project.getId()})|"
-                                        class="btn btn-default" data-dismiss="modal">确认</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

@@ -27,8 +27,6 @@
                 </div>
 
                 <div class="panel-body">
-                    <form  method="post">
-
                         <div class="form-group">
                             <label for="orgSysId">机构ID：</label>
                             <select id="orgSysId" name="orgSysId" class="form-control">
@@ -36,16 +34,23 @@
                                     <span th:text="${id}"></span>
                                 </option>
                             </select>
-
                         </div>
 
                         <div class="form-group">
                             <label for="payment">入学收入：</label>
-                            <input class="form-control" name="payment" id="payment" placeholder="总收入" />
+                            <input class="form-control text-success" name="payment" id="payment" placeholder="总收入" />
                         </div>
 
-                        <button type="submit" class="center-block btn btn-default btn-primary">结账</button>
-                    </form>
+                        <div class="form-group">
+                            <label for="balance">公司账户余额：</label>
+                            <input th:value="${balance}" class="form-control" name="balance" id="balance" placeholder="公司账户余额" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="post_balance">结账后余额：</label>
+                            <input class="form-control" name="post_balance" id="post_balance" placeholder="总收入" />
+                        </div>
+                        <button onclick="settlePayment()" class="center-block btn btn-default btn-primary">结账</button>
                 </div>
             </div>
         </div>
