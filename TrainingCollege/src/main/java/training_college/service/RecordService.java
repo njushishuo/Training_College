@@ -9,6 +9,9 @@ import java.util.List;
  */
 public interface RecordService {
 
+
+    String getProjectNameByPid(int pid);
+
     /**
      * 获取那些 开放且人数未满的班级
      * @param id

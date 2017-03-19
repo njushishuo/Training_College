@@ -41,7 +41,7 @@
                             <td th:text="${reservation.getProject().getTotalPrice()}">800</td>
                             <td th:text="'-'+${reservation.getPayment()}"
                                 th:class="text-danger">800</td>
-                            <td th:text="${reservation.getDate()}">2017-09-01</td>
+                            <td th:text="${#calendars.format(reservation.getDate(),'yyyy-MM-dd')}">2017-09-01</td>
                         </tr>
                         </tbody>
                     </table>
@@ -78,7 +78,7 @@
                             <td th:text="${unReservation.getProject().getTotalPrice()}">800</td>
                             <td th:text="'+'+${unReservation.getPayment()}"
                                 th:class="text-success">800</td>
-                            <td th:text="${unReservation.getDate()}">2017-09-01</td>
+                            <td th:text="${#calendars.format(unReservation.getDate(),'yyyy-MM-dd')}">2017-09-01</td>
                         </tr>
                         </tbody>
                     </table>
@@ -113,7 +113,7 @@
                             <td th:text="${enrollRecord.getPrice()}">800</td>
                             <td th:text="'-'+${enrollRecord.getPayment()}"
                                 th:class="text-danger">800</td>
-                            <td th:text="${enrollRecord.getDate()}">2017-09-01</td>
+                            <td th:text="${#calendars.format(enrollRecord.getDate(),'yyyy-MM-dd')}">2017-09-01</td>
                         </tr>
                         </tbody>
                     </table>
@@ -147,7 +147,7 @@
                             <td th:text="${dropRecord.getPrice()}">800</td>
                             <td th:text="'+'+${dropRecord.getPayment()}"
                                 th:class="text-success">800</td>
-                            <td th:text="${dropRecord.getDate()}">2017-09-01</td>
+                            <td th:text="${#calendars.format(dropRecord.getDate(),'yyyy-MM-dd')}">2017-09-01</td>
                         </tr>
                         </tbody>
                     </table>

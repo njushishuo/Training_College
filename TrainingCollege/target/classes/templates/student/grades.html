@@ -39,7 +39,7 @@
                             <td th:text="${record.getCourseName()}">软件工程1班</td>
                             <td th:text="${record.getScore()}"
                                 th:class="${record.getScore()} ge ${60} ? 'text-primary':'text-warning'" >软件工程1班</td>
-                            <td th:text="${record.getDate()}">软件工程1班</td>
+                            <td th:text="${#calendars.format(record.getDate(),'yyyy-MM-dd')}">软件工程1班</td>
                         </tr>
                         </tbody>
                     </table>

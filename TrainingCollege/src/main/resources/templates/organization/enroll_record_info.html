@@ -51,7 +51,7 @@
                         <td th:case="cash"  >现金</td>
                     </div>
 
-                    <td th:text="${record.getDate()}">2018/07/10</td>
+                    <td th:text="${#calendars.format(record.getDate(),'yyyy-MM-dd')}">2018/07/10</td>
                 </tr>
                 </tbody>
             </table>

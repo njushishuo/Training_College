@@ -41,7 +41,7 @@
                     <td th:text="${record.getCourseName()}">软件工程</td>
                     <td th:text="${record.getStudentName()}">小明</td>
                     <td th:text="${record.getScore()}">小明</td>
-                    <td th:text="${record.getDate()}">2018/07/10</td>
+                    <td th:text="${#calendars.format(record.getDate(),'yyyy-MM-dd')}">2018/07/10</td>
                 </tr>
                 </tbody>
             </table>

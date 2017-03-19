@@ -49,7 +49,7 @@
                                 <td th:text="${reservation.getProject().getFromDate()}">2017/09/01</td>
                                 <td th:text="${reservation.getProject().getToDate()}">2018/07/10</td>
                                 <td th:text="${reservation.getProject().getTotalPrice()}">800</td>
-                                <td th:text="${reservation.getDate()}">2017-09-01</td>
+                                <td th:text="${#calendars.format(reservation.getDate(),'yyyy-MM-dd')}">2017-09-01</td>
                                 <td th:class="${!reservation.isCanceled()}? 'text-success':'text-danger' "
                                     th:text="${!reservation.isCanceled()}? '预定中':'已取消'">800</td>
                             </tr>

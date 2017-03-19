@@ -43,6 +43,11 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
+    public String getProjectNameByPid(int pid) {
+        return projectRepository.findOne(pid).getClassName();
+    }
+
+    @Override
     public List<Project> getAvaliableProjectsByOrgId(int id) {
 
         return projectRepository.getAvaliableProjectsByOrgId(id);

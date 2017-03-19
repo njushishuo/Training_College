@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import training_college.entity.*;
 import training_college.service.*;
-import training_college.util.enumeration.AddStatus;
-import training_college.util.enumeration.ModifyStatus;
-import training_college.util.enumeration.PayMethod;
-import training_college.util.enumeration.UserType;
+import training_college.util.enumeration.*;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
@@ -250,7 +247,9 @@ public class OrganizationController {
     public String addEnrollRecord(@PathVariable int id,HttpServletRequest request,HttpSession session){
 
 
-        String className = request.getParameter("className");
+        int  pid = Integer.parseInt(request.getParameter("classId"));
+        String className = recordService.getProjectNameByPid(pid);
+
         String studentName = request.getParameter("studentName");
         String userTypeString = request.getParameter("userType");
         String payMethodString = request.getParameter("payMethod");
@@ -263,6 +262,7 @@ public class OrganizationController {
         enrollmentRecord.setStudentName(studentName);
         enrollmentRecord.setUserType(UserType.valueOf(userTypeString));
         enrollmentRecord.setPayMethod(PayMethod.valueOf(payMethodString));
+        enrollmentRecord.setSelectMethod(SelectMethod.select);
         enrollmentRecord.setPrice(price);
         enrollmentRecord.setPayment(payment);
 
@@ -313,7 +313,8 @@ public class OrganizationController {
     public String addDropRecord(@PathVariable int id,HttpServletRequest request ,HttpSession session){
 
 
-        String className = request.getParameter("className");
+        int  pid = Integer.parseInt(request.getParameter("classId"));
+        String className = recordService.getProjectNameByPid(pid);
         String studentName = request.getParameter("studentName");
         String userTypeString = request.getParameter("userType");
         String payMethodString = request.getParameter("payMethod");
@@ -327,6 +328,7 @@ public class OrganizationController {
         dropRecord.setStudentName(studentName);
         dropRecord.setUserType(UserType.valueOf(userTypeString));
         dropRecord.setPayMethod(PayMethod.valueOf(payMethodString));
+        dropRecord.setSelectMethod(SelectMethod.select);
         dropRecord.setPrice(price);
         dropRecord.setPayment(payment);
 

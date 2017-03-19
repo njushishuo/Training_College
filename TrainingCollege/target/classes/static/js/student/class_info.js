@@ -15,8 +15,12 @@ function reserve(sid, pid) {
         url:"/student/"+sid+"/reservation/"+pid,
         data: data,
         success: function(data){
-            alert("预订成功");
-            location.reload();
+
+            if(data){
+                alert("预订成功");
+                location.reload();
+            }
+
         },
         traditional:true
     });
@@ -36,8 +40,12 @@ function select(sid, pid) {
         url:"/student/"+sid+"/selection/"+pid,
         data: data,
         success: function(data){
-            alert("加入成功");
-            location.reload();
+
+            if(data){
+                alert("加入成功");
+                location.reload();
+            }
+
         },
         traditional:true
     });

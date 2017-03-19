@@ -30,7 +30,7 @@
 
                                 <div class="form-group">
                                     <label >班级名称</label>
-                                    <select name="className" id="classId" class="form-control">
+                                    <select name="classId" id="classId" class="form-control">
                                         <option th:each="project:${projects}"  th:value="${project.getId()}">
                                             <span th:text="${project.getClassName()}"></span>
                                         </option>
