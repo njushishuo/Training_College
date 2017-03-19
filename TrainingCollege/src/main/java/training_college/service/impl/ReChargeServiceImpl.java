@@ -8,7 +8,10 @@ import training_college.entity.Card;
 import training_college.repository.BankCardRepository;
 import training_college.repository.CardRepository;
 import training_college.service.ReChargeService;
+import training_college.util.DateHelper;
 import training_college.util.enumeration.CardStatus;
+
+
 
 /**
  * Created by ss14 on 2017/3/19.
@@ -16,6 +19,8 @@ import training_college.util.enumeration.CardStatus;
 @Service
 public class ReChargeServiceImpl implements ReChargeService {
 
+    @Autowired
+    DateHelper dateHelper;
     @Autowired
     CardRepository cardRepository;
     @Autowired
@@ -40,10 +45,16 @@ public class ReChargeServiceImpl implements ReChargeService {
         bankCard.setBalance(bankCard.getBalance() - reChargeNum );
         bankCardRepository.saveAndFlush(bankCard);
 
-        card.setBalance(card.getBalance()+reChargeNum);
+
+        int cardBalance = card.getBalance();
+        System.err.println("precardBalance:"+cardBalance);
+        card.setBalance(cardBalance+reChargeNum);
+        System.err.println("postcardBalance:"+card.getBalance());
+
 
         if(card.getBalance() >= 1000){
             card.setStatus(CardStatus.activated);
+            card.setLastActivatedAt(dateHelper.getToday());
             cardRepository.saveAndFlush(card);
             return true;
         }else{

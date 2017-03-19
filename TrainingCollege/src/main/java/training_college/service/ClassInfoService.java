@@ -14,6 +14,10 @@ import java.util.List;
  */
 public interface ClassInfoService {
 
+
+
+    int getPriceByPid(int pid);
+
     /**
      * 返回某个机构的班级
      * 获取开课申请成功的班级

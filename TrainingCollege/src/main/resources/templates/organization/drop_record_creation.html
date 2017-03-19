@@ -26,44 +26,53 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-offset-2 col-md-8">
-                    <!--form-->
+                            <!--form-->
                             <form  th:action="@{/organization/{id}/dropRecordCreation(id=${session.organization.getId()})}"
                                    method="post">
-                        <div class="form-group">
-                            <label >班级名称</label>
-                            <select name="className" class="form-control">
-                                <option th:each="project:${projects}"  th:value="${project.getClassName()}">
-                                    <span th:text="${project.getClassName()}"></span>
-                                </option>
-                            </select>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="studentName">学生姓名</label>
-                            <input  class="form-control" name="studentName" id="studentName" placeholder="学生姓名" />
-                        </div>
+                                <div class="form-group">
+                                    <label >班级名称</label>
+                                    <select name="className" id="classId"  class="form-control">
+                                        <option th:each="project:${projects}"  th:value="${project.getId()}">
+                                            <span th:text="${project.getClassName()}"></span>
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="studentName">学生姓名</label>
+                                    <input  class="form-control" name="studentName" id="studentName" placeholder="学生姓名" />
+                                </div>
 
-                        <label for="studentName">用户类型</label>
-                        <div class="form-group">
-                            <label class="radio-inline">
-                                <input type="radio" name="userType" id="member" value="member" />会员
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="userType" id="non_member" value="non_member" />非会员
-                            </label>
-                        </div>
-                        <label for="studentName">退款方式</label>
-                        <div class="form-group">
-                            <label class="radio-inline">
-                                <input type="radio" name="payMethod" id="card" value="card" />会员卡
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="payMethod" id="cash" value="cash" />现金
-                            </label>
-                        </div>
+                                <label for="studentName">用户类型</label>
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="userType" id="member" value="member" />会员
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="userType" id="non_member" value="non_member" />非会员
+                                    </label>
+                                </div>
+                                <label for="studentName">退款方式</label>
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="payMethod" id="card" value="card" />会员卡
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="payMethod" id="cash" value="cash" />现金
+                                    </label>
+                                </div>
 
-                        <button type="submit" class="center-block btn  btn-default">退课登记</button>
-                    </form>
+                                <div class="form-group">
+                                    <label for="price">学费</label>
+                                    <input  class="form-control" name="price" id="price" placeholder="学费" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="payment">实收费用</label>
+                                    <input  type="number" class="form-control" name="payment" id="payment" placeholder="学费" />
+                                </div>
+                                <button type="submit" class="center-block btn  btn-default">退课登记</button>
+                            </form>
                         </div>
                     </div>
 
@@ -77,5 +86,7 @@
 
 <script th:src="@{/js/jquery-3.1.1.min.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/student/price.js}"></script>
+
 </body>
 </html>

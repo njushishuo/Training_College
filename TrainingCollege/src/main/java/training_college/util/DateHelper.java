@@ -25,4 +25,11 @@ public class DateHelper {
 
         return (int)TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
+
+
+    public Date getToday(){
+        java.util.Date date = new java.util.Date();
+        Date today = new Date(date.getTime());
+        return today;
+    }
 }

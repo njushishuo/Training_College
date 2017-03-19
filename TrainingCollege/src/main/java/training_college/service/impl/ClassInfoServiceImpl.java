@@ -29,6 +29,15 @@ public class ClassInfoServiceImpl implements ClassInfoService {
     DateHelper dateHelper;
 
     @Override
+    public int getPriceByPid(int pid) {
+
+        Project project = projectRepository.getOne(pid);
+
+
+        return project.getTotalPrice();
+    }
+
+    @Override
     public List<Project> getOpenClassesByOrgId(int id) {
         return projectRepository.getOpenProjectsByOrgId(id);
     }

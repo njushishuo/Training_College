@@ -83,11 +83,7 @@
                             <div class="col-md-6">
                                 <label>绑定的银行卡:</label>
                                 <ul class="list-group" >
-                                    <li class="list-group-item" th:each="bankCard: ${ bankCards }">
-                                        <label>
-                                            <input th:checked="(${cardVO.card.getBankCardId()} eq ${bankCard.getId()})"
-                                                   type="radio" name="bankCardRadio"  th:value="${bankCard.getId()}"/>
-                                        </label>
+                                    <li class="list-group-item">
                                         <span th:text="${bankCard.getCardNum()}"></span>
                                         <span th:text="${bankCard.getBalance()}" class="badge">1000</span>
                                     </li>
@@ -151,9 +147,9 @@
     </div>
 </div>
 
-<script th:src="@{/js/student/card_info.js}"></script>
+
 <script th:src="@{/js/jquery-3.1.1.min.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
-
+<script th:src="@{/js/student/card_info.js}"></script>
 </body>
 </html>

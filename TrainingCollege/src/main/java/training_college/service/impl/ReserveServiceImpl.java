@@ -53,7 +53,7 @@ public class ReserveServiceImpl implements ReserveService {
         Student student = studentRepository.getOne(sid);
         Project project = projectRepository.getOne(pid);
 
-        //S1: 扣款
+        //S1: 扣款,更新积分和等级
         int balance = student.getCard().getBalance();
         int price = project.getTotalPrice();
         double disCnt = disCntHelper.getDisCntByLevel(student.getCard().getLevel());
@@ -63,7 +63,14 @@ public class ReserveServiceImpl implements ReserveService {
             return false;
         }
         student.getCard().setBalance(balance - payment);
+
+
+        int score = student.getCard().getScore();
+        score+=200;
+        student.getCard().setScore(score);
+        student.getCard().setLevel(disCntHelper.getLevelByScore(score));
         cardRepository.saveAndFlush(student.getCard());
+
 
         //S2: 添加reservation记录
 

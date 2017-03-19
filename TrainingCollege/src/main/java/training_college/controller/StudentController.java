@@ -87,7 +87,7 @@ public class StudentController {
     public String getCardInfoPage(@PathVariable int id , Model model){
 
         Student student = cardService.getStudentById(id);
-        List<BankCard> bankCards = cardService.getBankCardsBySid(id);
+
         Card card = student.getCard();
         CardVO cardVO = new CardVO();
         cardVO.id = idHelper.validateId(id);
@@ -97,7 +97,7 @@ public class StudentController {
 
         model.addAttribute("student", student);
         model.addAttribute("cardVO",cardVO);
-        model.addAttribute("bankCards",bankCards);
+        model.addAttribute("bankCard",usingBankCard);
         model.addAttribute("curBankCardBalance",usingBankCard.getBalance());
 
         return "student/card_info";
@@ -107,7 +107,6 @@ public class StudentController {
     @RequestMapping(value = "/{id}/cardInfo" , method = RequestMethod.POST )
     public String updateCardInfo(@PathVariable int id , HttpServletRequest request){
 
-        //先更新student
         String name = (String) request.getParameter("studentName");
         String email = (String) request.getParameter("email");
         String phone = (String) request.getParameter("phone");
@@ -118,11 +117,6 @@ public class StudentController {
         student.setPhone(phone);
         cardService.saveStudent(student);
 
-        //再更新card
-        int bank_card_id = Integer.parseInt(request.getParameter("bankCardRadio")) ;
-        Card card = student.getCard();
-        card.setBankCardId(bank_card_id);
-        cardService.saveCard(card);
         return "redirect:/student/"+id+"/cardInfo";
 
     }

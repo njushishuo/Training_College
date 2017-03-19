@@ -27,7 +27,7 @@ public class StatusMonitor {
 
 
 
-    @Scheduled(fixedRate = 1000*60*60*24)
+    @Scheduled(fixedRate = 2000)
     public void FrozenCards(){
 
         List<Card> toFrozenCards = cardRepository.getToFrozenCards();
@@ -42,7 +42,7 @@ public class StatusMonitor {
     }
 
 
-    @Scheduled(fixedRate = 1000*60*60*24)
+    @Scheduled(fixedRate = 2000)
     public void DisableCards(){
 
         List<Card> toDisableCards = cardRepository.getToDisableCards();

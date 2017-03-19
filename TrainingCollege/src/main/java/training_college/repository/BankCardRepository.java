@@ -12,4 +12,6 @@ import training_college.repository.extra.BankCardInterface;
 public interface BankCardRepository extends JpaRepository<BankCard,Integer>,BankCardInterface {
 
 
+    BankCard getByCardNum(String num);
+
 }

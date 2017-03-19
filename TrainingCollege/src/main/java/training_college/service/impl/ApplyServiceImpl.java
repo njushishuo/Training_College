@@ -78,6 +78,11 @@ public class ApplyServiceImpl implements ApplyService {
 
         //先删除上次的修改记录
         postScheduleRepository.deleteRelatedByPid(projectId);
+        if(courseIds==null){
+            return;
+        }else if(courseIds.length==0){
+            return;
+        }
         //再添加新的记录
         for (int i = 0; i < courseIds.length; i++) {
             PostModifySchedule postModifySchedule = new PostModifySchedule();

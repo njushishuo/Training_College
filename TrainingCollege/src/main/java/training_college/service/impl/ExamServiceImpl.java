@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import training_college.entity.*;
 import training_college.repository.*;
 import training_college.service.ExamService;
+import training_college.service.ProjectTransforService;
 import training_college.service.ScheduleTransformService;
 import training_college.util.enumeration.AddStatus;
 import training_college.util.enumeration.ModifyStatus;
@@ -21,6 +22,9 @@ public class ExamServiceImpl implements ExamService {
 
     @Autowired
     ScheduleTransformService transformService;
+    @Autowired
+    ProjectTransforService projectTransforService;
+
     @Autowired
     ProjectRepository projectRepository;
     @Autowired
@@ -45,7 +49,9 @@ public class ExamServiceImpl implements ExamService {
 
     @Override
     public List<Project> getPendingModifyProjects() {
-        return projectRepository.getPendingModifyProjects();
+        List<Project> pendingProjectList= projectRepository.getPendingModifyProjects();
+        List<Project> modifiedProjectList = projectTransforService.getPostProjectsByProjects(pendingProjectList);
+        return modifiedProjectList;
     }
 
     @Override

@@ -35,24 +35,39 @@ public class OrganizationRepositoryImpl implements OrganizationInterface {
     public int getProjectCntByOrgId(int id) {
         String hql = "select count(p) from Project p where p.organization.id = ?1 ";
         Query query = em.createQuery(hql).setParameter(1,id);
-        int cnt = (int)(long)query.getSingleResult();
-        return cnt;
+        List result = query.getResultList();
+        if(result!=null){
+            if(result.get(0)!=null){
+                return  (int)(long)result.get(0);
+            }
+        }
+        return 0;
     }
 
     @Override
     public int getCourseCntByOrgId(int id) {
-        String hql = "select count(pm.courseId) from Project p, PreModifySchedule pm " +
+        String hql = "select  count(distinct pm.courseId) from Project p, PreModifySchedule pm " +
                      "where p.organization.id = ?1 and pm.projectId = p.id ";
         Query query = em.createQuery(hql).setParameter(1,id);
-        int cnt = (int)(long)query.getSingleResult();
-        return cnt;
+        List result = query.getResultList();
+        if(result!=null){
+            if(result.get(0)!=null){
+                return  (int)(long)result.get(0);
+            }
+        }
+        return 0;
     }
 
     @Override
     public int getCurStdCntByOrgId(int id) {
-        String hql = "select count(p.curStdCnt) from Project p where p.organization.id = ?1 ";
+        String hql = "select sum(p.curStdCnt) from Project p where p.organization.id = ?1 ";
         Query query = em.createQuery(hql).setParameter(1,id);
-        int cnt = (int)(long)query.getSingleResult();
-        return cnt;
+        List result = query.getResultList();
+        if(result!=null){
+            if(result.get(0)!=null){
+                return  (int)(long)result.get(0);
+            }
+        }
+        return 0;
     }
 }

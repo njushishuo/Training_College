@@ -30,8 +30,8 @@
 
                                 <div class="form-group">
                                     <label >班级名称</label>
-                                    <select name="className" class="form-control">
-                                        <option th:each="project:${projects}"  th:value="${project.getClassName()}">
+                                    <select name="className" id="classId" class="form-control">
+                                        <option th:each="project:${projects}"  th:value="${project.getId()}">
                                             <span th:text="${project.getClassName()}"></span>
                                         </option>
                                     </select>
@@ -61,6 +61,16 @@
                                     </label>
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="price">学费</label>
+                                    <input  class="form-control" name="price" id="price" placeholder="学费" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="payment">实收费用</label>
+                                    <input  type="number" class="form-control" name="payment" id="payment" placeholder="学费" />
+                                </div>
+
                                 <button type="submit" class="center-block btn  btn-default">入学登记</button>
                         </form>
                         </div>
@@ -74,5 +84,7 @@
 
 <script th:src="@{/js/jquery-3.1.1.min.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/student/price.js}"></script>
+
 </body>
 </html>

@@ -1,9 +1,6 @@
 package training_college.service;
 
-import training_college.entity.DropRecord;
-import training_college.entity.EnrollmentRecord;
-import training_college.entity.GradeRecord;
-import training_college.entity.Project;
+import training_college.entity.*;
 
 import java.util.List;
 
@@ -46,7 +43,7 @@ public interface RecordService {
      * 添加入学记录，并增加相应project的当前人数
      * @return
      */
-    void addEnrollRecordAndIncCurStdCnt(EnrollmentRecord enrollmentRecord);
+    void nonMemberEnroll(EnrollmentRecord enrollmentRecord , Organization organization);
 
 
     /**
@@ -66,7 +63,7 @@ public interface RecordService {
      * 添加退课（退学）记录，并增加相应project的当前人数
      * @return
      */
-    void addDropRecordAndDecCurStdCnt(DropRecord dropRecord);
+    void nonMemberDrop(DropRecord dropRecord, Organization organization);
 
 
     /**

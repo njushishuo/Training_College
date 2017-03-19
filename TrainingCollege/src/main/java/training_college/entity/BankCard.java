@@ -3,16 +3,17 @@ package training_college.entity;
 import javax.persistence.*;
 
 /**
- * Created by ss14 on 2017/3/16.
+ * Created by ss14 on 2017/3/19.
  */
 @Entity
+@Table(name = "bank_card", schema = "training_college", catalog = "")
 public class BankCard {
     private int id;
     private String cardNum;
-    private String password;
     private int balance;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;
@@ -30,16 +31,6 @@ public class BankCard {
 
     public void setCardNum(String cardNum) {
         this.cardNum = cardNum;
-    }
-
-    @Basic
-    @Column(name = "password")
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     @Basic
@@ -62,7 +53,6 @@ public class BankCard {
         if (id != bankCard.id) return false;
         if (balance != bankCard.balance) return false;
         if (cardNum != null ? !cardNum.equals(bankCard.cardNum) : bankCard.cardNum != null) return false;
-        if (password != null ? !password.equals(bankCard.password) : bankCard.password != null) return false;
 
         return true;
     }
@@ -71,7 +61,6 @@ public class BankCard {
     public int hashCode() {
         int result = id;
         result = 31 * result + (cardNum != null ? cardNum.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + balance;
         return result;
     }

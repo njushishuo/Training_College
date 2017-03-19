@@ -73,8 +73,8 @@
       <foreign-key id="36" parent="8" name="card_bcid">
         <columns>bank_card_id</columns>
         <ref-key>~.bank_card.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>set_null</cascade-delete-rule>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
       </foreign-key>
       <column id="37" parent="9" name="id">
         <mandatory>1</mandatory>
@@ -523,22 +523,21 @@ course_id</columns>
         <data-type>varchar(255)|0</data-type>
       </column>
       <column id="136" parent="20" name="name">
-        <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
       <column id="137" parent="20" name="gender">
         <mandatory>1</mandatory>
         <data-type>enum(&apos;male&apos;, &apos;female&apos;)|0</data-type>
+        <default-expression>&apos;male&apos;</default-expression>
       </column>
       <column id="138" parent="20" name="email">
-        <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
       <column id="139" parent="20" name="phone">
-        <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
       <column id="140" parent="20" name="card_id">
+        <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
       <index id="141" parent="20" name="std_card_id">
@@ -643,66 +642,62 @@ sid</columns>
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="164" parent="24" name="password">
-        <mandatory>1</mandatory>
-        <data-type>varchar(255)|0</data-type>
-      </column>
-      <column id="165" parent="24" name="balance">
+      <column id="164" parent="24" name="balance">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <key id="166" parent="24" name="PRIMARY">
+      <key id="165" parent="24" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="167" parent="25" name="bank_card_id">
+      <column id="166" parent="25" name="bank_card_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <column id="168" parent="25" name="student_id">
+      <column id="167" parent="25" name="student_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <index id="169" parent="25" name="bankcard_std_sid">
+      <index id="168" parent="25" name="bankcard_std_sid">
         <columns>student_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="170" parent="25" name="PRIMARY">
+      <key id="169" parent="25" name="PRIMARY">
         <columns>bank_card_id
 student_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="171" parent="25" name="bankcard_std_bcid">
+      <foreign-key id="170" parent="25" name="bankcard_std_bcid">
         <columns>bank_card_id</columns>
         <ref-key>~.bank_card.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="172" parent="25" name="bankcard_std_sid">
+      <foreign-key id="171" parent="25" name="bankcard_std_sid">
         <columns>student_id</columns>
         <ref-key>~.student.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <column id="173" parent="26" name="id">
+      <column id="172" parent="26" name="id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="174" parent="26" name="username">
+      <column id="173" parent="26" name="username">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="175" parent="26" name="password">
+      <column id="174" parent="26" name="password">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="176" parent="26" name="balance">
+      <column id="175" parent="26" name="balance">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <key id="177" parent="26" name="PRIMARY">
+      <key id="176" parent="26" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>

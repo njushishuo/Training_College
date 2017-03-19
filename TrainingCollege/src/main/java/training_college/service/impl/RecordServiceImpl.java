@@ -2,15 +2,10 @@ package training_college.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import training_college.entity.DropRecord;
-import training_college.entity.EnrollmentRecord;
-import training_college.entity.GradeRecord;
-import training_college.entity.Project;
-import training_college.repository.DropRecordRepository;
-import training_college.repository.EnrollRecordRepository;
-import training_college.repository.GradeRecordRepository;
-import training_college.repository.ProjectRepository;
+import training_college.entity.*;
+import training_college.repository.*;
 import training_college.service.RecordService;
+import training_college.util.enumeration.PayMethod;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -20,6 +15,9 @@ import java.util.List;
  */
 @Service
 public class RecordServiceImpl implements RecordService {
+
+    @Autowired
+    OrganizationRepository organizationRepository;
 
     @Autowired
     EnrollRecordRepository enrollRecordRepository;
@@ -66,17 +64,23 @@ public class RecordServiceImpl implements RecordService {
         return enrollRecordRepository.getEnrollRecordsWithSelectionByStdName(name);
     }
 
+
     @Override
     @Transactional
-    public void addEnrollRecordAndIncCurStdCnt(EnrollmentRecord enrollmentRecord) {
-
+    public void nonMemberEnroll(EnrollmentRecord enrollmentRecord, Organization organization) {
+        //S1：机构收钱
+        int balance = organization.getBalance();
+        int payment = enrollmentRecord.getPayment();
+        organization.setBalance(balance+payment);
+        organizationRepository.saveAndFlush(organization);
+        //S2：添加记录
         enrollRecordRepository.save(enrollmentRecord);
+        //S3：加人数
         Project project = projectRepository.getByClassName(enrollmentRecord.getProjectName());
         int curStdCnt = project.getCurStdCnt();
         project.setCurStdCnt(++curStdCnt);
 
     }
-
 
     @Override
     public List<DropRecord> getAllDropRecordsByOrgId(int id) {
@@ -88,18 +92,22 @@ public class RecordServiceImpl implements RecordService {
         return dropRecordRepository.getByStudentNameOrderByDateDesc(name);
     }
 
+
     @Override
     @Transactional
-    public void addDropRecordAndDecCurStdCnt(DropRecord dropRecord) {
-
+    public void nonMemberDrop(DropRecord dropRecord , Organization organization) {
+        //S1：机构退钱
+        int balance = organization.getBalance();
+        int repayment = dropRecord.getPayment();
+        organization.setBalance(balance-repayment);
+        //S2：增加记录
         dropRecordRepository.save(dropRecord);
+        //S3：减少人数
         Project project = projectRepository.getByClassName(dropRecord.getProjectName());
         int curStdCnt = project.getCurStdCnt();
         project.setCurStdCnt(--curStdCnt);
 
     }
-
-
 
 
     @Override

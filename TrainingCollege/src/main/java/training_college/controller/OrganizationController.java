@@ -1,6 +1,7 @@
 package training_college.controller;
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import training_college.entity.*;
 import training_college.service.*;
 import training_college.util.enumeration.AddStatus;
@@ -223,7 +225,6 @@ public class OrganizationController {
 
 /*****************************************登记*******************************************************/
 
-
     /**
      * 获取添加入学记录界面
      * @param model
@@ -246,13 +247,15 @@ public class OrganizationController {
      * @return
      */
     @RequestMapping(value ="/organization/{id}/enrollRecordCreation" , method = RequestMethod.POST)
-    public String addEnrollRecord(@PathVariable int id,HttpServletRequest request){
+    public String addEnrollRecord(@PathVariable int id,HttpServletRequest request,HttpSession session){
 
 
         String className = request.getParameter("className");
         String studentName = request.getParameter("studentName");
         String userTypeString = request.getParameter("userType");
         String payMethodString = request.getParameter("payMethod");
+        int price = Integer.parseInt(request.getParameter("price"));
+        int payment = Integer.parseInt(request.getParameter("payment"));
 
         EnrollmentRecord enrollmentRecord = new EnrollmentRecord();
         enrollmentRecord.setOrgSystemId(recordService.validateId(id));
@@ -260,8 +263,12 @@ public class OrganizationController {
         enrollmentRecord.setStudentName(studentName);
         enrollmentRecord.setUserType(UserType.valueOf(userTypeString));
         enrollmentRecord.setPayMethod(PayMethod.valueOf(payMethodString));
+        enrollmentRecord.setPrice(price);
+        enrollmentRecord.setPayment(payment);
 
-        recordService.addEnrollRecordAndIncCurStdCnt(enrollmentRecord);
+        Organization organization = (Organization) session.getAttribute("organization");
+
+        recordService.nonMemberEnroll(enrollmentRecord,organization);
 
         return "redirect:/organization/"+id+"/enrollRecordCreation";
 
@@ -280,8 +287,6 @@ public class OrganizationController {
         model.addAttribute("enrollRecords",records);
         return "/organization/enroll_record_info";
     }
-
-
 
 
     /**
@@ -305,13 +310,16 @@ public class OrganizationController {
      * @return
      */
     @RequestMapping(value ="/organization/{id}/dropRecordCreation" , method = RequestMethod.POST)
-    public String addDropRecord(@PathVariable int id,HttpServletRequest request){
+    public String addDropRecord(@PathVariable int id,HttpServletRequest request ,HttpSession session){
 
 
         String className = request.getParameter("className");
         String studentName = request.getParameter("studentName");
         String userTypeString = request.getParameter("userType");
         String payMethodString = request.getParameter("payMethod");
+        int price = Integer.parseInt(request.getParameter("price"));
+        int payment = Integer.parseInt(request.getParameter("payment"));
+
 
         DropRecord dropRecord = new DropRecord();
         dropRecord.setOrgSystemId(recordService.validateId(id));
@@ -319,8 +327,11 @@ public class OrganizationController {
         dropRecord.setStudentName(studentName);
         dropRecord.setUserType(UserType.valueOf(userTypeString));
         dropRecord.setPayMethod(PayMethod.valueOf(payMethodString));
+        dropRecord.setPrice(price);
+        dropRecord.setPayment(payment);
 
-        recordService.addDropRecordAndDecCurStdCnt(dropRecord);
+        Organization organization = (Organization) session.getAttribute("organization");
+        recordService.nonMemberDrop(dropRecord,organization);
 
         return "redirect:/organization/"+id+"/dropRecordCreation";
 
@@ -343,6 +354,13 @@ public class OrganizationController {
     }
 
 
+
+    @ResponseBody
+    @RequestMapping(value ="/organization/classPrice/{pid}" , method = RequestMethod.GET)
+    public int getClassPrice(@PathVariable int pid){
+
+        return classInfoService.getPriceByPid(pid);
+    }
 
 
     /**
