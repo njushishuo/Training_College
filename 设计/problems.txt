@@ -1,0 +1,46 @@
+1. 如何将 /  /login映射到同一个方法？
+@RequestMapping (value= {  "/" , "login"})
+2.<link>标签用于导入css
+  <script>标签用于导入js
+3.使用模板引擎时，在idea中写html，加入class时没有自动补全，因为th:href="@{}"是运行时加载的，可以多写一个href="/css/.."
+
+4. thymeleaf 中需要动态覆盖一些属性，这些属性并不是html中原有属性，例如bootstrap中的额外属性该怎么办？
+	使用th:attr = " extraAttr = ${var} "
+  th:attr=" data-target='#'+${project.getId() }"
+
+
+5. 一对一映射中，将一个外键换为一个实体后，外键怎么处理?
+6. 修改表单时，单选框预填充？
+e.g.1
+<div class="form-group">
+    <label >班级人数</label>
+    <br/>
+    <label class="radio-inline">
+        <input th:checked="${project.getMaxStdCnt() == 50}" type="radio" name="maxStdCnt" id="inlineRadio1" value="50"/> 50
+    </label>
+    <label class="radio-inline">
+        <input th:checked="${project.getMaxStdCnt() == 100}" type="radio" name="maxStdCnt" id="inlineRadio2" value="100"/> 100
+    </label>
+    <label class="radio-inline">
+        <input th:checked="${project.getMaxStdCnt() == 200}" type="radio" name="maxStdCnt" id="inlineRadio3" value="200"/> 200
+    </label>
+</div>
+
+e.g.2
+<label>	
+	<input th:checked="(${cardVO.card.getBankCardId()} eq ${bankCard.getId()})"
+       type="radio" name="bankCardRadio"  th:value="${bankCard.getId()}"/>
+</label>
+
+7.根据状态改变css?
+<div th:switch="${project.getModifyStatus().toString()}">
+    <td th:case="approved"  class="text-success">通过</td>
+    <td th:case="pending"   class="text-warning">等待</td>
+    <td th:case="rejected"  class="text-danger">拒绝</td>
+</div>
+
+8.希望数据插入时自动添加插入时间？
+	把timestamp默认值设置为CURRENT__TIMESTAMP,notnull
+
+
+9. 使用spring 的定时任务
