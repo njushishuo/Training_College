@@ -1,7 +1,5 @@
 package training_college.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,8 +30,6 @@ public class OrganizationController {
     ApplyService applyService;
     @Autowired
     RecordService recordService;
-    @Autowired
-    ReserveService reserveService;
     @Autowired
     SelectService selectService;
     @Autowired
@@ -256,6 +252,7 @@ public class OrganizationController {
         int price = Integer.parseInt(request.getParameter("price"));
         int payment = Integer.parseInt(request.getParameter("payment"));
 
+
         EnrollmentRecord enrollmentRecord = new EnrollmentRecord();
         enrollmentRecord.setOrgSystemId(recordService.validateId(id));
         enrollmentRecord.setProjectName(className);
@@ -268,7 +265,13 @@ public class OrganizationController {
 
         Organization organization = (Organization) session.getAttribute("organization");
 
-        recordService.nonMemberEnroll(enrollmentRecord,organization);
+        //会员线下选课
+        if(userTypeString.equals("member")){
+            int sid  = selectService.getSidBySname(studentName);
+            selectService.selectOffline(sid,pid,payment);
+        }else{
+            recordService.nonMemberEnroll(enrollmentRecord,organization);
+        }
 
         return "redirect:/organization/"+id+"/enrollRecordCreation";
 
@@ -333,7 +336,15 @@ public class OrganizationController {
         dropRecord.setPayment(payment);
 
         Organization organization = (Organization) session.getAttribute("organization");
-        recordService.nonMemberDrop(dropRecord,organization);
+
+        //会员线下退课
+        if(userTypeString.equals("member")){
+            int sid  = selectService.getSidBySname(studentName);
+            selectService.unselectOffline(sid,pid,payment);
+        }else{
+            recordService.nonMemberDrop(dropRecord,organization);
+        }
+
 
         return "redirect:/organization/"+id+"/dropRecordCreation";
 

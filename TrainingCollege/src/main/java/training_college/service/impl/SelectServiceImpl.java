@@ -24,6 +24,8 @@ import javax.persistence.PersistenceContext;
 public class SelectServiceImpl implements SelectService {
 
     @Autowired
+    OrganizationRepository organizationRepository;
+    @Autowired
     CardRepository cardRepository;
     @Autowired
     StudentRepository studentRepository;
@@ -109,9 +111,58 @@ public class SelectServiceImpl implements SelectService {
         return true;
     }
 
+    @Override
+    public boolean selectOffline(int sid, int pid ,int payment) {
+        Student student = studentRepository.getOne(sid);
+        Project project = projectRepository.getOne(pid);
+
+        //s1 机构收钱
+        Organization organization = project.getOrganization();
+        int balance = organization.getBalance();
+        balance = balance + payment;
+        organization.setBalance(balance);
+        organizationRepository.saveAndFlush(organization);
+
+
+        //S2: 添加project_student记录
+        ProjectStudent projectStudent = new ProjectStudent();
+        projectStudent.setSid(sid);
+        projectStudent.setPid(pid);
+        projectStudentRepository.saveAndFlush(projectStudent);
+
+        //S3: curStdCnt++
+        int curStdCnt = project.getCurStdCnt();
+        project.setCurStdCnt(++curStdCnt);
+        projectRepository.saveAndFlush(project);
+
+        //S4 添加入学记录
+        EnrollmentRecord enrollRecord = new EnrollmentRecord();
+        String orgSysId = idHelper.validateId(project.getOrganization().getId());
+        String proName = project.getClassName();
+        String stdName = student.getName();
+
+
+        UserType userType = UserType.member;
+        PayMethod payMethod = PayMethod.cash;
+        SelectMethod selectMethod = SelectMethod.select;
+
+        enrollRecord.setOrgSystemId(orgSysId);
+        enrollRecord.setProjectName(proName);
+        enrollRecord.setStudentName(stdName);
+        enrollRecord.setPrice(project.getTotalPrice());
+        enrollRecord.setPayment(payment);
+        enrollRecord.setUserType(userType);
+        enrollRecord.setPayMethod(payMethod);
+        enrollRecord.setSelectMethod(selectMethod);
+        em.persist(enrollRecord);
+        em.flush();
+        em.clear();
+        return true;
+    }
+
 
     @Override
-    public boolean unselect(int sid, int pid) {
+    public boolean unselect(int sid, int pid ) {
         Student student = studentRepository.getOne(sid);
         Project project = projectRepository.getOne(pid);
 
@@ -158,5 +209,66 @@ public class SelectServiceImpl implements SelectService {
         em.flush();
         em.clear();
         return true;
+    }
+
+    @Override
+    public boolean unselectOffline(int sid, int pid, int repayment) {
+
+        Student student = studentRepository.getOne(sid);
+        Project project = projectRepository.getOne(pid);
+
+
+        //s1 机构退钱
+        Organization organization = project.getOrganization();
+        int balance = organization.getBalance();
+
+        if(balance<repayment){
+            return  false;
+        }
+
+        balance = balance - repayment;
+        organization.setBalance(balance);
+        organizationRepository.saveAndFlush(organization);
+
+
+        //S2: 删除一条project_student记录
+        ProjectStudentPK pk = new ProjectStudentPK();
+        pk.setPid(project.getId());
+        pk.setSid(student.getId());
+        projectStudentRepository.delete(pk);
+
+        //S3: curStdCnt--
+        int curStdCnt = project.getCurStdCnt();
+        project.setCurStdCnt(--curStdCnt);
+        projectRepository.saveAndFlush(project);
+
+        //S4 添加退学记录
+        DropRecord dropRecord = new DropRecord();
+        String orgSysId = idHelper.validateId(project.getOrganization().getId());
+        String proName = project.getClassName();
+        String stdName = student.getName();
+
+        SelectMethod selectMethod = SelectMethod.reserve;
+        UserType userType = UserType.member;
+        PayMethod payMethod = PayMethod.cash;
+
+        dropRecord.setOrgSystemId(orgSysId);
+        dropRecord.setProjectName(proName);
+        dropRecord.setStudentName(stdName);
+        dropRecord.setPrice(project.getTotalPrice());
+        dropRecord.setPayment(repayment);
+        dropRecord.setPayMethod(payMethod);
+        dropRecord.setUserType(userType);
+        dropRecord.setSelectMethod(selectMethod);
+
+        em.persist(dropRecord);
+        em.flush();
+        em.clear();
+        return true;
+    }
+
+    @Override
+    public int getSidBySname(String Sname) {
+        return studentRepository.findByName(Sname).getId();
     }
 }

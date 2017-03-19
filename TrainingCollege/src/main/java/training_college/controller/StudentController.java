@@ -68,7 +68,6 @@ public class StudentController {
     @RequestMapping(value = "/{id}/reservation/{pid}" , method = RequestMethod.POST )
     public boolean reserveProject(@PathVariable int id,@PathVariable int pid){
 
-
         return reserveService.reserve(id,pid);
 
     }

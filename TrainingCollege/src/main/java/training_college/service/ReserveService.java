@@ -10,13 +10,18 @@ import java.util.List;
 public interface ReserveService {
 
     /**
-     * 会员预订
+     * 会员预订只能使用会员卡
      * @param sid
      * @param pid
      * @return
      */
     boolean reserve(int sid , int pid);
 
+
+    /**
+     * 会员退订
+     * @return
+     */
     boolean unreserve(int reservationId);
 
     List<Reservation> getNotStartedReservationBySid(int sid);
