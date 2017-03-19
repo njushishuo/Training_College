@@ -46,4 +46,9 @@ public class CardServiceImpl implements CardService {
     public List<BankCard> getBankCardsBySid(int id) {
         return bankCardRepository.getByStudentId(id);
     }
+
+    @Override
+    public BankCard getBankCardById(int id) {
+        return  bankCardRepository.findOne(id);
+    }
 }

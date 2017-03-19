@@ -16,6 +16,7 @@ import training_college.util.IDHelper;
 import training_college.vo.CardVO;
 import training_college.vo.ClassInfoVO;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -35,6 +36,10 @@ public class StudentController {
     RecordService recordService;
     @Autowired
     CardService cardService;
+    @Autowired
+    ReChargeService reChargeService;
+
+
     @Autowired
     ConsumptionService consumptionService;
 
@@ -88,10 +93,12 @@ public class StudentController {
         cardVO.id = idHelper.validateId(id);
         cardVO.card = card;
         cardVO.disCnt = disCntHelper.getDisCntByLevel(card.getLevel());
+        BankCard usingBankCard = cardService.getBankCardById(card.getBankCardId());
 
         model.addAttribute("student", student);
         model.addAttribute("cardVO",cardVO);
         model.addAttribute("bankCards",bankCards);
+        model.addAttribute("curBankCardBalance",usingBankCard.getBalance());
 
         return "student/card_info";
 
@@ -118,6 +125,19 @@ public class StudentController {
         cardService.saveCard(card);
         return "redirect:/student/"+id+"/cardInfo";
 
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/{id}/reCharge" , method = RequestMethod.POST)
+    public boolean recharge(@PathVariable int id , HttpServletRequest request , HttpSession session){
+
+        Student student  = (Student) session.getAttribute("student");
+        Card card =student.getCard();
+        String status = request.getParameter("status");
+        String reChargeNumString = request.getParameter("rechargeNum");
+
+        return reChargeService.reCharge(card,reChargeNumString,status);
     }
 
 

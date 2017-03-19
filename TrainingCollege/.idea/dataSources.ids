@@ -56,650 +56,653 @@
         <default-expression>&apos;1&apos;</default-expression>
       </column>
       <column id="32" parent="8" name="status">
-        <data-type>enum(&apos;activated&apos;, &apos;frozen&apos;, &apos;disabled&apos;, &apos;new&apos;)|0</data-type>
-        <default-expression>&apos;disabled&apos;</default-expression>
+        <data-type>enum(&apos;activated&apos;, &apos;frozen&apos;, &apos;disabled&apos;, &apos;newly&apos;)|0</data-type>
+        <default-expression>&apos;newly&apos;</default-expression>
       </column>
-      <index id="33" parent="8" name="card_bcid">
+      <column id="33" parent="8" name="last_activated_at">
+        <data-type>date|0</data-type>
+      </column>
+      <index id="34" parent="8" name="card_bcid">
         <columns>bank_card_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="34" parent="8" name="PRIMARY">
+      <key id="35" parent="8" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="35" parent="8" name="card_bcid">
+      <foreign-key id="36" parent="8" name="card_bcid">
         <columns>bank_card_id</columns>
         <ref-key>~.bank_card.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>set_null</cascade-delete-rule>
       </foreign-key>
-      <column id="36" parent="9" name="id">
+      <column id="37" parent="9" name="id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="37" parent="9" name="name">
+      <column id="38" parent="9" name="name">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="38" parent="9" name="description">
+      <column id="39" parent="9" name="description">
         <data-type>varchar(255)|0</data-type>
       </column>
-      <key id="39" parent="9" name="PRIMARY">
+      <key id="40" parent="9" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="40" parent="10" name="course_id">
+      <column id="41" parent="10" name="course_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <column id="41" parent="10" name="teacher_id">
+      <column id="42" parent="10" name="teacher_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <index id="42" parent="10" name="course_teacher_tid">
+      <index id="43" parent="10" name="course_teacher_tid">
         <columns>teacher_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="43" parent="10" name="PRIMARY">
+      <key id="44" parent="10" name="PRIMARY">
         <columns>course_id
 teacher_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="44" parent="10" name="course_teacher_cid">
+      <foreign-key id="45" parent="10" name="course_teacher_cid">
         <columns>course_id</columns>
         <ref-key>~.course.PRIMARY</ref-key>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="45" parent="10" name="course_teacher_tid">
+      <foreign-key id="46" parent="10" name="course_teacher_tid">
         <columns>teacher_id</columns>
         <ref-key>~.teacher.PRIMARY</ref-key>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <column id="46" parent="11" name="id">
+      <column id="47" parent="11" name="id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="47" parent="11" name="org_system_id">
+      <column id="48" parent="11" name="org_system_id">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="48" parent="11" name="project_name">
+      <column id="49" parent="11" name="project_name">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="49" parent="11" name="student_name">
+      <column id="50" parent="11" name="student_name">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="50" parent="11" name="price">
+      <column id="51" parent="11" name="price">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="51" parent="11" name="payment">
+      <column id="52" parent="11" name="payment">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="52" parent="11" name="user_type">
+      <column id="53" parent="11" name="user_type">
         <mandatory>1</mandatory>
         <data-type>enum(&apos;member&apos;, &apos;non_member&apos;)|0</data-type>
       </column>
-      <column id="53" parent="11" name="pay_method">
+      <column id="54" parent="11" name="pay_method">
         <mandatory>1</mandatory>
         <data-type>enum(&apos;card&apos;, &apos;cash&apos;)|0</data-type>
       </column>
-      <column id="54" parent="11" name="select_method">
+      <column id="55" parent="11" name="select_method">
         <mandatory>1</mandatory>
         <data-type>enum(&apos;reserve&apos;, &apos;select&apos;)|0</data-type>
       </column>
-      <column id="55" parent="11" name="date">
+      <column id="56" parent="11" name="date">
         <mandatory>1</mandatory>
         <data-type>timestamp|0</data-type>
         <default-expression>CURRENT_TIMESTAMP</default-expression>
       </column>
-      <column id="56" parent="11" name="is_checked">
+      <column id="57" parent="11" name="is_checked">
         <mandatory>1</mandatory>
         <data-type>bit(1)|0</data-type>
         <default-expression>b&apos;0&apos;</default-expression>
       </column>
-      <index id="57" parent="11" name="drop_pid">
+      <index id="58" parent="11" name="drop_pid">
         <columns>project_name</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="58" parent="11" name="PRIMARY">
+      <key id="59" parent="11" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="59" parent="12" name="id">
+      <column id="60" parent="12" name="id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="60" parent="12" name="org_system_id">
+      <column id="61" parent="12" name="org_system_id">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="61" parent="12" name="project_name">
+      <column id="62" parent="12" name="project_name">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="62" parent="12" name="student_name">
+      <column id="63" parent="12" name="student_name">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="63" parent="12" name="price">
+      <column id="64" parent="12" name="price">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="64" parent="12" name="payment">
+      <column id="65" parent="12" name="payment">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="65" parent="12" name="user_type">
+      <column id="66" parent="12" name="user_type">
         <mandatory>1</mandatory>
         <data-type>enum(&apos;member&apos;, &apos;non_member&apos;)|0</data-type>
       </column>
-      <column id="66" parent="12" name="pay_method">
+      <column id="67" parent="12" name="pay_method">
         <mandatory>1</mandatory>
         <data-type>enum(&apos;card&apos;, &apos;cash&apos;)|0</data-type>
       </column>
-      <column id="67" parent="12" name="select_method">
+      <column id="68" parent="12" name="select_method">
         <mandatory>1</mandatory>
         <data-type>enum(&apos;reserve&apos;, &apos;select&apos;)|0</data-type>
       </column>
-      <column id="68" parent="12" name="date">
+      <column id="69" parent="12" name="date">
         <mandatory>1</mandatory>
         <data-type>timestamp|0</data-type>
         <default-expression>CURRENT_TIMESTAMP</default-expression>
       </column>
-      <column id="69" parent="12" name="is_checked">
+      <column id="70" parent="12" name="is_checked">
         <mandatory>1</mandatory>
         <data-type>bit(1)|0</data-type>
         <default-expression>b&apos;0&apos;</default-expression>
       </column>
-      <index id="70" parent="12" name="enroll_pid">
+      <index id="71" parent="12" name="enroll_pid">
         <columns>project_name</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="71" parent="12" name="PRIMARY">
+      <key id="72" parent="12" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="72" parent="13" name="id">
+      <column id="73" parent="13" name="id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="73" parent="13" name="org_system_id">
+      <column id="74" parent="13" name="org_system_id">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="74" parent="13" name="project_name">
+      <column id="75" parent="13" name="project_name">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="75" parent="13" name="student_name">
+      <column id="76" parent="13" name="student_name">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="76" parent="13" name="course_name">
+      <column id="77" parent="13" name="course_name">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="77" parent="13" name="score">
+      <column id="78" parent="13" name="score">
         <mandatory>1</mandatory>
         <data-type>int(32)|0</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="78" parent="13" name="date">
+      <column id="79" parent="13" name="date">
         <mandatory>1</mandatory>
         <data-type>timestamp|0</data-type>
         <default-expression>CURRENT_TIMESTAMP</default-expression>
       </column>
-      <index id="79" parent="13" name="grade_cid">
+      <index id="80" parent="13" name="grade_cid">
         <columns>course_name</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="80" parent="13" name="grade_pid">
+      <index id="81" parent="13" name="grade_pid">
         <columns>project_name</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="81" parent="13" name="grade_sid">
+      <index id="82" parent="13" name="grade_sid">
         <columns>student_name</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="82" parent="13" name="PRIMARY">
+      <key id="83" parent="13" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="83" parent="14" name="project_id">
+      <column id="84" parent="14" name="project_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <column id="84" parent="14" name="course_id">
+      <column id="85" parent="14" name="course_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <index id="85" parent="14" name="new_schedule_project_cid">
+      <index id="86" parent="14" name="new_schedule_project_cid">
         <columns>course_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="86" parent="14" name="PRIMARY">
+      <key id="87" parent="14" name="PRIMARY">
         <columns>project_id
 course_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="87" parent="14" name="new_schedule_project_pid">
+      <foreign-key id="88" parent="14" name="new_schedule_project_pid">
         <columns>project_id</columns>
         <ref-key>~.project.PRIMARY</ref-key>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="88" parent="14" name="new_schedule_project_cid">
+      <foreign-key id="89" parent="14" name="new_schedule_project_cid">
         <columns>course_id</columns>
         <ref-key>~.course.PRIMARY</ref-key>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <column id="89" parent="15" name="id">
+      <column id="90" parent="15" name="id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="90" parent="15" name="username">
+      <column id="91" parent="15" name="username">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="91" parent="15" name="password">
+      <column id="92" parent="15" name="password">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="92" parent="15" name="balance">
+      <column id="93" parent="15" name="balance">
         <mandatory>1</mandatory>
         <data-type>int(32)|0</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <key id="93" parent="15" name="PRIMARY">
+      <key id="94" parent="15" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="94" parent="16" name="project_id">
+      <column id="95" parent="16" name="project_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <column id="95" parent="16" name="course_id">
+      <column id="96" parent="16" name="course_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <index id="96" parent="16" name="new_schedule_project_cid">
+      <index id="97" parent="16" name="new_schedule_project_cid">
         <columns>course_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="97" parent="16" name="PRIMARY">
+      <key id="98" parent="16" name="PRIMARY">
         <columns>project_id
 course_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="98" parent="16" name="post_modify_schedule_pid">
+      <foreign-key id="99" parent="16" name="post_modify_schedule_pid">
         <columns>project_id</columns>
         <ref-key>~.project.PRIMARY</ref-key>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="99" parent="16" name="post_modify_schedule_cid">
+      <foreign-key id="100" parent="16" name="post_modify_schedule_cid">
         <columns>course_id</columns>
         <ref-key>~.course.PRIMARY</ref-key>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <column id="100" parent="17" name="project_id">
+      <column id="101" parent="17" name="project_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <column id="101" parent="17" name="course_id">
+      <column id="102" parent="17" name="course_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <index id="102" parent="17" name="new_schedule_project_cid">
+      <index id="103" parent="17" name="new_schedule_project_cid">
         <columns>course_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="103" parent="17" name="PRIMARY">
+      <key id="104" parent="17" name="PRIMARY">
         <columns>project_id
 course_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="104" parent="17" name="pre_modify_schedule_pid">
+      <foreign-key id="105" parent="17" name="pre_modify_schedule_pid">
         <columns>project_id</columns>
         <ref-key>~.project.PRIMARY</ref-key>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="105" parent="17" name="pre_modify_schedule_cid">
+      <foreign-key id="106" parent="17" name="pre_modify_schedule_cid">
         <columns>course_id</columns>
         <ref-key>~.course.PRIMARY</ref-key>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <column id="106" parent="18" name="id">
+      <column id="107" parent="18" name="id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="107" parent="18" name="organization_id">
+      <column id="108" parent="18" name="organization_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <column id="108" parent="18" name="class_name">
+      <column id="109" parent="18" name="class_name">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="109" parent="18" name="from_date">
+      <column id="110" parent="18" name="from_date">
         <mandatory>1</mandatory>
         <data-type>date|0</data-type>
       </column>
-      <column id="110" parent="18" name="to_date">
+      <column id="111" parent="18" name="to_date">
         <mandatory>1</mandatory>
         <data-type>date|0</data-type>
       </column>
-      <column id="111" parent="18" name="max_std_cnt">
+      <column id="112" parent="18" name="max_std_cnt">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <column id="112" parent="18" name="cur_std_cnt">
+      <column id="113" parent="18" name="cur_std_cnt">
         <mandatory>1</mandatory>
         <data-type>int(32)|0</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="113" parent="18" name="price">
+      <column id="114" parent="18" name="price">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="114" parent="18" name="add_status">
+      <column id="115" parent="18" name="add_status">
         <mandatory>1</mandatory>
         <data-type>enum(&apos;pending&apos;, &apos;approved&apos;, &apos;rejected&apos;)|0</data-type>
         <default-expression>&apos;pending&apos;</default-expression>
       </column>
-      <column id="115" parent="18" name="modify_status">
+      <column id="116" parent="18" name="modify_status">
         <data-type>enum(&apos;pending&apos;, &apos;approved&apos;, &apos;rejected&apos;)|0</data-type>
       </column>
-      <index id="116" parent="18" name="project_og_id">
+      <index id="117" parent="18" name="project_og_id">
         <columns>organization_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="117" parent="18" name="PRIMARY">
+      <key id="118" parent="18" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="118" parent="18" name="project_og_id">
+      <foreign-key id="119" parent="18" name="project_og_id">
         <columns>organization_id</columns>
         <ref-key>~.organization.PRIMARY</ref-key>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <column id="119" parent="19" name="id">
+      <column id="120" parent="19" name="id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="120" parent="19" name="project_id">
+      <column id="121" parent="19" name="project_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <column id="121" parent="19" name="student_id">
+      <column id="122" parent="19" name="student_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <column id="122" parent="19" name="date">
+      <column id="123" parent="19" name="date">
         <mandatory>1</mandatory>
         <data-type>timestamp|0</data-type>
         <default-expression>CURRENT_TIMESTAMP</default-expression>
       </column>
-      <column id="123" parent="19" name="payment">
+      <column id="124" parent="19" name="payment">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <column id="124" parent="19" name="is_canceled">
+      <column id="125" parent="19" name="is_canceled">
         <mandatory>1</mandatory>
         <data-type>bit(1)|0</data-type>
         <default-expression>b&apos;0&apos;</default-expression>
       </column>
-      <column id="125" parent="19" name="is_reserve_checked">
+      <column id="126" parent="19" name="is_reserve_checked">
         <mandatory>1</mandatory>
         <data-type>bit(1)|0</data-type>
         <default-expression>b&apos;0&apos;</default-expression>
       </column>
-      <column id="126" parent="19" name="is_cancel_checked">
+      <column id="127" parent="19" name="is_cancel_checked">
         <mandatory>1</mandatory>
         <data-type>bit(1)|0</data-type>
         <default-expression>b&apos;0&apos;</default-expression>
       </column>
-      <index id="127" parent="19" name="reserve_pid">
+      <index id="128" parent="19" name="reserve_pid">
         <columns>project_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="128" parent="19" name="reserve_sid">
+      <index id="129" parent="19" name="reserve_sid">
         <columns>student_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="129" parent="19" name="PRIMARY">
+      <key id="130" parent="19" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="130" parent="19" name="reserve_pid">
+      <foreign-key id="131" parent="19" name="reserve_pid">
         <columns>project_id</columns>
         <ref-key>~.project.PRIMARY</ref-key>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="131" parent="19" name="reserve_sid">
+      <foreign-key id="132" parent="19" name="reserve_sid">
         <columns>student_id</columns>
         <ref-key>~.student.PRIMARY</ref-key>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <column id="132" parent="20" name="id">
+      <column id="133" parent="20" name="id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="133" parent="20" name="username">
+      <column id="134" parent="20" name="username">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="134" parent="20" name="password">
+      <column id="135" parent="20" name="password">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="135" parent="20" name="name">
+      <column id="136" parent="20" name="name">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="136" parent="20" name="gender">
+      <column id="137" parent="20" name="gender">
         <mandatory>1</mandatory>
         <data-type>enum(&apos;male&apos;, &apos;female&apos;)|0</data-type>
       </column>
-      <column id="137" parent="20" name="email">
+      <column id="138" parent="20" name="email">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="138" parent="20" name="phone">
+      <column id="139" parent="20" name="phone">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="139" parent="20" name="card_id">
+      <column id="140" parent="20" name="card_id">
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <index id="140" parent="20" name="std_card_id">
+      <index id="141" parent="20" name="std_card_id">
         <columns>card_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="141" parent="20" name="PRIMARY">
+      <key id="142" parent="20" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="142" parent="20" name="std_card_id">
+      <foreign-key id="143" parent="20" name="std_card_id">
         <columns>card_id</columns>
         <ref-key>~.card.PRIMARY</ref-key>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <column id="143" parent="21" name="id">
+      <column id="144" parent="21" name="id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="144" parent="21" name="name">
+      <column id="145" parent="21" name="name">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="145" parent="21" name="introduction">
+      <column id="146" parent="21" name="introduction">
         <data-type>varchar(255)|0</data-type>
       </column>
-      <index id="146" parent="21" name="id">
+      <index id="147" parent="21" name="id">
         <columns>id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="147" parent="21" name="PRIMARY">
+      <key id="148" parent="21" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="148" parent="22" name="pid">
+      <column id="149" parent="22" name="pid">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <column id="149" parent="22" name="class_name">
+      <column id="150" parent="22" name="class_name">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="150" parent="22" name="from_date">
+      <column id="151" parent="22" name="from_date">
         <mandatory>1</mandatory>
         <data-type>date|0</data-type>
       </column>
-      <column id="151" parent="22" name="to_date">
+      <column id="152" parent="22" name="to_date">
         <mandatory>1</mandatory>
         <data-type>date|0</data-type>
       </column>
-      <column id="152" parent="22" name="total_price">
+      <column id="153" parent="22" name="total_price">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <key id="153" parent="22" name="PRIMARY">
+      <key id="154" parent="22" name="PRIMARY">
         <columns>pid</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="154" parent="22" name="pid">
+      <foreign-key id="155" parent="22" name="pid">
         <columns>pid</columns>
         <ref-key>~.project.PRIMARY</ref-key>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <column id="155" parent="23" name="pid">
+      <column id="156" parent="23" name="pid">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <column id="156" parent="23" name="sid">
+      <column id="157" parent="23" name="sid">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <index id="157" parent="23" name="project_std_sid">
+      <index id="158" parent="23" name="project_std_sid">
         <columns>sid</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="158" parent="23" name="PRIMARY">
+      <key id="159" parent="23" name="PRIMARY">
         <columns>pid
 sid</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="159" parent="23" name="project_std_pid">
+      <foreign-key id="160" parent="23" name="project_std_pid">
         <columns>pid</columns>
         <ref-key>~.project.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="160" parent="23" name="project_std_sid">
+      <foreign-key id="161" parent="23" name="project_std_sid">
         <columns>sid</columns>
         <ref-key>~.student.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <column id="161" parent="24" name="id">
+      <column id="162" parent="24" name="id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="162" parent="24" name="card_num">
+      <column id="163" parent="24" name="card_num">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="163" parent="24" name="password">
+      <column id="164" parent="24" name="password">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="164" parent="24" name="balance">
+      <column id="165" parent="24" name="balance">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <key id="165" parent="24" name="PRIMARY">
+      <key id="166" parent="24" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="166" parent="25" name="bank_card_id">
+      <column id="167" parent="25" name="bank_card_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <column id="167" parent="25" name="student_id">
+      <column id="168" parent="25" name="student_id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <index id="168" parent="25" name="bankcard_std_sid">
+      <index id="169" parent="25" name="bankcard_std_sid">
         <columns>student_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="169" parent="25" name="PRIMARY">
+      <key id="170" parent="25" name="PRIMARY">
         <columns>bank_card_id
 student_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="170" parent="25" name="bankcard_std_bcid">
+      <foreign-key id="171" parent="25" name="bankcard_std_bcid">
         <columns>bank_card_id</columns>
         <ref-key>~.bank_card.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="171" parent="25" name="bankcard_std_sid">
+      <foreign-key id="172" parent="25" name="bankcard_std_sid">
         <columns>student_id</columns>
         <ref-key>~.student.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>delete</cascade-delete-rule>
       </foreign-key>
-      <column id="172" parent="26" name="id">
+      <column id="173" parent="26" name="id">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="173" parent="26" name="username">
+      <column id="174" parent="26" name="username">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="174" parent="26" name="password">
+      <column id="175" parent="26" name="password">
         <mandatory>1</mandatory>
         <data-type>varchar(255)|0</data-type>
       </column>
-      <column id="175" parent="26" name="balance">
+      <column id="176" parent="26" name="balance">
         <mandatory>1</mandatory>
         <data-type>int(32) unsigned|0</data-type>
       </column>
-      <key id="176" parent="26" name="PRIMARY">
+      <key id="177" parent="26" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>

@@ -12,24 +12,18 @@ import training_college.entity.Student;
 @RequestMapping("/registeration")
 public class RegisterController {
 
-    @RequestMapping(value= "/student"  , method = RequestMethod.GET)
-    public String getRegisterPageForStudent(){
-        return "/auth/register_std";
-    }
-
-    @RequestMapping(value="/organization" , method = RequestMethod.GET)
-    public String getRegisterPageForOrganization(){
-        return "/auth/register_org";
-    }
-
     @RequestMapping(value="/student" , method = RequestMethod.POST)
     public String studentRegister(Student student){
+
         System.out.print(student.getName()+student.getUsername()+student.getPassword()+student.getGender().toString());
+
         return  "redirect: /login";
     }
 
     @RequestMapping(value="/organization" , method = RequestMethod.POST)
     public String organizationRegister(){
+
         return "redirect: /login";
+
     }
 }

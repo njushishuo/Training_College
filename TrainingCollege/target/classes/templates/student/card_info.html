@@ -28,15 +28,28 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label>卡号：</label>
-                                <span th:text="${cardVO.id}" >软件工程</span>
+                                <span th:text="${cardVO.id}" >0000001</span>
                             </div>
                             <div  class="col-md-6">
-                                <label> 状态： </label>
-                                <span th:switch="${cardVO.card.getStatus().toString()}">
-                                <span th:case="activated"  class="text-primary">激活</span>
-                                <span th:case="frozen"   class="text-warning">暂停</span>
-                                <span th:case="disabled"  class="text-danger">停止</span>
-                            </span>
+                                <label>状态：</label>
+                                <span th:switch="${cardVO.card.getStatus().toString()}" >
+                                    <span  th:case="newly">
+                                        <span id="status">未激活</span>
+                                        <a  data-toggle="modal" data-target="#reChargeModal">去激活</a>
+                                    </span>
+                                    <span  th:case="activated" class="text-primary">
+                                        <span id="status">已激活</span>
+                                    </span>
+                                    <span  th:case="frozen" class="text-warning">
+                                        <span id="status">已暂停</span>
+                                        <a data-toggle="modal" data-target="#reChargeModal">
+                                            去激活
+                                        </a>
+                                    </span>
+                                    <span  th:case="disabled" >
+                                        <span id="status">已停止</span>
+                                    </span>
+                                </span>
                             </div>
                         </div>
                         <div class="row">
@@ -62,8 +75,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <form  th:action="@{/student/{id}/cardInfo(id=${session.student.getId()})}" method="post">
                         <hr/>
                         <h2>银行卡信息</h2>
@@ -109,7 +120,38 @@
 </div>
 
 
-<script th:src="@{/js/student/class_info.js}"></script>
+<!-- Modal -->
+<div th:id="reChargeModal" class="modal fade"  >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> 会员卡支付 </h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="bankBalance" >银行卡余额：</label>
+                        <input th:value="${curBankCardBalance}"
+                              class="form-control" id="bankBalance"> </input>
+                    </div>
+                    <div class="form-group">
+                        <label for="rechargeNum">会员卡余额：</label>
+                        <input class="form-control" placeholder="充值金额"
+                               th:max="${session.student.getCard().getBalance()}"
+                               type="number" id="rechargeNum" name="rechargeNum"/>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a th:onclick="|reCharge(${session.student.getId()})|" class="btn btn-default " data-dismiss="modal" >确认</a>
+                    <a class="btn btn-default" data-dismiss="modal"> 取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/student/card_info.js}"></script>
 <script th:src="@{/js/jquery-3.1.1.min.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
 

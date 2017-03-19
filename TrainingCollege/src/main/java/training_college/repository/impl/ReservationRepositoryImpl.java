@@ -49,16 +49,27 @@ public class ReservationRepositoryImpl implements ReservationInterface {
     public int getReserveSumByOid(int oid) {
         String hql = "select sum(r.payment) from Reservation r  where r.project.organization.id = ?1 and r.canceled is false ";
         Query query   = em.createQuery(hql).setParameter(1,oid);
-        int sum  = (int)(long)query.getSingleResult();
-        return sum;
+        List result = query.getResultList();
+        if(result!=null){
+            if(result.get(0)!=null){
+
+                return  (int)(long)result.get(0);
+            }
+        }
+        return 0;
     }
 
     @Override
     public int getUnreserveSumByOid(int oid) {
         String hql = "select sum(r.payment) from Reservation r  where r.project.organization.id = ?1 and r.canceled is true ";
         Query query   = em.createQuery(hql).setParameter(1,oid);
-        int sum  = (int)(long)query.getSingleResult();
-        return sum;
+        List result = query.getResultList();
+        if(result!=null){
+            if(result.get(0)!=null){
+                return  (int)(long)result.get(0);
+            }
+        }
+        return 0;
     }
 
     @Override
@@ -66,8 +77,13 @@ public class ReservationRepositoryImpl implements ReservationInterface {
 
         String hql = "select count(r)  from Reservation r  where r.project.organization.id = ?1 and r.canceled is false ";
         Query query   = em.createQuery(hql).setParameter(1,oid);
-        int cnt  = (int)(long)query.getSingleResult();
-        return cnt;
+        List result = query.getResultList();
+        if(result!=null){
+            if(result.get(0)!=null){
+                return  (int)(long)result.get(0);
+            }
+        }
+        return 0;
 
     }
 
@@ -76,8 +92,13 @@ public class ReservationRepositoryImpl implements ReservationInterface {
 
         String hql = "select count(r)  from Reservation r  where r.project.organization.id = ?1 and r.canceled is true ";
         Query query   = em.createQuery(hql).setParameter(1,oid);
-        int cnt  = (int)(long)query.getSingleResult();
-        return cnt;
+        List result = query.getResultList();
+        if(result!=null){
+            if(result.get(0)!=null){
+                return  (int)(long)result.get(0);
+            }
+        }
+        return 0;
     }
 
 

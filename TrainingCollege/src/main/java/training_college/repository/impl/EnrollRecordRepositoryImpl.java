@@ -67,8 +67,13 @@ public class EnrollRecordRepositoryImpl implements EnrollRecordInterface {
         String hql = "select sum(e.payment) " +
                 "from EnrollmentRecord e where e.orgSystemId = ?1 " ;
         Query query = em.createQuery(hql).setParameter(1,oid);
-        int sum = (int )(long )query.getSingleResult();
-        return sum;
+        List result = query.getResultList();
+        if(result!=null){
+            if(result.get(0)!=null){
+                return  (int)(long)result.get(0);
+            }
+        }
+        return 0;
     }
 
     @Override
@@ -76,8 +81,13 @@ public class EnrollRecordRepositoryImpl implements EnrollRecordInterface {
         String hql = "select count (e) " +
                 "from EnrollmentRecord e where e.orgSystemId = ?1 " ;
         Query query = em.createQuery(hql).setParameter(1,oid);
-        int cnt = (int )(long )query.getSingleResult();
-        return cnt;
+        List result = query.getResultList();
+        if(result!=null){
+            if(result.get(0)!=null){
+                return  (int)(long)result.get(0);
+            }
+        }
+        return 0;
     }
 
 }

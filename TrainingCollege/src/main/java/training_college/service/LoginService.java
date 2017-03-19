@@ -22,4 +22,6 @@ public interface LoginService {
 
     LoginResult managerLogin(String username , String password);
 
+
+
 }

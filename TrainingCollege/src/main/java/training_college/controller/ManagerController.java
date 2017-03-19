@@ -12,6 +12,7 @@ import training_college.service.ClassInfoService;
 import training_college.service.ExamService;
 import training_college.service.SettleService;
 import training_college.service.StatsService;
+import training_college.vo.OrgFinanceVO;
 import training_college.vo.OrgRecruitVO;
 import training_college.vo.OrgStudyVO;
 
@@ -219,8 +220,12 @@ public class ManagerController {
     }
 
     @RequestMapping(value = "/statistics/finance" , method = RequestMethod.GET)
-    public String getStasFinancePage(){
+    public String getStasFinancePage(Model model){
+
+        List<OrgFinanceVO> orgStudyVOs = statsService.getAllOrgFinanceVO();
+        model.addAttribute("orgFinanceVOs",orgStudyVOs);
         return "/manager/stats_finance";
+
     }
 
 

@@ -3,6 +3,7 @@ package training_college.entity;
 import training_college.util.enumeration.CardStatus;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 /**
  * Created by ss14 on 2017/2/28.
@@ -15,6 +16,7 @@ public class Card {
     private int score;
     private int level;
     private CardStatus status;
+    private Date LastActivatedAt;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,6 +81,13 @@ public class Card {
         this.status = status;
     }
 
+    @Basic
+    @Column(name = "last_activated_at")
+    public Date getLastActivatedAt() {
+        return LastActivatedAt;
+    }
 
-
+    public void setLastActivatedAt(Date lastActivatedAt) {
+        LastActivatedAt = lastActivatedAt;
+    }
 }

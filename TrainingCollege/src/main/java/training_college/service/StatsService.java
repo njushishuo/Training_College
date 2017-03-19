@@ -3,6 +3,7 @@ package training_college.service;
 import training_college.entity.DropRecord;
 import training_college.entity.EnrollmentRecord;
 import training_college.entity.Reservation;
+import training_college.vo.OrgFinanceVO;
 import training_college.vo.OrgRecruitVO;
 import training_college.vo.OrgStudyVO;
 
@@ -38,11 +39,15 @@ public interface StatsService {
 
     OrgRecruitVO getOrgRecruitVOByOid(int oid);
 
-    OrgStudyVO getOrgStudyVOBuyOid(int oid);
+    OrgStudyVO getOrgStudyVOByOid(int oid);
+
+    OrgFinanceVO getOrgFinanceVOByOid(int oid);
 
     List<OrgRecruitVO> getAllOrgRecruitVO();
 
     List<OrgStudyVO> getAllOrgStudyVO();
+
+    List<OrgFinanceVO> getAllOrgFinanceVO();
 
 
 

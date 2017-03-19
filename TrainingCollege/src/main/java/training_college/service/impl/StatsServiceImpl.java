@@ -10,6 +10,7 @@ import training_college.repository.*;
 import training_college.service.StatsService;
 import training_college.util.IDHelper;
 import training_college.vo.CourseVO;
+import training_college.vo.OrgFinanceVO;
 import training_college.vo.OrgRecruitVO;
 import training_college.vo.OrgStudyVO;
 
@@ -33,11 +34,9 @@ public class StatsServiceImpl implements StatsService {
     GradeRecordRepository gradeRecordRepository;
     @Autowired
     OrganizationRepository organizationRepository;
-
-
-
     @Autowired
     IDHelper idHelper;
+
 
 
     @Override
@@ -113,7 +112,7 @@ public class StatsServiceImpl implements StatsService {
     }
 
     @Override
-    public OrgStudyVO getOrgStudyVOBuyOid(int oid) {
+    public OrgStudyVO getOrgStudyVOByOid(int oid) {
         String sysId = idHelper.validateId(oid);
         OrgStudyVO orgStudyVO = new OrgStudyVO();
         orgStudyVO.orgId =sysId;
@@ -138,6 +137,19 @@ public class StatsServiceImpl implements StatsService {
         return orgStudyVO;
     }
 
+    @Override
+    public OrgFinanceVO getOrgFinanceVOByOid(int id) {
+
+        OrgFinanceVO vo = new OrgFinanceVO();
+        vo.orgId = idHelper.validateId(id);
+        vo.reserveSum = getReserveSumByOid(id);
+        vo.unReserveSum = getUnreserveSumByOid(id);
+        vo.enrollSum = getEnrollSumByOid(id);
+        vo.dropSum = getDropSumByOid(id);
+        vo.income = vo.enrollSum-vo.dropSum;
+        return vo;
+    }
+
 
     @Override
     public List<OrgRecruitVO> getAllOrgRecruitVO() {
@@ -157,10 +169,22 @@ public class StatsServiceImpl implements StatsService {
         List<Integer> orgIds = organizationRepository.getAllOrgId();
         List<OrgStudyVO> orgStudyVOs = new LinkedList<>();
         for(int i=0;i<orgIds.size();i++){
-            OrgStudyVO vo = getOrgStudyVOBuyOid(orgIds.get(i));
+            OrgStudyVO vo = getOrgStudyVOByOid(orgIds.get(i));
             orgStudyVOs.add(vo);
         }
 
         return orgStudyVOs;
+    }
+
+    @Override
+    public List<OrgFinanceVO> getAllOrgFinanceVO() {
+        List<Integer> orgIds = organizationRepository.getAllOrgId();
+        List<OrgFinanceVO> orgFinanceVOs = new LinkedList<>();
+        for(int i=0;i<orgIds.size();i++){
+            OrgFinanceVO vo = getOrgFinanceVOByOid(orgIds.get(i));
+            orgFinanceVOs.add(vo);
+        }
+
+        return orgFinanceVOs;
     }
 }

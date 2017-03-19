@@ -19,4 +19,7 @@ public interface CardService {
 
     List<BankCard> getBankCardsBySid(int id);
 
+    BankCard getBankCardById(int id);
+
+
 }
