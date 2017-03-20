@@ -44,3 +44,12 @@ e.g.2
 
 
 9. 使用spring 的定时任务
+
+
+10. Student student = studentRepository.getById(rid);
+	student.getCard.setStatus(disabled);
+	studentRepository.saveAndFlush(student);
+	并不会改变card的属性
+	需要先手动cardRepository.saveAndFlush(card);
+	再student.setCard(card);
+	最后studentRepository.saveAndFlush(student);
