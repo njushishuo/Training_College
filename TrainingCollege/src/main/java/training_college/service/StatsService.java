@@ -50,6 +50,9 @@ public interface StatsService {
     List<OrgFinanceVO> getAllOrgFinanceVO();
 
 
+    int getCompanyBalance();
+
+
 
 
 

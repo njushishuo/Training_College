@@ -111,7 +111,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/{id}/cardInfo" , method = RequestMethod.POST )
-    public String updateCardInfo(@PathVariable int id , HttpServletRequest request){
+    public String updateCardInfo(@PathVariable int id , HttpServletRequest request,HttpSession session){
 
         String name = (String) request.getParameter("studentName");
         String email = (String) request.getParameter("email");
@@ -122,6 +122,8 @@ public class StudentController {
         student.setEmail(email);
         student.setPhone(phone);
         cardService.saveStudent(student);
+
+        session.setAttribute("student",student);
 
         return "redirect:/student/"+id+"/cardInfo";
 

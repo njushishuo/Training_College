@@ -1,5 +1,6 @@
 package training_college.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -470,7 +471,11 @@ public class OrganizationController {
     }
 
     @RequestMapping(value = "/organization/{id}/statistics/finance" , method = RequestMethod.GET)
-    public String getStasFinancePage(@PathVariable int id , Model model){
+    public String getStasFinancePage(@PathVariable int id , Model model ,HttpSession  session){
+
+        Organization organization = (Organization) session.getAttribute("organization");
+        int orgBalance = organization.getBalance();
+        model.addAttribute("orgBalance",orgBalance);
 
 
         //获取所有预订记录

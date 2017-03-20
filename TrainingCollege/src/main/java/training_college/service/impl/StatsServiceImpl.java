@@ -2,10 +2,7 @@ package training_college.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import training_college.entity.DropRecord;
-import training_college.entity.EnrollmentRecord;
-import training_college.entity.Organization;
-import training_college.entity.Reservation;
+import training_college.entity.*;
 import training_college.repository.*;
 import training_college.service.StatsService;
 import training_college.util.IDHelper;
@@ -34,6 +31,10 @@ public class StatsServiceImpl implements StatsService {
     GradeRecordRepository gradeRecordRepository;
     @Autowired
     OrganizationRepository organizationRepository;
+    @Autowired
+    CompanyRepository companyRepository;
+
+
     @Autowired
     IDHelper idHelper;
 
@@ -186,5 +187,11 @@ public class StatsServiceImpl implements StatsService {
         }
 
         return orgFinanceVOs;
+    }
+
+    @Override
+    public int getCompanyBalance() {
+        Company company = companyRepository.getOne(1);
+        return company.getBalance();
     }
 }

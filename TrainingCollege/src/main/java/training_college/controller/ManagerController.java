@@ -186,6 +186,8 @@ public class ManagerController {
     public String getStasFinancePage(Model model){
 
         List<OrgFinanceVO> orgStudyVOs = statsService.getAllOrgFinanceVO();
+        int cpBalance = statsService.getCompanyBalance();
+        model.addAttribute("cpBalance",cpBalance);
         model.addAttribute("orgFinanceVOs",orgStudyVOs);
         return "/manager/stats_finance";
 
