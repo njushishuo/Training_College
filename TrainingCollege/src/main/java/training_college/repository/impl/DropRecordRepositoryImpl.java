@@ -17,21 +17,11 @@ public class DropRecordRepositoryImpl implements DropRecordInterface {
     @PersistenceContext
     EntityManager em;
 
-
-    @Override
-    public List<String> getRepaymentUncheckedOrgSystemIds() {
-        String hql = "select distinct d.orgSystemId " +
-                "from DropRecord d where d.payMethod = 'card' and d.checked is false " ;
-
-        Query query = em.createQuery(hql);
-        return query.getResultList();
-    }
-
     @Override
     public int getRepaymentSumByOrgSystemId(String sysId) {
         String hql = "select sum(d.payment) " +
                 "from DropRecord d " +
-                "where d.payMethod='card' and d.orgSystemId =?1 ";
+                "where d.orgSystemId =?1 and d.payMethod='card' and d.checked = false";
         Query query = em.createQuery(hql).setParameter(1,sysId);
         List result = query.getResultList();
         if(result!=null){

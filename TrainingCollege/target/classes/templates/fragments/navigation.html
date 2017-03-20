@@ -166,6 +166,7 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
+
                     <li class="dropdown"
                         th:classappend="${#httpServletRequest.getRequestURI().startsWith('/manager/approval/') ? 'active':''}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -185,26 +186,11 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown"
-                        th:classappend="${#httpServletRequest.getRequestURI().startsWith('/manager/accountSettlement') ? 'active':''}">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/manager/accountSettlement') ? 'active':''}">
+                        <a th:href="@{/manager/accountSettlement}">
                             结算 <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu" >
-                            <li>
-                                <a th:href="@{/manager/accountSettlement/payment}">
-                                    支付结算
-                                </a>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li>
-                                <a th:href="@{/manager/accountSettlement/repayment}">
-                                    退款结算
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-
                     <li class="dropdown"
                         th:classappend="${#httpServletRequest.getRequestURI().startsWith('/manager/statistics/') ? 'active':''}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

@@ -16,6 +16,7 @@ import training_college.vo.OrgFinanceVO;
 import training_college.vo.OrgRecruitVO;
 import training_college.vo.OrgStudyVO;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -117,10 +118,8 @@ public class ManagerController {
 
 /****************************************结账***************************************************/
 
-
-
-    //收款结算
-    @RequestMapping(value = "/accountSettlement/payment" , method = RequestMethod.GET)
+    //结算界面
+    @RequestMapping(value = "/accountSettlement" , method = RequestMethod.GET)
     public String getAccountSettlementPaymentPage(Model model){
 
 
@@ -129,69 +128,33 @@ public class ManagerController {
 
         model.addAttribute("orgSysIds",orgSysIds);
         model.addAttribute("balance",companyBalance);
-        return "/manager/account_payment";
+        return "/manager/account_settle";
     }
 
 
-    //AJAX 获取某个机构的入学收入额
+    //AJAX 获取某个机构的收支
     @ResponseBody
-    @RequestMapping(value = "/accountSettlement/payment/sum" , method = RequestMethod.GET)
-    public int getPaymentOfOrg(HttpServletRequest request){
+    @RequestMapping(value = "/accountSettlement/profitStats" , method = RequestMethod.GET)
+    public int [] getProfitStatsOfOrg(HttpServletRequest request){
 
         String sysId = request.getParameter("OrgSysId");
-        int repaySum = settleService.getPaymentSumByOrgSysId(sysId);
-        return  repaySum;
-
+        int income = settleService.getPaymentSumByOrgSysId(sysId);
+        int output = settleService.getRepaymentSumBySysOrgId(sysId);
+        int profit = income - output;
+        int [] result = {income,output,profit};
+        return result;
     }
 
 
+    //AJAX 结算POST
     @ResponseBody
-    @RequestMapping(value = "/accountSettlement/paymentRequest" , method = RequestMethod.POST)
+    @RequestMapping(value = "/accountSettlement/settleRequest" , method = RequestMethod.POST)
     public boolean settlePaymentOfOrg(HttpServletRequest request){
 
         String sysId = request.getParameter("orgSysId");
-        int repayment = Integer.parseInt(request.getParameter("repayment"));
+        int profit = Integer.parseInt(request.getParameter("profit"));
 
-        return  settleService.settlePaymentByOrgSysId(sysId,repayment);
-
-    }
-
-
-
-    //退款结算
-    @RequestMapping(value = "/accountSettlement/repayment" , method = RequestMethod.GET)
-    public String getAccountSettlementRepaymentPage(Model model){
-
-        List<String> orgSysIds  = settleService.getRepaymentUncheckedOrgSystemIds();
-        int companyBalance = settleService.getCompanyBalance();
-
-        model.addAttribute("orgSysIds",orgSysIds);
-        model.addAttribute("balance",companyBalance);
-        return "/manager/account_repayment";
-
-    }
-
-
-    //AJAX 获取某个机构的退款额
-    @ResponseBody
-    @RequestMapping(value = "/accountSettlement/repayment/sum" , method = RequestMethod.GET)
-    public int getRepaymentOfOrg(HttpServletRequest request){
-
-        String sysId = request.getParameter("OrgSysId");
-        int repaySum = settleService.getRepaymentSumBySysOrgId(sysId);
-        return  repaySum;
-
-    }
-
-
-    @ResponseBody
-    @RequestMapping(value = "/accountSettlement/repaymentRequest" , method = RequestMethod.POST)
-    public boolean settleRepaymentOfOrg(HttpServletRequest request){
-
-        String sysId = request.getParameter("orgSysId");
-        int repayment = Integer.parseInt(request.getParameter("repayment"));
-
-        return  settleService.settleRepaymentByOrgSysId(sysId,repayment);
+        return  settleService.settleByOrgSysId(sysId,profit);
 
     }
 

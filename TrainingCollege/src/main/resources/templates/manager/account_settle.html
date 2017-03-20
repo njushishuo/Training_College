@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>支付结算</title>
+    <title>收支结算</title>
     <!--Bootstrap core CSS -->
     <link href="/static/css/common.css" th:href="@{/css/common.css}" rel="stylesheet" type="text/css" />
     <link href="/static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
@@ -23,7 +23,7 @@
             <div class="panel panel-default">
 
                 <div class="panel-heading">
-                    <h3 class="panel-title">支付结算</h3>
+                    <h3 class="panel-title">收支结算</h3>
                 </div>
 
                 <div class="panel-body">
@@ -37,20 +37,30 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="payment">入学收入：</label>
-                            <input class="form-control text-success" name="payment" id="payment" placeholder="总收入" />
+                            <label for="income">总收入：</label>
+                            <input class="form-control text-success" name="income" id="income" placeholder="总收入" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="output">总支出：</label>
+                            <input class="form-control text-danger" name="output" id="output" placeholder="总支出" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profit">总利润：</label>
+                            <input class="form-control text-primary" name="profit" id="profit" placeholder="总利润" />
                         </div>
 
                         <div class="form-group">
                             <label for="balance">公司账户余额：</label>
-                            <input th:value="${balance}" class="form-control" name="balance" id="balance" placeholder="公司账户余额" />
+                            <input th:value="${balance}" class="form-control text-primary" name="balance" id="balance" placeholder="公司账户余额" />
                         </div>
 
                         <div class="form-group">
                             <label for="post_balance">结账后余额：</label>
-                            <input class="form-control" name="post_balance" id="post_balance" placeholder="总收入" />
+                            <input class="form-control text-primary" name="post_balance" id="post_balance" placeholder="总收入" />
                         </div>
-                        <button onclick="settlePayment()" class="center-block btn btn-default btn-primary">结账</button>
+                        <button onclick="settle()" class="center-block btn btn-default btn-primary">结账</button>
                 </div>
             </div>
         </div>
@@ -60,6 +70,6 @@
 
 <script th:src="@{/js/jquery-3.1.1.min.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/manager/settle_pay.js}"></script>
+<script th:src="@{/js/manager/settle.js}"></script>
 </body>
 </html>

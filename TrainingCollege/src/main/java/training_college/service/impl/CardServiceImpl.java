@@ -9,6 +9,7 @@ import training_college.repository.BankCardRepository;
 import training_college.repository.CardRepository;
 import training_college.repository.StudentRepository;
 import training_college.service.CardService;
+import training_college.util.enumeration.CardStatus;
 
 import java.util.List;
 
@@ -50,5 +51,11 @@ public class CardServiceImpl implements CardService {
     @Override
     public BankCard getBankCardById(int id) {
         return  bankCardRepository.findOne(id);
+    }
+
+    @Override
+    public Student stopMembership(Student student) {
+        student.getCard().setStatus(CardStatus.disabled);
+        return  studentRepository.saveAndFlush(student);
     }
 }

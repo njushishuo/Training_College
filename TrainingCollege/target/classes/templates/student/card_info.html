@@ -35,14 +35,15 @@
                                 <span th:switch="${cardVO.card.getStatus().toString()}" >
                                     <span  th:case="newly">
                                         <span id="status">未激活</span>
-                                        <a  data-toggle="modal" data-target="#reChargeModal">去激活</a>
+                                        <a class="text-primary" data-toggle="modal" data-target="#reChargeModal">去激活</a>
                                     </span>
-                                    <span  th:case="activated" class="text-primary">
-                                        <span id="status">已激活</span>
+                                    <span  th:case="activated" >
+                                        <span class="text-primary" id="status">已激活</span>
+                                        <a class="text-danger" data-toggle="modal" data-target="#stopModal">停止</a>
                                     </span>
-                                    <span  th:case="frozen" class="text-warning">
-                                        <span id="status">已暂停</span>
-                                        <a data-toggle="modal" data-target="#reChargeModal">
+                                    <span  th:case="frozen" >
+                                        <span class="text-warning" id="status">已暂停</span>
+                                        <a class="text-primary" data-toggle="modal" data-target="#reChargeModal">
                                             去激活
                                         </a>
                                     </span>
@@ -140,6 +141,26 @@
                 </div>
                 <div class="modal-footer">
                     <a th:onclick="|reCharge(${session.student.getId()})|" class="btn btn-default " data-dismiss="modal" >确认</a>
+                    <a class="btn btn-default" data-dismiss="modal"> 取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:id="stopModal" class="modal fade"  >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> 会员卡支付 </h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <p>取消会员资格后将无法再预订和选课，您确定要取消吗？</p>
+
+                </div>
+                <div class="modal-footer">
+                    <a th:onclick="|stopMembership(${session.student.getId()})|" class="btn btn-default " data-dismiss="modal" >确认</a>
                     <a class="btn btn-default" data-dismiss="modal"> 取消</a>
                 </div>
             </div>

@@ -57,3 +57,18 @@ function reCharge (sid) {
         traditional:true
     });
 }
+
+function stopMembership (sid) {
+
+    $.ajax({
+        type: "POST",
+        url:"/student/"+sid+"/stopMembership",
+        data: data,
+        success: function(data){
+
+            location.reload();
+        },
+
+        traditional:true
+    });
+}

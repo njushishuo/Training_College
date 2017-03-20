@@ -7,11 +7,7 @@ import java.util.List;
  */
 public interface DropRecordInterface {
 
-    List<String> getRepaymentUncheckedOrgSystemIds();
-
-
     int getRepaymentSumByOrgSystemId(String sysid);
-
 
     boolean settleRepaymentByOrgSysId(String sysId);
 

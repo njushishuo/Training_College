@@ -21,5 +21,7 @@ public interface CardService {
 
     BankCard getBankCardById(int id);
 
+    Student stopMembership(Student student);
+
 
 }

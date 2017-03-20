@@ -3,20 +3,27 @@
  */
 
 
-function updateSum () {
+function updateProfitStats () {
     //获取预选的机构ID
     var sysId = $( "#orgSysId option:selected" ).val();
     var data ={
         OrgSysId :sysId
     }
+
     $.ajax({
         type: "GET",
-        url:"/manager/accountSettlement/payment/sum",
+        url:"/manager/accountSettlement/profitStats",
         data: data,
+        dataType: 'json',
         success: function(data){
-            $( "#payment" ).val(data);
+            //alert(data);
+            $( "#income" ).val(data[0]);
+            $( "#output" ).val(data[1]);
+            $( "#profit" ).val(data[2]);
+
             var companyBalance = $("#balance").val();
-            var postBalance = parseInt(companyBalance) +parseInt(data) ;
+            var profit = data[2];
+            var postBalance = parseInt(companyBalance) - parseInt(profit) ;
             $("#post_balance").val(postBalance);
 
         },
@@ -25,37 +32,36 @@ function updateSum () {
 
 }
 
+
+
 $(document).ready(
-    updateSum
+    updateProfitStats()
 );
 
 
 $( "#orgSysId" ).change(
-    updateSum
+    updateProfitStats()
 );
 
-function settlePayment() {
-    var payment = $( "#payment" ).val();
+function settle() {
+    var profit = $( "#profit" ).val();
     var orgSysId = $( "#orgSysId option:selected" ).val();
     var data = {
-        payment:payment ,
+        profit:profit,
         orgSysId : orgSysId
     };
 
     $.ajax({
         type: "POST",
-        url:"/manager/accountSettlement/paymentRequest",
+        url:"/manager/accountSettlement/settleRequest",
         data: data,
         success: function(data){
             if(data){
                 alert("结算成功");
-                location.href = "/manager/accountSettlement/payment";
+                location.href = "/manager/accountSettlement";
             }
 
         },
         traditional:true
     });
 }
-
-
-

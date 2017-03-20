@@ -13,6 +13,7 @@ import training_college.service.*;
 import training_college.util.DateHelper;
 import training_college.util.DisCntHelper;
 import training_college.util.IDHelper;
+import training_college.util.enumeration.CardStatus;
 import training_college.vo.CardVO;
 import training_college.vo.ClassInfoVO;
 
@@ -52,7 +53,12 @@ public class StudentController {
 
 /****************************************预订、选课************************************************************/
     @RequestMapping(value = "/{id}/classInfo" , method = RequestMethod.GET)
-    public String getClassInfoPage(@PathVariable int id,Model model){
+    public String getClassInfoPage(@PathVariable int id,Model model,HttpSession session){
+
+        Student student = (Student) session.getAttribute("student");
+        if(student.getCard().getStatus() == CardStatus.disabled){
+            return "/student/disabled";
+        }
 
         List<Project> projects = classInfoService.getAvaliableProjectsNotSelectedByStdId(id);
 
@@ -133,6 +139,14 @@ public class StudentController {
         return reChargeService.reCharge(card,reChargeNumString,status);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/{id}/stopMembership" , method = RequestMethod.POST)
+    public boolean stopMembership(HttpSession session){
+        Student student  = (Student) session.getAttribute("student");
+        student = cardService.stopMembership(student);
+        session.setAttribute("student",student);
+        return true;
+    }
 
 /************************************************我的订单****************************************************/
     @RequestMapping(value = "/{id}/orders" , method = RequestMethod.GET )

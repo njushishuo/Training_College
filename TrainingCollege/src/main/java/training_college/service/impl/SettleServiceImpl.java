@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import training_college.entity.Company;
+import training_college.entity.Organization;
 import training_college.repository.CompanyRepository;
 import training_college.repository.DropRecordRepository;
 import training_college.repository.EnrollRecordRepository;
+import training_college.repository.OrganizationRepository;
 import training_college.service.SettleService;
 import training_college.util.IDHelper;
 
@@ -25,6 +27,10 @@ public class SettleServiceImpl implements SettleService {
     @Autowired
     CompanyRepository companyRepository;
     @Autowired
+    OrganizationRepository organizationRepository;
+
+
+    @Autowired
     IDHelper idHelper;
 
 
@@ -33,10 +39,6 @@ public class SettleServiceImpl implements SettleService {
         return enrollRecordRepository.getPaymentUncheckedOrgSystemIds();
     }
 
-    @Override
-    public List<String> getRepaymentUncheckedOrgSystemIds() {
-        return dropRecordRepository.getRepaymentUncheckedOrgSystemIds();
-    }
 
     @Override
     public int getPaymentSumByOrgSysId(String sysId) {
@@ -44,7 +46,6 @@ public class SettleServiceImpl implements SettleService {
         return enrollRecordRepository.getPaymentSumByOrgSystemId(sysId);
 
     }
-
 
     @Override
     public int getRepaymentSumBySysOrgId(String sysId) {
@@ -55,27 +56,29 @@ public class SettleServiceImpl implements SettleService {
 
     @Override
     @Transactional
-    public boolean settlePaymentByOrgSysId(String sysId , int payment) {
+    public boolean settleByOrgSysId(String sysId , int profit) {
 
         Company company = companyRepository.getOne(1);
-        int balance = company.getBalance();
-        company.setBalance(balance + payment );
+        int cpBalance = company.getBalance();
+        if(cpBalance < profit){
+            return false;
+        }
+        company.setBalance(cpBalance - profit);
         companyRepository.saveAndFlush(company);
 
-        return enrollRecordRepository.settlePaymentByOrgSysId(sysId);
+        int orgId = Integer.parseInt(sysId);
+        Organization organization = organizationRepository.findOne(orgId);
+        int orgBalance = organization.getBalance();
+        organization.setBalance(orgBalance+profit);
+        organizationRepository.saveAndFlush(organization);
+
+        //修改该机构的入学和退学记录，标记为checked
+        enrollRecordRepository.settlePaymentByOrgSysId(sysId);
+        dropRecordRepository.settleRepaymentByOrgSysId(sysId);
+
+        return true;
     }
 
-
-
-    @Override
-    public boolean settleRepaymentByOrgSysId(String sysId, int payment) {
-        Company company = companyRepository.getOne(1);
-        int balance = company.getBalance();
-        company.setBalance(balance - payment );
-        companyRepository.saveAndFlush(company);
-
-        return dropRecordRepository.settleRepaymentByOrgSysId(sysId);
-    }
 
     @Override
     public int getCompanyBalance() {

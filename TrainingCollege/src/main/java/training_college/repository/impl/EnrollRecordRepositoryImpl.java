@@ -26,11 +26,12 @@ public class EnrollRecordRepositoryImpl implements EnrollRecordInterface {
         return  records;
     }
 
+    //未结算的收入
     @Override
     public int getPaymentSumByOrgSystemId(String sysId) {
         String hql = "select sum(e.payment) " +
                 "from EnrollmentRecord e " +
-                "where e.payMethod='card' and e.orgSystemId =?1 ";
+                "where e.orgSystemId =?1 and e.payMethod='card' and e.checked = false ";
         Query query = em.createQuery(hql).setParameter(1,sysId);
         List result = query.getResultList();
         if(result!=null){
@@ -55,7 +56,7 @@ public class EnrollRecordRepositoryImpl implements EnrollRecordInterface {
     public List<String> getPaymentUncheckedOrgSystemIds() {
 
         String hql = "select distinct e.orgSystemId " +
-                "from EnrollmentRecord e where e.payMethod = 'card' and e.checked is false " ;
+                "from EnrollmentRecord e where e.payMethod = 'card' and e.checked = false " ;
 
         Query query = em.createQuery(hql);
         return query.getResultList();
