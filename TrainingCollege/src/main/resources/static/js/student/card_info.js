@@ -2,6 +2,26 @@
  * Created by ss14 on 2017/3/18.
  */
 
+function stopMembership (sid) {
+
+    alert("取消会员" );
+
+    $.ajax({
+        type: "POST",
+        url:"/student/"+sid+"/stopMembership",
+        success: function(data){
+
+            if(data){
+                alert("取消会员成功" );
+            }
+            location.reload();
+        },
+
+        traditional:true
+    });
+}
+
+
 function reCharge (sid) {
 
     var status = $('#status').text();
@@ -50,21 +70,6 @@ function reCharge (sid) {
                     alert("恢复失败");
                 }
             }
-
-            location.reload();
-        },
-
-        traditional:true
-    });
-}
-
-function stopMembership (sid) {
-
-    $.ajax({
-        type: "POST",
-        url:"/student/"+sid+"/stopMembership",
-        data: data,
-        success: function(data){
 
             location.reload();
         },

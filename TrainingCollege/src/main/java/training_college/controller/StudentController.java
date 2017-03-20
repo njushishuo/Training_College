@@ -89,9 +89,9 @@ public class StudentController {
 
 /************************************************我的会员卡****************************************************/
     @RequestMapping(value = "/{id}/cardInfo" , method = RequestMethod.GET )
-    public String getCardInfoPage(@PathVariable int id , Model model){
+    public String getCardInfoPage(@PathVariable int id , Model model , HttpSession session){
 
-        Student student = cardService.getStudentById(id);
+        Student student  = (Student) session.getAttribute("student");
 
         Card card = student.getCard();
         CardVO cardVO = new CardVO();
@@ -108,6 +108,7 @@ public class StudentController {
         return "student/card_info";
 
     }
+
 
     @RequestMapping(value = "/{id}/cardInfo" , method = RequestMethod.POST )
     public String updateCardInfo(@PathVariable int id , HttpServletRequest request){

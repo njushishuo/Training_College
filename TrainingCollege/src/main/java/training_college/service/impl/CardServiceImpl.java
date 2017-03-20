@@ -55,7 +55,10 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public Student stopMembership(Student student) {
-        student.getCard().setStatus(CardStatus.disabled);
+        Card card =student.getCard();
+        card.setStatus(CardStatus.disabled);
+        card = cardRepository.saveAndFlush(card);
+        student.setCard(card);
         return  studentRepository.saveAndFlush(student);
     }
 }
